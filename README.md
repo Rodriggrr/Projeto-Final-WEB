@@ -1,31 +1,42 @@
-# :checkered_flag: NOME DO PROJETO
+# Quixadá Tour
 
-Breve descrição do que o seu projeto faz.
+Quixadá Tour será uma plataforma online de agendamento de visitas a pontos turísticos de Quixadá. Terá o objetivo de cadastrar turistas, mostrar locais de interesse, recomendar transportes ou guias para tais locais, quando necessário.
 
-## :technologist: Membros da equipe
+## Membros da equipe
 
-Matrícula, nome e curso dos participantes.
+Rodrigo Farinon - 535790   
+Rodrigo Cauã - 539234   
+Caio Cezar - 
 
-## :bulb: Objetivo Geral
-Descrever o objetivo de geral do projeto
+## Objetivo Geral
 
-## :eyes: Público-Alvo
-Público-alvo do projeto
+Fomentar o turismo na cidae de Quixadá, ao mesmo tempo que melhora a acessibilidade a serviços de transporte, como mototáxi e gera um novo mercado de guias turísticos para áreas onde serão necessários, como por exemplo subir a Pedra da Galinha Choca.
 
-## :star2: Impacto Esperado
-Descreva o impacto esperado do projeto em relação ao público alvo
+## Público-Alvo
 
-## :people_holding_hands: Papéis ou tipos de usuário da aplicação
+Pessoas que queiram conhecer melhor a nossa bela cidade de Quixadá.
 
-Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: administrador, locador, locatario, usuário não logado.
+## Impacto Esperado
+
+Facilidade no planejamento de visitas a Quixadá, com o auxílio da plataforma. Melhor experiência durante a visita devido à facilidade de escolher transportes recomendados e simplificação na tentativa de achar um ponto turístico menos acessível, com o acervo de guias disponível.
+
+## Papéis ou tipos de usuário da aplicação
+
+Turista, o público-alvo da plataforma e o indivíduo que quer conhecer Quixadá.
+Administrador, que colocará os pontos turísticos e receberá feedbacks.
+Guia, que irá promover o seu trabalho na plataforma de acordo com os pontos turísticos disponíveis e dirá os dias e horário em que fará um tour pelo ponto turístico, dando a oportunidade para os turistas agendarem nos mesmos.
+Taxista ou Mototaxista que ajudarão os turistas a chegarem a seus destinos.
+Usuário não logado, que poderá ver os pontos turísticos presentes mas não poderá entrar em contato com motoristas ou guias, embora consiga ver quais têm.
 
 > Tenha em mente que obrigatoriamente a aplicação deve possuir funcionalidades acessíveis a todos os tipos de usuário e outra funcionalidades restritas a certos tipos de usuários.
 
-## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
+## Principais funcionalidades da aplicação
 
-Descreve ou liste brevemente as principais funcionalidades da aplicação que será desenvolvida. Destaque a funcionalidades que serão acessévies a todos os usuários e aquelas restriras a usuários logados.
+Observar pontos turísticos, guias, motoristas e avaliações dos mesmos será uma funcionalidade para todos.
+Adicionar pontos turísticos, apresentar uma agenda de tours e cadastrar-se como motorista serão funcionalidades para usuários que vão se beneficiar da plataforma profissionalmente.
+Agendar com guias, recrutar veículos e avaliar pontos turísticos serão funcionalidades de turistas.
 
-## :spiral_calendar: Entidades ou tabelas do sistema
+## Entidades ou tabelas do sistema
 
 Liste as principais entidades do sistema.
 
@@ -37,7 +48,7 @@ Liste as principais entidades do sistema.
 
 ----
 
-## :desktop_computer: Tecnologias e frameworks utilizados
+## Tecnologias e frameworks utilizados
 
 **Frontend:**
 
@@ -48,7 +59,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 
-## :shipit: Operações implementadas para cada entidade da aplicação
+## Operações implementadas para cada entidade da aplicação
 
 
 | Entidade| Criação | Leitura | Atualização | Remoção |
@@ -59,7 +70,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 > Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
 
-## :neckbeard: Rotas da API REST utilizadas
+## Rotas da API REST utilizadas
 
 | Método HTTP | URL |
 | --- | --- |
