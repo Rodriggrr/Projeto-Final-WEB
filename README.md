@@ -1,40 +1,51 @@
-# Quixadá Tour
+# Quixadá Tour  
 
-Quixadá Tour será uma plataforma online de agendamento de visitas a pontos turísticos de Quixadá. Terá o objetivo de cadastrar turistas, mostrar locais de interesse, recomendar transportes ou guias para tais locais, quando necessário.
+Quixadá Tour será uma plataforma online de agendamento de visitas a pontos turísticos de Quixadá. O objetivo é cadastrar turistas, exibir locais de interesse e recomendar transportes ou guias quando necessário, promovendo uma experiência mais prática e agradável.  
 
-## Membros da equipe
+## Membros da equipe  
 
-Rodrigo Farinon - 535790   
-Rodrigo Cauã - 539234   
-Caio Cezar - 
+- **Rodrigo Farinon** - 535790  
+- **Rodrigo Cauã** - 539234  
+- **Caio Cezar** - 
 
-## Objetivo Geral
+## Objetivo Geral  
 
-Fomentar o turismo na cidae de Quixadá, ao mesmo tempo que melhora a acessibilidade a serviços de transporte, como mototáxi e gera um novo mercado de guias turísticos para áreas onde serão necessários, como por exemplo subir a Pedra da Galinha Choca.
+Fomentar o turismo na cidade de Quixadá, melhorando a acessibilidade a serviços como mototáxis e gerando novas oportunidades no mercado de guias turísticos. Um exemplo é a facilitação do acesso a locais emblemáticos, como a Pedra da Galinha Choca.  
 
-## Público-Alvo
+## Público-Alvo  
 
-Pessoas que queiram conhecer melhor a nossa bela cidade de Quixadá.
+Pessoas que desejam explorar e conhecer melhor a belíssima cidade de Quixadá.  
 
-## Impacto Esperado
+## Impacto Esperado  
 
-Facilidade no planejamento de visitas a Quixadá, com o auxílio da plataforma. Melhor experiência durante a visita devido à facilidade de escolher transportes recomendados e simplificação na tentativa de achar um ponto turístico menos acessível, com o acervo de guias disponível.
+A plataforma trará:  
+- **Planejamento Simplificado**: Auxílio na organização de visitas a Quixadá.  
+- **Melhor Experiência**: Facilidade ao escolher transportes recomendados e ao localizar pontos turísticos menos acessíveis.  
+- **Acervo de Guias**: Disponibilidade de profissionais para guiar os visitantes em passeios personalizados.  
 
-## Papéis ou tipos de usuário da aplicação
+## Papéis ou Tipos de Usuário da Aplicação  
 
-Turista, o público-alvo da plataforma e o indivíduo que quer conhecer Quixadá.
-Administrador, que colocará os pontos turísticos e receberá feedbacks.
-Guia, que irá promover o seu trabalho na plataforma de acordo com os pontos turísticos disponíveis e dirá os dias e horário em que fará um tour pelo ponto turístico, dando a oportunidade para os turistas agendarem nos mesmos.
-Taxista ou Mototaxista que ajudarão os turistas a chegarem a seus destinos.
-Usuário não logado, que poderá ver os pontos turísticos presentes mas não poderá entrar em contato com motoristas ou guias, embora consiga ver quais têm.
+- **Turista**: O público principal da plataforma, interessado em explorar Quixadá.  
+- **Administrador**: Responsável por cadastrar pontos turísticos e gerenciar feedbacks dos usuários.  
+- **Guia**: Profissional que promoverá seus serviços, indicando dias e horários disponíveis para tours, permitindo que turistas agendem passeios diretamente.  
+- **Taxista ou Mototaxista**: Profissionais que facilitarão o transporte dos turistas até os destinos escolhidos.  
+- **Usuário não logado**: Visitantes que poderão visualizar pontos turísticos, mas não terão acesso a interações como agendamentos ou contato com guias e motoristas.  
 
-> Tenha em mente que obrigatoriamente a aplicação deve possuir funcionalidades acessíveis a todos os tipos de usuário e outra funcionalidades restritas a certos tipos de usuários.
+## Principais Funcionalidades da Aplicação  
 
-## Principais funcionalidades da aplicação
+1. **Disponível para Todos os Usuários**:  
+   - Visualizar pontos turísticos, guias, motoristas e suas avaliações.  
 
-Observar pontos turísticos, guias, motoristas e avaliações dos mesmos será uma funcionalidade para todos.
-Adicionar pontos turísticos, apresentar uma agenda de tours e cadastrar-se como motorista serão funcionalidades para usuários que vão se beneficiar da plataforma profissionalmente.
-Agendar com guias, recrutar veículos e avaliar pontos turísticos serão funcionalidades de turistas.
+2. **Funcionalidades para Profissionais**:  
+   - Adicionar novos pontos turísticos.  
+   - Apresentar agendas de tours.  
+   - Cadastrar-se como motorista ou guia.  
+
+3. **Funcionalidades para Turistas**:  
+   - Agendar passeios com guias.  
+   - Recrutar veículos para transporte.  
+   - Avaliar pontos turísticos, guias e motoristas.  
+
 
 ## Entidades ou tabelas do sistema
 
