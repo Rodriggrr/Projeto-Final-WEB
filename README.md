@@ -6,7 +6,7 @@ Quixadá Tour será uma plataforma online de agendamento de visitas a pontos tur
 
 - **Rodrigo Farinon** - 535790  
 - **Rodrigo Cauã** - 539234  
-- **Caio Cezar** - 
+- **Caio Cezar** - 542322
 
 ## Objetivo Geral  
 
