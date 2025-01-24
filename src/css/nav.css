@@ -248,11 +248,18 @@ header .dropdown li a {
 .content{
     display: flex;
     flex-wrap: wrap;
+    max-width: 100vh;
 }
 
-.local {
-    flex: 1 1 calc(33.33% - 16px); /* Garante três itens por linha */
-    max-width: calc(33.33% - 16px);
+.content > a {
+    min-width: 150px;
+    min-height: 150px;
+    border-radius: 10px;
+    margin: 10px;
 }
 
-
+.local > img{
+    min-width: 150px;
+    min-height: 150px;
+    border-radius: 10px;
+}
