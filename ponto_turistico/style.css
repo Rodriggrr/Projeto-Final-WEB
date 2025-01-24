@@ -1,0 +1,37 @@
+body {
+    display: none;
+}
+
+.imagemLocal > img{
+    min-height: 300px;
+    min-width: 320px;
+    background-color: rgb(27, 66, 66);
+    border-radius: 10px;
+}
+
+.conteiner{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bioLocal{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    width: 400px;
+    height: 100px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0;
+}
+
+.detalhes{
+    width: 400px;
+    height: 210px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+

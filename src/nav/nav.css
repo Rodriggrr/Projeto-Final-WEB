@@ -1,13 +1,12 @@
 :root {
     --font-color: black;
     --link-color-main: black;
-    --header-bg-color: rgba(255, 255, 255, 0.7); 
-    --header-hover-color: rgba(255, 255, 255, 1);
-    --header-item-hover-color: rgb(220, 220, 220);
+    --nav-bg-color: rgba(255, 255, 255, 0.7); 
+    --nav-hover-color: rgba(255, 255, 255, 1);
+    --nav-item-hover-color: rgb(220, 220, 220);
     --dropdown-menu-color:  rgb(212, 212, 212);
     --dropdown-menu-item-hover-color: rgba(163, 163, 163, 0.671);
     --dropdown-menu-item-border-color: rgba(163, 163, 163, 0.863);
-    --page-bg-color: rgb(245, 228, 206);
     --cool-loading-bar-color: rgba(0, 0, 0, 0.603);
 }
 
@@ -17,58 +16,31 @@
     font-weight: normal;
     src: local('Segoe UI Regular'), url('../fonts/segoe-ui/Segoe\ UI.woff') format('woff');
 }
-    
-img {
-    max-width: 64px;
-    max-height: 64px;
-}
 
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-}
 
-body {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Segoe Ui Regular';
-    color: var(--font-color);
-}
-
-main {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-header a {
+.nav a {    
     text-decoration: none;
     color: var(--font-color);
 }
 
+.nav img {
+    max-width: 64px;
+}
 
-header {
+
+.nav {
     z-index: 10;
-    position: absolute;
     display: flex;
     height: 64px;
     width: 100%;
-    background-color: var(--header-bg-color);
-    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.363);
-    backdrop-filter: blur(3px);
+    background-color: var(--nav-bg-color);
     align-items: center;
     justify-content: space-between;
     gap: 40px;
 }
 
 
-header > ul {
+.nav > ul {
     list-style: none;
     width: 40%;
     height: 100%;
@@ -79,7 +51,7 @@ header > ul {
     gap: 10px;
 }
 
-header > ul > li {
+.nav > ul > li {
     position: relative;
     height: 100%;
     width: 100%;
@@ -91,7 +63,7 @@ header > ul > li {
 }
 
 
-header label {
+.nav label {
     cursor: pointer;
     width: 100%;
     text-decoration: none;
@@ -104,16 +76,16 @@ header label {
     margin-top: auto;
 }
 
-header > ul > li > label span {
+.nav > ul > li > label span {
     padding-right: 14px;
 }
 
 
-header a:hover, label:hover {
+.nav a:hover, label:hover {
     text-decoration: underline;
 }
 
-header .dropdown-toggle{
+.nav .dropdown-toggle{
     background-color: transparent;
     border: none;
     outline: none;
@@ -125,7 +97,7 @@ header .dropdown-toggle{
     z-index: -1; /* Torne-o inacessível visualmente */
 }
 
-header .dropdown {
+.nav .dropdown {
     position: absolute;
     overflow: hidden;
     height: 0px;
@@ -141,15 +113,15 @@ header .dropdown {
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.363);
 }
 
-header .dropdown.guias {
+.nav .dropdown.guias {
     max-height: 89px;
 }
 
-header .dropdown.transporte {
+.nav .dropdown.transporte {
     max-height: 118px;
 }
 
-header .dropdown > ul {
+.nav .dropdown > ul {
     padding: 0;
     list-style: none;
     height: 100%;
@@ -159,11 +131,11 @@ header .dropdown > ul {
     gap: 4px;
 }
 
-header .dropdown > ul > li {
+.nav .dropdown > ul > li {
     width: 100%;
 }
 
-header .dropdown > ul > li > a {
+.nav .dropdown > ul > li > a {
     display: block;
     width: 100%;
     height: 100%;
@@ -171,34 +143,41 @@ header .dropdown > ul > li > a {
     line-height: 20px;
 }
 
-header .dropdown > ul > li:not(:first-child) {
+.nav .dropdown > ul > li:not(:first-child) {
     border-top: 1px solid var(--dropdown-menu-item-border-color);
 }
 
-header .dropdown > ul > li > a:is(:last-child) {
+.nav .dropdown > ul > li > a:is(:last-child) {
     border-bottom: 1px solid var(--dropdown-menu-item-border-color);
 }
 
-header .dropdown > ul > li > a:hover {
+.nav .dropdown > ul > li > a:hover {
     background-color: var(--dropdown-menu-item-hover-color);
 }
 
 
-header .dropdown-toggle:checked + label + .dropdown {
+.nav .dropdown-toggle:checked + label + .dropdown {
     height: 150px;
 }
 
-header ul .bi {
+.nav ul .bi {
     padding: 4px;
 }
 
-header label .bi-caret-up {
+.nav label .bi-caret-up {
     display: none;
 }
 
-header > a {
-    padding: 70px;
+.nav > a {
+    padding: 0 20px; /* Ajusta o espaçamento interno */
+    margin-left: auto; /* Empurra o elemento para o extremo direito */
+    text-decoration: none; /* Remove sublinhado */
+    color: var(--font-color); /* Aplica a cor padrão do texto */
+    display: flex; /* Garante o alinhamento vertical */
+    align-items: center;
+    height: 100%; /* Alinha com a altura da barra */
 }
+
 
 .dropdown-toggle:checked + label .bi-caret-up {
     display: inline;
@@ -231,35 +210,7 @@ header > a {
 }
 
 
-header .dropdown li a {
+.nav .dropdown li a {
     text-decoration: none;
 }
 
-.center {
-    width: 100%;
-    height: 100%;
-    padding-top: 64px;
-    background-color: var(--page-bg-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.content{
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 100vh;
-}
-
-.content > a {
-    min-width: 150px;
-    min-height: 150px;
-    border-radius: 10px;
-    margin: 10px;
-}
-
-.local > img{
-    min-width: 150px;
-    min-height: 150px;
-    border-radius: 10px;
-}
