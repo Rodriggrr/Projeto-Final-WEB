@@ -2,20 +2,20 @@ body {
     display: none;
 }
 
-.imagemLocal > img{
+.imagem_local > img {
     min-height: 300px;
     min-width: 320px;
     background-color: rgb(27, 66, 66);
     border-radius: 10px;
 }
 
-.conteiner{
+.conteiner {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.bioLocal{
+.bio_local {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -27,11 +27,9 @@ body {
     padding: 0;
 }
 
-.detalhes{
+.detalhes {
     width: 400px;
     height: 210px;
     border: 1px solid black;
     border-radius: 10px;
 }
-
-
