@@ -240,4 +240,19 @@ header .dropdown li a {
     height: 100%;
     padding-top: 64px;
     background-color: var(--page-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.content{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.local {
+    flex: 1 1 calc(33.33% - 16px); /* Garante três itens por linha */
+    max-width: calc(33.33% - 16px);
+}
+
+
