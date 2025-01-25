@@ -28,7 +28,6 @@ body {
 header {
     width: 100%;
     box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.363);
-    z-index: 1;
 }
 main {
     height: 100%;
