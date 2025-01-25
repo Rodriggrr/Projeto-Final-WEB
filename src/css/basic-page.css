@@ -2,6 +2,14 @@
     --page-bg-color: rgb(245, 228, 206);
 }
 
+
+@font-face {
+    font-family: 'Segoe UI Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Segoe UI Regular'), url('../fonts/segoe-ui/Segoe\ UI.woff') format('woff');
+}
+
 img {
     max-width: 64px;
     max-height: 64px;
