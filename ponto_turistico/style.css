@@ -1,8 +1,12 @@
-.imagem_local > img {
-    min-height: 300px;
-    min-width: 320px;
-    background-color: rgb(27, 66, 66);
-    border-radius: 10px;
+@font-face {
+    font-family: 'Biko Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Biko Regular'), url('../src/fonts/biko/Biko_Regular.otf') format('opentype');
+}
+
+.content{
+    display: block;
 }
 
 .conteiner {
@@ -11,21 +15,39 @@
     gap: 10px;
 }
 
-.bio_local {
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    width: 400px;
-    height: 100px;
-    margin-bottom: 10px;
-    border: 1px solid black;
+.conteiner > .imagem_local > img {
+    min-height: 300px;
+    min-width: 320px;
     border-radius: 10px;
-    padding: 0;
 }
 
-.detalhes {
+.info_local > .detalhes {
     width: 400px;
-    height: 210px;
-    border: 1px solid black;
+    height: 200px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #333; 
+    background-color: antiquewhite;
+    padding-left: 10px;
     border-radius: 10px;
+    margin-bottom: 80px;
+}
+
+.avaliacoes{
+    width: 730px;
+    height: 100px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #333; 
+    background-color: antiquewhite;
+    padding-left: 10px;
+    border-radius: 10px;
+    margin-bottom: 80px;
+}
+
+.avatar{
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    border-radius: 100%;
 }
