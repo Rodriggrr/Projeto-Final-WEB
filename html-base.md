@@ -9,15 +9,17 @@
     <link rel="stylesheet" href="../src/css/basic-page.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style> body { visibility: hidden; } body.loaded { visibility: visible; } </style>
     <title>Document</title>
 </head>
 
 <body>
     <!-- Nav -->
     <header id="navbar"></header>
-        
+    
+    <!-- Conteúdo Principal Aqui -->
     <main>
-        
+    
     </main>
 
 </body>
