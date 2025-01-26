@@ -17,7 +17,7 @@
     <header id="navbar"></header>
         
     <main>
-        <div class="content">
+        <div class="content"> <!-- a main está definida como display flex, porém para a formatação precisava de um content diplay block -->
             <section class="conteiner">
                 <div class="imagem_local">
                     <img src="/src/img/galinha_choca.jpg" alt="">
@@ -35,19 +35,20 @@
                 </div>
             </section>
             <section class="avaliacoes">
-                <div class="avaliacao">
-                    <div class="avaliacao_usuario">
-                        <div class="avatar"></div> <!-- classe avatar feita apenas para teste no css e sem imagem -->
-                        <h3>João da Silva</h3>
+                <article class="avaliacao_usuario">
+                    <div class="usario">
+                        <div class="avatar"></div> <!-- Avatar do usuário, só para ilustrar -->
+                        <h4>João da Silva</h4>
+                    </div>
+                    <div class="avaliacao">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
                         <p>Nota: 5/5</p>
                         <p>Excelente lugar para visitar, recomendo a todos!</p>
                     </div>
-                    <div class="avaliacao_usuario">
-                        <div class="avatar"></div>
-                        <h3>Maria da Silva</h3>
-                        <p>Nota: 4/5</p>
-                        <p>Local muito bonito, vale a pena conhecer!</p>
-                </div>
+                </article>
             </section>
         </div>
     </main>
