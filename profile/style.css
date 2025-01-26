@@ -1,0 +1,114 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('../src/fonts/poppins/Poppins-Bold.ttf');
+}
+
+img {
+    max-height: none;
+    max-width: none;
+}
+
+.profile {
+    width: 60%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile .img-fix {
+    border-radius: 110px;
+    width: 210px;
+    height: 210px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+
+.apelido {
+    font-family: 'Poppins';
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    padding: 20px;
+    width: 70%;
+    gap: 10px;
+}
+
+.top > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.top i {
+    display: none;
+}
+
+.top > div{
+    border-bottom: 2px dashed rgba(100, 100, 100, 0.2);
+}
+
+.top > div:hover {
+    cursor: pointer;
+}
+
+.top > div:hover i {
+    display: inline;
+}
+
+.top .description {
+    color: rgba(100, 100, 100, 0.6);
+}
+
+.profile img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+
+.top .bio {
+    width: 100%;
+    height: 93%;
+    text-align: left;
+    overflow-y: hidden;
+    scrollbar-color: rgba(100, 100, 100, 0.6) rgba(100, 100, 100, 0.2);
+    scrollbar-width: thin;
+}
+
+.top .bio:hover {
+    overflow-y: scroll;
+}
+
+.top .separator {
+    width: 60%;
+    height: 2%;
+    background-color: rgba(100, 100, 100, 0.2);
+    border-radius: 10px;
+}
+
+.top .info {
+    font-size: 13px;
+    line-height: 2;
+    text-align: right;
+    width: 100%;
+    height: 5%;
+}
+
+.top .info  i {
+    padding: 3px;
+}
+
+.top .info-node {
+    padding: 10px;
+}
