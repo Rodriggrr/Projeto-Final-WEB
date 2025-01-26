@@ -1,0 +1,55 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: antiquewhite;
+    width: 100%;
+    height: 210px;
+    border-radius: 10px;
+}
+
+#usuario, #senha{
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.senha > a{
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.senha > a:hover {
+    text-decoration: underline;
+}
+
+.entrar a{
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.entrar a:hover{
+    text-decoration: underline;
+}
+
+.login button{
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.login button:hover{
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+

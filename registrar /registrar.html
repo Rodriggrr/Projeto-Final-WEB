@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../src/nav/add_navbar.js"></script>
+    <link rel="stylesheet" href="../src/css/basic-page.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Quixadá tour - Regustrar</title>
+</head>
+
+<body>
+    <!-- Conteúdo Principal Aqui -->
+    <main>
+        <section class="registrar">
+            <h1>Crie uma conta no <span>Quixadá Tour</span></h1>
+            <form class="container">
+                <div class="e-mail">
+                    <label for="e-mail">E-mail</label>
+                    <input id="e-mail" type="email" placeholder="E-mail" required>
+                </div>
+
+                <div class="senha">
+                    <label for="senha">Senha</label>
+                    <input id="senha" type="password" placeholder="Senha" required>
+                    <p>A senha tem que ter no máximo 15 carecteres ou no minimo 8 caracteres
+                        <br> incluindo números e letras maiusculas.
+                    </p>
+                </div>
+
+                <div class="usuario">
+                    <label for="usuario">Usuario</label>
+                    <input id="usuario" type="text" placeholder="Usuario" required>
+                    <p>Usuario deve conter entre 3 e 16 caracteres apenas letras, números
+                        <br> e undercores (_) são permitidos não podendo conter espaços.
+                    </p>
+                </div>
+
+                <div class="criarConta">
+                    <button type="submit"> Registrar </button>
+                </div>
+            </form>
+
+            <p class="contaExistente">
+                Já tem uma conta? 
+                <a href="login.html">Entre →</a>
+            </p>
+        </section>
+    </main>
+
+</body>
+</html>
