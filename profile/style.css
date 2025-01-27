@@ -3,6 +3,10 @@
     src: url('../src/fonts/poppins/Poppins-Bold.ttf');
 }
 
+i  {
+    padding: 3px;
+}
+
 img {
     max-height: none;
     max-width: none;
@@ -28,10 +32,21 @@ img {
 }
 
 
-.apelido {
+.profile .apelido {
+    text-align: center;
+    min-width: fit-content;
+    white-space: nowrap; 
     font-family: 'Poppins';
     font-size: 50px;
     font-weight: bolder;
+}
+
+.profile .avaliacao {
+    color: gold;
+    text-shadow: 0px 0px 1px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .top {
@@ -103,10 +118,6 @@ img {
     text-align: right;
     width: 100%;
     height: 5%;
-}
-
-.top .info  i {
-    padding: 3px;
 }
 
 .top .info-node {
