@@ -1,14 +1,15 @@
-let avaliacao_container = document.getElementsByClassName('avaliacao');
+let avaliacao_container = document.getElementsByClassName('stars');
 let valores = document.getElementsByClassName('valor');
 
 function put_stars(container, value) {
+
     value = (value < 0) ? 0 : value;
     value = (value > 5) ? 5 : value;
     let aux = (!isNaN(value)) ? value : 0;
     let text = container.innerHTML;
     container.innerHTML = ''; 
     while (value > 0) {
-        if (Math.round(value) < 1) {
+        if (value < 0.8) {
             container.innerHTML += `<i class="bi bi-star-half"></i>`; 
         } else {
             container.innerHTML += `<i class="bi bi-star-fill"></i>`; 
@@ -22,7 +23,7 @@ function put_stars(container, value) {
 
 document.addEventListener("ReviewSTARS", () => {
     for (let i = 0; i < avaliacao_container.length; i++) {
-        const valor = parseFloat(valores[i].innerText);
+        const valor = parseFloat(valores[i].textContent);
         console.log(`Valor para o container ${i}:`, valor);
         put_stars(avaliacao_container[i], valor);
     }

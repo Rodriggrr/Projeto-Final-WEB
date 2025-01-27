@@ -20,7 +20,7 @@
 .info_local > .detalhes {
     width: 400px;
     height: 200px;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #888 #333; 
     background-color: antiquewhite;
@@ -42,13 +42,18 @@
 .avaliacoes{
     width: 730px;
     height: 150px;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #888 #333; 
     background-color: antiquewhite;
     padding-left: 10px;
     border-radius: 10px;
     margin-bottom: 80px;
+}
+
+.avaliacoes i {
+    color: #1E90FF;
+    padding: 2px;
 }
 
 .usario{

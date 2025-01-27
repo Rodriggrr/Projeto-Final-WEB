@@ -1,6 +1,16 @@
 @font-face {
-    font-family: 'Poppins';
+    font-family: 'Poppins Bold';
     src: url('../src/fonts/poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins Regular';
+    src: url('../src/fonts/poppins/Poppins-Light.ttf')
+}
+
+main {
+    min-width: 900px;
+    overflow-y:hidden;
 }
 
 i  {
@@ -12,6 +22,111 @@ img {
     max-width: none;
 }
 
+.stars {
+    white-space: nowrap;
+}
+
+.border {
+    width: 70%;
+    height: 1px;
+    background-color: rgba(100, 100, 100, 0.2);
+    border-radius: 10px;
+    align-self: center;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins Regular';
+    width: 20%;
+    height: 60%;
+}
+
+aside.left a {
+    text-decoration: none;
+    color: black;
+}
+
+aside.left a:hover {
+    text-decoration: underline;
+}
+
+aside.left {
+    margin-left: 30px;
+}
+
+aside .container {
+    width: 100%;
+    height: 100%;
+    background-color: antiquewhite;
+    font-family: 'Segoe UI';
+    border-radius: 10px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 100, 100, 0.4) rgba(100, 100, 100, 0.2);
+}
+    
+aside.left .avaliacao-usuario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+}
+
+aside.left .avaliacao-usuario .nome-nota {
+    width: 90%;
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+aside.left .nome {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+aside.left .avaliacao i {
+    font-size: 13px;
+    padding: 0px;
+}
+
+aside.left .avaliacao-usuario .content {
+    width: 90%;
+}
+
+aside.left .avaliacao-usuario:not(:last-child) {
+    border-bottom: 2px solid rgba(100, 100, 100, 0.5);
+}
+
+aside span.title {
+    padding: 5px;
+    width: fit-content;
+    height: fit-content;
+}
+
+aside.right {
+    margin-right: 30px;
+}
+
+aside.right span.title {
+    align-self: flex-end;
+    text-align: right;
+}
+
+aside.right .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+aside.right .container > .textplace {
+    width: 90%;
+    height: 95%;   
+}
+
 .profile {
     width: 60%;
     height: 90%;
@@ -19,6 +134,7 @@ img {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    justify-content: space-evenly;
 }
 
 .profile .img-fix {
@@ -31,25 +147,26 @@ img {
     align-items: center;    
 }
 
-
 .profile .apelido {
+    background-clip: text;
+    background-color: #1E90FF;
     text-align: center;
     min-width: fit-content;
     white-space: nowrap; 
-    font-family: 'Poppins';
+    font-family: 'Poppins Bold';
     font-size: 50px;
     font-weight: bolder;
 }
 
 .profile .avaliacao {
-    color: gold;
-    text-shadow: 0px 0px 1px black;
+    color: #1E90FF;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.top {
+.profile .top {
     display: flex;
     flex-direction: column;
     background-color: antiquewhite;
@@ -59,60 +176,45 @@ img {
     gap: 10px;
 }
 
-.top > div {
+.profile .top > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
-.top i {
+.profile .top .bi-pen {
     display: none;
 }
 
-.top > div{
+.profile .top > div{
     border-bottom: 2px dashed rgba(100, 100, 100, 0.2);
 }
 
-.top > div:hover {
+.profile .top > div:hover {
     cursor: pointer;
 }
 
-.top > div:hover i {
+.profile .top > div:hover i {
     display: inline;
 }
 
-.top .description {
+.profile .top .description {
     color: rgba(100, 100, 100, 0.6);
 }
 
 .profile img {
     width: 300px;
     height: 300px;
-    object-fit: cover;
 }
 
-
-.top .bio {
-    width: 100%;
-    height: 93%;
-    text-align: left;
-    overflow-y: hidden;
-    scrollbar-color: rgba(100, 100, 100, 0.6) rgba(100, 100, 100, 0.2);
-    scrollbar-width: thin;
-}
-
-.top .bio:hover {
-    overflow-y: scroll;
-}
-
-.top .separator {
+.profile .top .separator {
     width: 60%;
     height: 2%;
     background-color: rgba(100, 100, 100, 0.2);
     border-radius: 10px;
 }
 
-.top .info {
+.profile .top .info {
     font-size: 13px;
     line-height: 2;
     text-align: right;
@@ -120,6 +222,18 @@ img {
     height: 5%;
 }
 
-.top .info-node {
+.profile .top .info-node {
     padding: 10px;
+}
+
+.profile .top .parceria {
+    pointer-events: none;
+}
+
+.bio {
+    width: 20%;
+    height: 60%;
+    background-color: antiquewhite;
+    margin-right: 30px;
+    border-radius: 10px;
 }
