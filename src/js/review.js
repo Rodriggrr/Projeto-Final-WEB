@@ -32,3 +32,28 @@ document.addEventListener("ReviewSTARS", () => {
 const evento = new Event("ReviewSTARS");
 document.dispatchEvent(evento);
 
+const openModal = document.getElementById('openModal');
+const closeModal = document.getElementById('closeModal');
+const modal = document.getElementById('agendamentoModal');
+
+openModal.addEventListener('click', () => {
+    modal.style.display = 'flex';
+});
+
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Initialize Flatpickr
+flatpickr("#calendario", {
+    enableTime: false,
+    dateFormat: "Y-m-d",
+    minDate: "today",
+});
+
