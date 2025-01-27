@@ -9,8 +9,9 @@
 }
 
 main {
-    min-width: 900px;
-    overflow-y:hidden;
+    min-width: 1100px;
+    overflow-y: hidden;  
+    overflow-x: hidden;  
 }
 
 i  {
