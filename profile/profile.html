@@ -8,7 +8,15 @@
     <link rel="stylesheet" href="../src/css/basic-page.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style> body { visibility: hidden; } body.loaded { visibility: visible; } </style>
+    <style>
+        body {
+            visibility: hidden;
+        }
+
+        body.loaded {
+            visibility: visible;
+        }
+    </style>
     <title>Perfil</title>
 </head>
 
@@ -86,7 +94,8 @@
 
                     <div class="border"></div>
 
-                    <div class="content">Me atropelou e me livrou de uns meses de trabalho. 5 estrelas! Porém sinto falta da minha perna esquerda.</div>
+                    <div class="content">Me atropelou e me livrou de uns meses de trabalho. 5 estrelas! Porém sinto
+                        falta da minha perna esquerda.</div>
                 </article>
             </div>
         </aside>
@@ -134,12 +143,28 @@
         </aside>
     </main>
     <script>
+        const initialNames = [...document.querySelectorAll('aside.left .nome')].map(nome => nome.textContent);
         function limit_name_size() {
+            function refactor_name(name) {
+                let str = name.textContent;
+                let vet = str.split(' ');
+                return (vet.length > 1) ? `${vet[0]} ${vet[1][0]}.` : `${vet[0].substring(0, 11)}...`;
+            }
+
             let nomes = document.querySelectorAll('aside.left .nome');
             let container = document.querySelectorAll('aside.left .avaliacao-usuario .nome-nota');
-            for(let nome in nomes) {
-                let nome_width = nome.getBoundingClientRect().width;
-                console.log(`${i} - ${nomes[i].textContent}: ${nome_width}`);
+            for (let i = 0; i < nomes.length; i++) {
+                let nome_width = nomes[i].getBoundingClientRect().width;
+                let container_width = container[i].getBoundingClientRect().width;
+                if (container_width / nome_width < 1.7) {
+                    console.log(`from ${nomes[i].textContent}`);
+                    nomes[i].textContent = refactor_name(nomes[i]);
+                    console.log(`to ${nomes[i].textContent}`);
+                }
+                else {
+                    nomes[i].textContent = initialNames[i];
+                    
+                }
             }
         }
 
@@ -174,12 +199,34 @@
 
             }
         }
+
+
         calc_nota();
         remove_name_border();
-        
+        limit_name_size();
+
+        let lastWidth = window.innerWidth;
+        let lastHeight = window.innerHeight;
+
         window.addEventListener('resize', () => {
-            limit_name_size();
-        })
+            const currentWidth = window.innerWidth;
+            const currentHeight = window.innerHeight;
+
+            // Detecta mudança no tamanho da janela
+            if (currentWidth !== lastWidth || currentHeight !== lastHeight) {
+                console.log('Janela redimensionada!');
+                limit_name_size();
+                lastWidth = currentWidth;
+                lastHeight = currentHeight;
+            }
+
+            // Detecta mudança de zoom
+            const zoomLevel = currentWidth / lastWidth;
+            if (zoomLevel !== 1) {
+                console.log('Zoom detectado!');
+                limit_name_size();
+            }
+        });
     </script>
     <script src="../src/js/review.js"></script>
 </body>
