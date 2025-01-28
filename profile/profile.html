@@ -134,6 +134,15 @@
         </aside>
     </main>
     <script>
+        function limit_name_size() {
+            let nomes = document.querySelectorAll('aside.left .nome');
+            let container = document.querySelectorAll('aside.left .avaliacao-usuario .nome-nota');
+            for(let nome in nomes) {
+                let nome_width = nome.getBoundingClientRect().width;
+                console.log(`${i} - ${nomes[i].textContent}: ${nome_width}`);
+            }
+        }
+
         function remove_name_border() {
             let border = document.getElementsByClassName('border');
             let content = document.querySelectorAll('aside.left .avaliacao-usuario .content');
@@ -143,6 +152,7 @@
                 if (content[i].textContent === "") border[i].style.display = 'none';
             }
         }
+
         function calc_nota() {
             let valores = document.getElementsByClassName('valor');
             let valor_ignore = document.getElementsByClassName('ignore');
@@ -166,6 +176,10 @@
         }
         calc_nota();
         remove_name_border();
+        
+        window.addEventListener('resize', () => {
+            limit_name_size();
+        })
     </script>
     <script src="../src/js/review.js"></script>
 </body>
