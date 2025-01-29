@@ -1,29 +1,35 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    background-color: antiquewhite;
-    width: 100%;
-    height: 210px;
-    border-radius: 10px;
-}
-
-#usuario, #senha{
-    width: 100%;
-    max-width: 300px;
+.entrar{
     display: flex;
     flex-direction: column;
     gap: 5px;
-}
-.senha > a{
-    font-size: 0.9rem;
-    color: #007bff;
-    text-decoration: none;
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 50px;
 }
 
-.senha > a:hover {
-    text-decoration: underline;
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    
+}
+
+div .e-mail, .senha{
+    margin-bottom: 10px;
+}
+
+label{
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .entrar a{
@@ -37,15 +43,15 @@
 }
 
 .login button{
-    width: 100px;
-    height: 30px;
+    width: 100%;
+    height: 40px;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
     background-color: #007bff;
     color: white;
     font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .login button:hover{
@@ -53,3 +59,12 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+
+.registrar{
+    text-align: center;
+    margin-top: 20px;
+}
+p{
+    font-size: 1.0rem;
+    color: gray;
+}
