@@ -429,6 +429,34 @@ export interface ApiAvaliacaoAvaliacao extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPartnershipPartnership extends Struct.CollectionTypeSchema {
+  collectionName: 'partnerships';
+  info: {
+    displayName: 'Partnership';
+    pluralName: 'partnerships';
+    singularName: 'partnership';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::partnership.partnership'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Type: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -884,7 +912,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -904,6 +931,10 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    partnership: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::partnership.partnership'
+    >;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
@@ -940,6 +971,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::atracao.atracao': ApiAtracaoAtracao;
       'api::avaliacao.avaliacao': ApiAvaliacaoAvaliacao;
+      'api::partnership.partnership': ApiPartnershipPartnership;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
