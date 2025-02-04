@@ -20,17 +20,12 @@
     "react-router-dom": "^6.0.0",
     "styled-components": "^6.0.0"
   },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "typescript": "^5"
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=18.0.0 <=22.x.x",
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "6e583a44-1f28-44cf-9e25-fe33a4e1550d"
+    "uuid": "e5f21a86-e9e1-438e-b32f-d54c7e2d5966"
   }
 }
