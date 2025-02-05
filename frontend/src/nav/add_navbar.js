@@ -2,6 +2,15 @@ window.onload = function() {
     document.body.classList.add('loaded');
 };
 
+function isTokenValid(token) {
+    let payload = token.split('.')[1];
+    payload = atob(payload);
+    payload = JSON.parse(payload);
+    let exp = payload.exp;
+    let now = Date.now() / 1000;
+    return now < exp;
+}
+
 let token = sessionStorage.getItem('jwtToken');
 let login_text;
 
