@@ -45,6 +45,31 @@
     },
     "eh_guia": {
       "type": "boolean"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "usuario"
+    },
+    "sexo": {
+      "type": "string",
+      "required": true
+    },
+    "nascimento": {
+      "type": "date"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::avaliacao.avaliacao",
+      "mappedBy": "avaliado_por"
+    },
+    "avaliacoes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::avaliacao.avaliacao",
+      "mappedBy": "avaliando_a"
     }
   }
 }

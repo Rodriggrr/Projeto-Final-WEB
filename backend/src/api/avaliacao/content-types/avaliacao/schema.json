@@ -21,13 +21,17 @@
     "descricao": {
       "type": "text"
     },
-    "idSender": {
-      "type": "string",
-      "required": true
+    "avaliando_a": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::usuario.usuario",
+      "inversedBy": "avaliacoes"
     },
-    "idReceiver": {
-      "type": "string",
-      "required": true
+    "avaliado_por": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::usuario.usuario",
+      "inversedBy": "reviews"
     }
   }
 }

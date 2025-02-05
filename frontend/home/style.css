@@ -8,10 +8,10 @@
 
 .content {
     position: relative;
-    width: 80%;
+    width: fit-content;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 4 colunas de tamanho igual */
-    gap: 16px;
+    gap: 50px;
     max-width: 100vh;
 }
 

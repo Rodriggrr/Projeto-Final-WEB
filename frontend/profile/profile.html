@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../src/js/authorized.js"></script>
     <script src="../src/nav/add_navbar.js"></script>
     <link rel="stylesheet" href="../src/css/basic-page.css">
     <link rel="stylesheet" href="style.css">
@@ -27,147 +28,57 @@
     <!-- Conteúdo Principal Aqui -->
     <main>
         <aside class="left">
-            <span class="title">Avaliações</span>
-            <div class="container">
-                <article class="avaliacao-usuario">
-                    <div class="nome-nota">
-                        <a href="" class="nome">Amanda Dias</a>
-                        <div class="avaliacao">
-                            <div class="stars"></div>
-                            <span class="valor" style="display: none">5</span>
-                        </div>
-                    </div>
-
-                    <div class="border"></div>
-
-                    <div class="content">Motorista lindo e maravilhoso! Será que namora?</div>
-                </article>
-                <article class="avaliacao-usuario">
-                    <div class="nome-nota">
-                        <a href="" class="nome">Rodrigo Cauã</a>
-                        <div class="avaliacao">
-                            <div class="stars"></div>
-                            <span class="valor" style="display: none">5</span>
-                        </div>
-                    </div>
-
-                    <div class="border"></div>
-
-                    <div class="content">Quase morri! Irresponsável. Passou no pare. Pelo menos é engraçado. 5 estrelas.
-                    </div>
-                </article>
-                <article class="avaliacao-usuario">
-                    <div class="nome-nota">
-                        <a href="" class="nome">Caio Cezar</a>
-                        <div class="avaliacao">
-                            <div class="stars"></div>
-                            <span class="valor" style="display: none">5</span>
-                        </div>
-                    </div>
-
-                    <div class="border"></div>
-
-                    <div class="content"></div>
-                </article>
-                <article class="avaliacao-usuario">
-                    <div class="nome-nota">
-                        <a href="" class="nome">Rodrigo Faro</a>
-                        <div class="avaliacao">
-                            <div class="stars"></div>
-                            <span class="valor" style="display: none">4.75</span>
-                        </div>
-                    </div>
-
-                    <div class="border"></div>
-
-                    <div class="content">Um ótimo motorista, pena que pilota uma BROS 2012 150cc, inviável para mim.
-                        Talvez eu o ajude a fazer uma atualização :)</div>
-                </article>
-                <article class="avaliacao-usuario">
-                    <div class="nome-nota">
-                        <a href="" class="nome">Mariana Gomes</a>
-                        <div class="avaliacao">
-                            <div class="stars"></div>
-                            <span class="valor" style="display: none">5</span>
-                        </div>
-                    </div>
-
-                    <div class="border"></div>
-
-                    <div class="content">Me atropelou e me livrou de uns meses de trabalho. 5 estrelas! Porém sinto
-                        falta da minha perna esquerda.</div>
-                </article>
+            <div class="top">
+                <span class="title">Avaliações</span>
+                <span id="avaliar"></span>
+            </div>
+                <div class="container">
+                
             </div>
         </aside>
 
         <section class="profile">
             <div class="img-fix">
-                <img src="../src/img/logo-placeholder-image.png" alt="Foto de João Silva" class="profile-picture">
+                <img src="../src/img/logo-placeholder-image.png" alt="Foto de João Silva" id='pp' class="profile-picture">
             </div>
-            <span class="apelido">RODRIGO FARINON</span>
+            <span class="apelido" id="apelido"></span>
             <div class="avaliacao">
                 <div class="stars"></div>
                 <div>
-                    <span class="media valor ignore">2</span>
+                    <span class="media valor ignore" id="nota"></span>
                     <span>/ 5</span>
                 </div>
             </div>
             <div class="top">
                 <div class="parceria">
-                    <span class="description"><i class="bi bi-hand-thumbs-up"></i>Parceria <i
-                            class="bi bi-pen"></i></span>
-                    <span class="value">Motorista</span>
+                    <span class="description"><i class="bi bi-hand-thumbs-up"></i>Parceria <i class="bi bi-pen"></i></span>
+                    <span class="value"></span>
                 </div>
                 <div class="nome">
                     <span class="description"><i class="bi bi-person"></i>Nome <i class="bi bi-pen"></i></span>
-                    <span class="value">Rodrigo Farinon</span>
+                    <span class="value"></span>
                 </div>
                 <div class="nascimento">
                     <span class="description"><i class="bi bi-calendar3"></i>Nascimento <i class="bi bi-pen"></i></span>
-                    <span class="value">14/09/2003</span>
+                    <span class="value"></span>
                 </div>
                 <div class="sexo">
-                    <span class="description"><i class="bi bi-gender-ambiguous"></i>Sexo <i
-                            class="bi bi-pen"></i></span>
-                    <span class="value">Masculino</span>
+                    <span class="description"><i class="bi bi-gender-ambiguous"></i>Sexo <i class="bi bi-pen"></i></span>
+                    <span class="value"></span>
                 </div>
             </div>
+            <button id="desconectar">Desconectar</button>
         </section>
         <aside class="right">
             <span class="title">Sobre Mim</span>
             <div class="container">
                 <div class="textplace">
-                    <span>Sou um belo motorista com um ótimo senso de humor.</span>
+                    <span></span>
                 </div>
             </div>
         </aside>
     </main>
     <script>
-        const initialNames = [...document.querySelectorAll('aside.left .nome')].map(nome => nome.textContent);
-        function limit_name_size() {
-            function refactor_name(name) {
-                let str = name.textContent;
-                let vet = str.split(' ');
-                return (vet.length > 1) ? `${vet[0]} ${vet[1][0]}.` : `${vet[0].substring(0, 11)}...`;
-            }
-
-            let nomes = document.querySelectorAll('aside.left .nome');
-            let container = document.querySelectorAll('aside.left .avaliacao-usuario .nome-nota');
-            for (let i = 0; i < nomes.length; i++) {
-                let nome_width = nomes[i].getBoundingClientRect().width;
-                let container_width = container[i].getBoundingClientRect().width;
-                if (container_width / nome_width < 1.7) {
-                    console.log(`from ${nomes[i].textContent}`);
-                    nomes[i].textContent = refactor_name(nomes[i]);
-                    console.log(`to ${nomes[i].textContent}`);
-                }
-                else {
-                    nomes[i].textContent = initialNames[i];
-                    
-                }
-            }
-        }
-
         function remove_name_border() {
             let border = document.getElementsByClassName('border');
             let content = document.querySelectorAll('aside.left .avaliacao-usuario .content');
@@ -177,58 +88,11 @@
                 if (content[i].textContent === "") border[i].style.display = 'none';
             }
         }
-
-        function calc_nota() {
-            let valores = document.getElementsByClassName('valor');
-            let valor_ignore = document.getElementsByClassName('ignore');
-
-            let sum = parseFloat(valor_ignore[0].textContent) * -1;
-
-            for (let i = 0; i < valores.length; i++) {
-                console.log(sum);
-                sum += parseFloat(valores[i].textContent);
-            }
-
-            let modificar_value = document.getElementsByClassName('media');
-
-            let media = sum / (valores.length - 1);
-
-            for (let i = 0; i < modificar_value.length; i++) {
-                modificar_value[i].textContent = `${media.toFixed(2)}`;
-                console.log(modificar_value[i].innerText);
-
-            }
-        }
-
-
-        calc_nota();
+        
         remove_name_border();
-        limit_name_size();
-
-        let lastWidth = window.innerWidth;
-        let lastHeight = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-            const currentWidth = window.innerWidth;
-            const currentHeight = window.innerHeight;
-
-            // Detecta mudança no tamanho da janela
-            if (currentWidth !== lastWidth || currentHeight !== lastHeight) {
-                console.log('Janela redimensionada!');
-                limit_name_size();
-                lastWidth = currentWidth;
-                lastHeight = currentHeight;
-            }
-
-            // Detecta mudança de zoom
-            const zoomLevel = currentWidth / lastWidth;
-            if (zoomLevel !== 1) {
-                console.log('Zoom detectado!');
-                limit_name_size();
-            }
-        });
     </script>
     <script src="../src/js/review.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

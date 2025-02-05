@@ -414,12 +414,15 @@ export interface ApiAvaliacaoAvaliacao extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    avaliado_por: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::usuario.usuario'
+    >;
+    avaliando_a: Schema.Attribute.Relation<'manyToOne', 'api::usuario.usuario'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     descricao: Schema.Attribute.Text;
-    idReceiver: Schema.Attribute.String & Schema.Attribute.Required;
-    idSender: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -532,6 +535,10 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    avaliacoes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::avaliacao.avaliacao'
+    >;
     bio: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -546,6 +553,7 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
       'api::usuario.usuario'
     > &
       Schema.Attribute.Private;
+    nascimento: Schema.Attribute.Date;
     nome: Schema.Attribute.String;
     nota: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
@@ -556,7 +564,13 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
         number
       > &
       Schema.Attribute.DefaultTo<0>;
+    owner: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    reviews: Schema.Attribute.Relation<'oneToMany', 'api::avaliacao.avaliacao'>;
+    sexo: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1059,6 +1073,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
+    usuario: Schema.Attribute.Relation<'oneToOne', 'api::usuario.usuario'>;
   };
 }
 

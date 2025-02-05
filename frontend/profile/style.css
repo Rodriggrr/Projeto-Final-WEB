@@ -232,6 +232,19 @@ aside.right .container>.textplace {
     pointer-events: none;
 }
 
+.profile button {
+    background-color: antiquewhite;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    border: rgba(100, 100, 100, 0.6) 2px solid;
+}
+
+.profile button:hover {
+    background-color: rgba(100, 100, 100, 0.2);
+}
+
 .bio {
     width: 20%;
     height: 60%;
