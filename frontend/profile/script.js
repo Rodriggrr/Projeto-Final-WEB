@@ -120,9 +120,6 @@ function getUserReviews() {
             let nota = reviews[i].nota;
             let descricao = reviews[i].descricao;
 
-            fetch("../src/html/avaliacao.html")
-                .then(response => response.text())
-                .then(data => {
                     const reviewElement = document.createElement('article');
                     reviewElement.classList.add('avaliacao-usuario');
                     reviewElement.innerHTML = `
@@ -147,10 +144,9 @@ function getUserReviews() {
                             window.location.href = `profile.html?id=${e.target.nextElementSibling.textContent}`;
                         });
                     }
-                })
-                .catch(error => console.error('Erro ao carregar o navbar:', error));
-        }
-    }).catch(error => console.log("Erro: " + error));
+                }
+            })
+            .catch(error => console.error('Erro ao carregar as reviews:', error));
 }
 
 getUserProfile(id);
