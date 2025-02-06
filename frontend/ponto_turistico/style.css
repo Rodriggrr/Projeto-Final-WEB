@@ -5,13 +5,14 @@
     src: local('Biko Regular'), url('../src/fonts/biko/Biko_Regular.otf') format('opentype');
 }
 
+
 .local {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.local > .imagem_local > img {
+.carousel-item > img {
     min-height: 300px;
     min-width: 320px;
     border-radius: 10px;
