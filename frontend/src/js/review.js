@@ -20,6 +20,6 @@ function put_stars(container, value = 0) {
 
 function stars_init(containers, valores) {
     for (let i = 0; i < containers.length; i++) {
-        put_stars(containers[i], parseFloat(valores[i].textContent)); // Chamando a função com os valores certos
+        put_stars(containers[i], parseFloat(valores[i].textContent));
     }
 };
