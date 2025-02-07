@@ -14,15 +14,23 @@ fetch(requestUrl, method)
         console.log(data);
         atracao = data.data;
         
+        
+
         for (let i = 0; i < atracao.length; i++) {
-            let imgURL =  atracao[i].foto[0].url;
+            let imgURL;
+            if (atracao[i].foto === null){
+                imgURL = "../src/img/logo-placeholder-image.png";
+            }
+            else{
+                imgURL = "http://localhost:1337"+atracao[i].foto[0].url;
+            }
             let nome = atracao[i].nome;
-            
+           
             const atracaoElement = document.createElement('div');
             atracaoElement.innerHTML = `
                     <a href="../ponto_turistico/ponto_turistico.html?id=${atracao[i].documentId}" class="atracao-container">
                         <div>
-                            <img src="http://localhost:1337${imgURL}" alt="${nome}">
+                            <img src="${imgURL}" alt="${nome}">
                         </div>
                         <span><b>${nome}</b></span>
                     </a>

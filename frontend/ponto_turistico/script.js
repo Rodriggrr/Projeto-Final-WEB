@@ -37,9 +37,9 @@ function getDescr(id) {
             document.getElementById('detalhes').innerHTML = "Erro ao carregar a descrição.";
         });
 }
-/*
+
 function getNome(id) {
-    const URL = `http://localhost:1337/api/atracaos`;  
+    const URL = `http://localhost:1337/api/atracaos/${id}`;
     fetch(URL)
         .then(response => {
             if (!response.ok) {
@@ -50,30 +50,29 @@ function getNome(id) {
         .then(data => {
             const nomeElemento = document.getElementById('nome');
 
-            if (data && data.data && data.data.length > 0) {
-                console.log('Resposta da API:', data);
+            console.log('Resposta da API:', data);
 
-                const atracao = data.data.find(item => item.id === id);
-                console.log('Atração encontrada:', atracao);
+            const atracao = data.data.nome;
+            console.log('Nome da atração:', atracao);
 
-                if (atracao) {
-                    nomeElemento.innerHTML = atracao.nome || "Nome não disponível.";
-                } else {
-                    nomeElemento.innerHTML = "Atração não encontrada.";
-                }
+            if (atracao) {
+                nomeElemento.innerHTML = atracao || "Nome não disponível.";
             } else {
-                nomeElemento.innerHTML = "Nenhuma atração encontrada.";
+                nomeElemento.innerHTML = "Atração não encontrada.";
             }
+        
         })
         .catch(error => {
             console.error('Erro:', error);
             document.getElementById('nome').innerHTML = "Erro ao carregar o nome.";
         });
 }
-*/
+
+getNome(id);
+
 getDescr(id); 
-//getNome(14);
-    
+
+
 /*
 let formComentario = document.getElementById('formComentario');
 
