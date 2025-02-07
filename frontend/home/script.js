@@ -14,29 +14,26 @@ fetch(requestUrl, method)
         console.log(data);
         atracao = data.data;
         
-        console.log(atracao.length);
-
         for (let i = 0; i < atracao.length; i++) {
-            let imgURL =  atracao[i].foto[0].url; // Assuming you want the first photo
+            let imgURL =  atracao[i].foto[i].url;
             let nome = atracao[i].nome;
             
-            const atracaoElement = document.createElement('div');
+            const atracaoElement = document.getElementById('content');
             atracaoElement.innerHTML += `
                     <div class="atracao-container">
                         <div>
-                            <img src="http://localhost:1337${imgURL}" alt="${nome}">
+                            <img src="http://localhost:1337${imgURL}" alt="galinha choca">
                             <span class="documentId" style="display: none">${atracao[i].documentId}</span>
                         </div>
                         <span><b>${nome}</b></span>
                     </div>
                     `;
-            document.getElementById('content').appendChild(atracaoElement);
         }
         let nomeElements = document.getElementsByClassName('atracao-container');
         for (let j = 0; j < nomeElements.length; j++) {
             nomeElements[j].addEventListener('click', (e) => {
                 e.preventDefault();
-                window.location.href = `../ponto_turistico/ponto_turistico.html?id=${e.target.nextElementSibling.textContent}`;
+                window.location.href = `../ponto_turistico/ponto_turistico.html?id=${document.getElementsByClassName('documentId')[0].textContent}`;
             });
         }
     })
