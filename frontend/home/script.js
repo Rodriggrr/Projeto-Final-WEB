@@ -15,20 +15,22 @@ fetch(requestUrl, method)
         atracao = data.data;
         
         for (let i = 0; i < atracao.length; i++) {
-            let imgURL =  atracao[i].foto[i].url;
+            let imgURL =  atracao[i].foto[0].url;
             let nome = atracao[i].nome;
             
-            const atracaoElement = document.getElementById('content');
-            atracaoElement.innerHTML += `
+            const atracaoElement = document.createElement('div');
+            atracaoElement.innerHTML = `
                     <div class="atracao-container">
                         <div>
-                            <img src="http://localhost:1337${imgURL}" alt="galinha choca">
+                            <img src="http://localhost:1337${imgURL}" alt="${nome}">
                             <span class="documentId" style="display: none">${atracao[i].documentId}</span>
                         </div>
                         <span><b>${nome}</b></span>
                     </div>
                     `;
+            document.getElementById('content').appendChild(atracaoElement);
         }
+
         let nomeElements = document.getElementsByClassName('atracao-container');
         for (let j = 0; j < nomeElements.length; j++) {
             nomeElements[j].addEventListener('click', (e) => {
