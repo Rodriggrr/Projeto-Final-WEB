@@ -69,7 +69,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::avaliacao.avaliacao",
-      "mappedBy": "avaliando_a"
+      "mappedBy": "avaliando_usuario"
     }
   }
 }

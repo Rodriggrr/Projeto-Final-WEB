@@ -12,26 +12,26 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "nota": {
-      "type": "integer",
-      "required": true,
-      "max": 5,
-      "min": 0
-    },
     "descricao": {
       "type": "text"
     },
-    "avaliando_a": {
+    "avaliando_atracao": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::usuario.usuario",
-      "inversedBy": "avaliacoes"
+      "target": "api::atracao.atracao",
+      "inversedBy": "avaliacaos"
     },
     "avaliado_por": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::usuario.usuario",
       "inversedBy": "reviews"
+    },
+    "avaliando_usuario": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::usuario.usuario",
+      "inversedBy": "avaliacoes"
     }
   }
 }

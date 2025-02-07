@@ -64,10 +64,10 @@ function getNome(id) {
         });
 }
 
-getDescr(17); 
-getNome(17);
+getDescr(10); 
+getNome(10);
 
-//olhar o id do data no console
+//olhar o id do data no console         
 
 
 /*

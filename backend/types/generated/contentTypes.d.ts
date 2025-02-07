@@ -380,6 +380,10 @@ export interface ApiAtracaoAtracao extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    avaliacaos: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::avaliacao.avaliacao'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -418,7 +422,14 @@ export interface ApiAvaliacaoAvaliacao extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::usuario.usuario'
     >;
-    avaliando_a: Schema.Attribute.Relation<'manyToOne', 'api::usuario.usuario'>;
+    avaliando_atracao: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::atracao.atracao'
+    >;
+    avaliando_usuario: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::usuario.usuario'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -429,15 +440,6 @@ export interface ApiAvaliacaoAvaliacao extends Struct.CollectionTypeSchema {
       'api::avaliacao.avaliacao'
     > &
       Schema.Attribute.Private;
-    nota: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 5;
-          min: 0;
-        },
-        number
-      >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

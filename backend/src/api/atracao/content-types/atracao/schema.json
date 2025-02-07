@@ -27,6 +27,12 @@
       ],
       "type": "media",
       "multiple": true
+    },
+    "avaliacaos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::avaliacao.avaliacao",
+      "mappedBy": "avaliando_atracao"
     }
   }
 }
