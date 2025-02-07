@@ -1,5 +1,15 @@
+const params = new URLSearchParams(window.location.search);
+id = params.get('id');
+id_search = true;
+
+if (id == null) {
+    id_search = false;
+    id = '';
+}
+console.log(`id: ${id}. ID Search: ${id_search}`);
+
 function getDescr(id) {
-    const URL = `http://localhost:1337/api/atracaos`;  
+    const URL = `http://localhost:1337/api/atracaos/${id}`;  
     fetch(URL)
         .then(response => {
             if (!response.ok) {
@@ -10,27 +20,24 @@ function getDescr(id) {
         .then(data => {
             const detalhesElemento = document.getElementById('detalhes');
 
-            if (data && data.data && data.data.length > 0) {
-                console.log('Resposta da API:', data);
+            console.log('Resposta da API:', data);
 
-                const atracao = data.data.find(item => item.id === id);
-                console.log('Atração encontrada:', atracao);
+            const atracao = data.data.descricao;
+            console.log('Atração encontrada:', atracao);
 
-                if (atracao) {
-                    detalhesElemento.innerHTML = atracao.descricao || "Descrição não disponível.";
-                } else {
-                    detalhesElemento.innerHTML = "Atração não encontrada.";
-                }
+            if (atracao) {
+                detalhesElemento.innerHTML = atracao || "Descrição não disponível.";
             } else {
-                detalhesElemento.innerHTML = "Nenhuma atração encontrada.";
+                detalhesElemento.innerHTML = "Atração não encontrada.";
             }
+        
         })
         .catch(error => {
             console.error('Erro:', error);
             document.getElementById('detalhes').innerHTML = "Erro ao carregar a descrição.";
         });
 }
-
+/*
 function getNome(id) {
     const URL = `http://localhost:1337/api/atracaos`;  
     fetch(URL)
@@ -63,9 +70,9 @@ function getNome(id) {
             document.getElementById('nome').innerHTML = "Erro ao carregar o nome.";
         });
 }
-
-getDescr(10); 
-getNome(10);
+*/
+getDescr(id); 
+//getNome(14);
 
 //olhar o id do data no console         
 
