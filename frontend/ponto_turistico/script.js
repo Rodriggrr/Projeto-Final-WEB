@@ -68,9 +68,15 @@ function getNome(id) {
         });
 }
 
-getNome(id);
-
-getDescr(id); 
+if(sessionStorage.getItem('jwtToken')){
+    getNome(id);
+    getDescr(id); 
+}
+else {
+    document.getElementById('avaliacoes').innerHTML += '<h3>Para avaliar é necessário estar logado</h3>';
+    document.getElementById('comentario').style.display = 'none';
+    document.getElementById('comentar').style.display = 'none';
+}
 
 
 /*
@@ -102,24 +108,6 @@ async function comment(comentario, nome, foto, token) {
         console.error('Erro:', error);
         alert('Ocorreu um erro ao enviar a avaliação.');
     });
-}
-
-if(sessionStorage.getItem('jwtToken')){
-    formComentario.addEventListener("submit", (e) =>{
-        e.preventDefault();
-
-        let comentario = document.getElementById('comentario').value;
-        let nome = sessionStorage.getItem('nome');
-        let foto = sessionStorage.getItem('foto');
-        let token = sessionStorage.getItem('jwtToken'); 
-
-        comment(comentario, nome, foto, token);
-    });
-}
-else {
-    document.getElementById('avaliacoes').innerHTML += '<h3>Para avaliar é necessário estar logado</h3>';
-    document.getElementById('comentario').style.display = 'none';
-    document.getElementById('comentar').style.display = 'none';
 }
 
 */
