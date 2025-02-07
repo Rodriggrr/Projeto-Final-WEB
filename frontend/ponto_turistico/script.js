@@ -73,10 +73,7 @@ function getNome(id) {
 */
 getDescr(id); 
 //getNome(14);
-
-//olhar o id do data no console         
-
-
+    
 /*
 let formComentario = document.getElementById('formComentario');
 
