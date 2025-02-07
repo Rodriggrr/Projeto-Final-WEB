@@ -20,7 +20,7 @@ fetch(requestUrl, method)
             
             const atracaoElement = document.createElement('div');
             atracaoElement.innerHTML = `
-                    <a href="../ponto_turistico/ponto_turistico.html?${atracao[i].documentId}" class="atracao-container">
+                    <a href="../ponto_turistico/ponto_turistico.html?id=${atracao[i].documentId}" class="atracao-container">
                         <div>
                             <img src="http://localhost:1337${imgURL}" alt="${nome}">
                         </div>
