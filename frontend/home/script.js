@@ -20,24 +20,14 @@ fetch(requestUrl, method)
             
             const atracaoElement = document.createElement('div');
             atracaoElement.innerHTML = `
-                    <div class="atracao-container">
+                    <a href="../ponto_turistico/ponto_turistico.html?${atracao[i].documentId}" class="atracao-container">
                         <div>
                             <img src="http://localhost:1337${imgURL}" alt="${nome}">
-                            <span class="documentId" style="display: none">${atracao[i].documentId}</span>
                         </div>
                         <span><b>${nome}</b></span>
-                    </div>
+                    </a>
                     `;
             document.getElementById('content').appendChild(atracaoElement);
         }
-
-        let nomeElements = document.getElementsByClassName('atracao-container');
-        for (let j = 0; j < nomeElements.length; j++) {
-            nomeElements[j].addEventListener('click', (e) => {
-                e.preventDefault();
-                window.location.href = `../ponto_turistico/ponto_turistico.html?id=${document.getElementsByClassName('documentId')[0].textContent}`;
-            });
-        }
     })
     .catch(error => console.error('Erro ao carregar as atracoes:', error));
-s
