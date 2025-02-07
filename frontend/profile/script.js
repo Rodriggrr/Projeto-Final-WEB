@@ -162,7 +162,7 @@ function getUserReviews() {
                 for (let j = 0; j < nomeElements.length; j++) {
                     nomeElements[j].addEventListener('click', (e) => {
                         e.preventDefault();
-                        window.location.href = `profile.html?id=${e.target.nextElementSibling.textContent}`;
+                        window.location.href = `profile.html?id=${document.getElementsByClassName('documentId')[0].textContent}`;
                     });
                 }
             }
