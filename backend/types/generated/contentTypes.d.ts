@@ -447,89 +447,11 @@ export interface ApiAvaliacaoAvaliacao extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiGuiaGuia extends Struct.CollectionTypeSchema {
-  collectionName: 'guias';
-  info: {
-    displayName: 'Guia';
-    pluralName: 'guias';
-    singularName: 'guia';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    bio: Schema.Attribute.Text;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    foto: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::guia.guia'> &
-      Schema.Attribute.Private;
-    nome: Schema.Attribute.String & Schema.Attribute.Required;
-    nota: Schema.Attribute.Integer &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 5;
-          min: 0;
-        },
-        number
-      > &
-      Schema.Attribute.DefaultTo<0>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiTuristaTurista extends Struct.CollectionTypeSchema {
-  collectionName: 'turistas';
-  info: {
-    displayName: 'Turista';
-    pluralName: 'turistas';
-    singularName: 'turista';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    bio: Schema.Attribute.Text;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    foto: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::turista.turista'
-    > &
-      Schema.Attribute.Private;
-    nome: Schema.Attribute.String & Schema.Attribute.Required;
-    nota: Schema.Attribute.Integer &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 5;
-          min: 0;
-        },
-        number
-      > &
-      Schema.Attribute.DefaultTo<0>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
   collectionName: 'usuarios';
   info: {
     description: '';
-    displayName: 'usuario';
+    displayName: 'Public';
     pluralName: 'usuarios';
     singularName: 'usuario';
   };
@@ -1091,8 +1013,6 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::atracao.atracao': ApiAtracaoAtracao;
       'api::avaliacao.avaliacao': ApiAvaliacaoAvaliacao;
-      'api::guia.guia': ApiGuiaGuia;
-      'api::turista.turista': ApiTuristaTurista;
       'api::usuario.usuario': ApiUsuarioUsuario;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
