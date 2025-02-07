@@ -1,3 +1,5 @@
+//--------------CHECAR BUSCA POR ID-----------------------
+//Se for por ID, pega o ID da URL, ou seja, o id do perfil que deseja ver, então define que a pagina está em busca por ID usando a variável id_search.
 const params = new URLSearchParams(window.location.search);
 id = params.get('id');
 id_search = true;
@@ -7,7 +9,9 @@ if (id == null) {
     id = '';
 }
 console.log(`id: ${id}. ID Search: ${id_search}`);
+//--------------------------------------------------------
 
+//função para pegar o perfil do ponto turístico de acordo com o ID passado.
 function getDescr(id) {
     const URL = `http://localhost:1337/api/atracaos/${id}`;  
     fetch(URL)
@@ -38,6 +42,7 @@ function getDescr(id) {
         });
 }
 
+//função para pegar o nome do ponto turístico de acordo com o ID passado.
 function getNome(id) {
     const URL = `http://localhost:1337/api/atracaos/${id}`;
     fetch(URL)
@@ -68,6 +73,8 @@ function getNome(id) {
         });
 }
 
+//verifica se o usuário está logado, se estiver, pega o nome e a foto do usuário.
+//se não estiver, esconde o campo de avaliação.
 if(sessionStorage.getItem('jwtToken')){
     getNome(id);
     getDescr(id); 
