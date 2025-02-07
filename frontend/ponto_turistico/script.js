@@ -75,7 +75,7 @@ function getNome(id) {
 
 //verifica se o usuário está logado, se estiver, pega o nome e a foto do usuário.
 //se não estiver, esconde o campo de avaliação.
-if(sessionStorage.getItem('jwtToken')){
+if(estaLogado()){
     getNome(id);
     getDescr(id); 
 }
@@ -85,6 +85,10 @@ else {
     document.getElementById('comentar').style.display = 'none';
 }
 
+document.getElementById('formComentario').addEventListener('submit', (e) => {
+    e.preventDefault();
+    let comentario = document.getElementById('comentario').value;
+});
 
 /*
 let formComentario = document.getElementById('formComentario');
