@@ -73,11 +73,53 @@ function getNome(id) {
         });
 }
 
+//função para pegar a avaliação do ponto turístico de acordo com o ID passado.
+function getAvaliacao(id){
+    const URL = `http://localhost:1337/api/atracaos/${id}?populate[avaliacaos][populate][avaliado_por][populate][0]=foto`;
+
+    fetch(URL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            
+            console.log('Resposta reviews:', data);
+
+            let reviews = data.data.avaliacaos;
+            
+            for (let i=0; i < reviews.length; i++){
+                let foto = 'http://localhost:1337';
+                if (reviews[i].avaliado_por.foto) {
+                    foto += reviews[i].avaliado_por.foto.url;
+                }
+                let nome = reviews[i].avaliado_por.nome;
+                let descricao = reviews[i].descricao;
+                let reviewElement = document.createElement('div');
+                reviewElement.innerHTML = `
+                    <div class="usario">
+                        <img src="${foto} "class="avatar"></img>
+                        <h4>${nome}</h4>
+                    </div>
+                    <p>${descricao}</p>
+                    `;
+                document.getElementById('avaliacao_usuario').appendChild(reviewElement);
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            document.getElementById('avaliacoes').innerHTML = "Erro ao carregar as avaliações.";
+        });
+}
+
 //verifica se o usuário está logado, se estiver, pega o nome e a foto do usuário.
 //se não estiver, esconde o campo de avaliação.
 if(estaLogado()){
     getNome(id);
     getDescr(id); 
+    getAvaliacao(id);
 }
 else {
     document.getElementById('avaliacoes').innerHTML += '<h3>Para avaliar é necessário estar logado</h3>';
