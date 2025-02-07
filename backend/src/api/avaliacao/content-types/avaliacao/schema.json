@@ -32,6 +32,11 @@
       "relation": "manyToOne",
       "target": "api::usuario.usuario",
       "inversedBy": "avaliacoes"
+    },
+    "nota": {
+      "type": "integer",
+      "max": 5,
+      "min": 0
     }
   }
 }

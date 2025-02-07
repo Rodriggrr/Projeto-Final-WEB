@@ -440,6 +440,14 @@ export interface ApiAvaliacaoAvaliacao extends Struct.CollectionTypeSchema {
       'api::avaliacao.avaliacao'
     > &
       Schema.Attribute.Private;
+    nota: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+          min: 0;
+        },
+        number
+      >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

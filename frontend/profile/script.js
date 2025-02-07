@@ -20,15 +20,20 @@ function calc_nota() {
     let valor_ignore = document.getElementsByClassName('ignore');
 
     let sum = parseFloat(valor_ignore[0].textContent) * -1;
+    if(isNaN(sum)) sum = 0;
 
     for (let i = 0; i < valores.length; i++) {
         console.log(sum);
+        let valor = parseFloat(valores[i].textContent);
+        if (isNaN(valor)) continue;
+
         sum += parseFloat(valores[i].textContent);
     }
 
     let modificar_value = document.getElementsByClassName('media');
+    length = (valores.length - 1 == 0) ? 1 : valores.length - 1;
 
-    let media = sum / (valores.length - 1);
+    let media = sum / length;
 
     for (let i = 0; i < modificar_value.length; i++) {
         modificar_value[i].textContent = `${media.toFixed(2)}`;
