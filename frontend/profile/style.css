@@ -177,7 +177,7 @@ aside.right .container>.textplace {
     gap: 10px;
 }
 
-.profile .top>div {
+.profile .top > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -194,6 +194,10 @@ aside.right .container>.textplace {
 
 .profile .top>div:hover {
     cursor: pointer;
+}
+
+.profile .top>div.no-hover:hover {
+    cursor: default;
 }
 
 .profile .top>div:hover i {

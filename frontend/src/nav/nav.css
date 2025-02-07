@@ -17,6 +17,9 @@
     src: local('Segoe UI Regular'), url('../fonts/segoe-ui/Segoe\ UI.woff') format('woff');
 }
 
+#logout:hover {
+    cursor: pointer;
+}
 .nav {
     z-index: 10;
     display: flex;
@@ -83,6 +86,11 @@
 
 .nav a:hover, label:hover {
     text-decoration: underline;
+}
+
+.nav a.logged:hover {
+    text-decoration: none;
+    cursor: default;
 }
 
 .nav .dropdown-toggle{

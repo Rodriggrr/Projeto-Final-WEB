@@ -4,9 +4,31 @@ const params = new URLSearchParams(window.location.search);
 id = params.get('id');
 id_search = true;
 
+
+let nodes = document.querySelectorAll('.profile .top > div');
+console.log(`id: ${id}, publicUserId: ${sessionStorage.getItem('publicUserId')}`);
+
+if(id != null && id == sessionStorage.getItem('publicUserId')) { window.location.href = 'profile.html' }  ;
+
 if (id == null) {
     id_search = false;
     id = '';
+    for (let i = 0; i < nodes.length; i++) {
+        nodes[i].classList.remove('no-hover');
+    }
+} else {
+    document.getElementsByClassName('email')[0].style.display = 'none';
+    document.getElementsByClassName('senha')[0].style.display = 'none';
+    let pens = document.getElementsByClassName('bi-pen');
+
+    for (let i = 0; i < pens.length; i++) {
+        pens[i].style.display = 'none';
+    }
+
+
+    for (let i = 0; i < nodes.length; i++) {
+        nodes[i].classList.add('no-hover');
+    }
 }
 console.log(`id: ${id}. ID Search: ${id_search}`);
 //--------------------------------------------------------
@@ -23,7 +45,6 @@ function calc_nota() {
     if(isNaN(sum)) sum = 0;
 
     for (let i = 0; i < valores.length; i++) {
-        console.log(sum);
         let valor = parseFloat(valores[i].textContent);
         if (isNaN(valor)) continue;
 
@@ -37,8 +58,6 @@ function calc_nota() {
 
     for (let i = 0; i < modificar_value.length; i++) {
         modificar_value[i].textContent = `${media.toFixed(2)}`;
-        console.log(modificar_value[i].innerText);
-
     }
 }
 
@@ -50,7 +69,6 @@ function getUserProfile(id = '') {
         if (data.eh_motorista) return "Motorista";
         return "Turista";
     }
-
 
     //Requisição com populate, para pegar a relação que o usuário tem com a foto. É uma requisição com 2 níveis de populate. (essa sintaxe é muito feia)
     let requestUrl = `${API_URL}/users/me?populate[usuario][populate][0]=foto`;
@@ -66,7 +84,7 @@ function getUserProfile(id = '') {
     if (id_search) {
         method.method = 'GET';
         method.headers = { 'Content-Type': 'application/json' };
-        requestUrl = `${API_URL}/usuarios/${id}?populate[0]=avaliacoes`
+        requestUrl = `${API_URL}/usuarios/${id}?populate[0]=foto`
     }
 
     //Faz a requisição para pegar o perfil do usuário.
@@ -75,15 +93,14 @@ function getUserProfile(id = '') {
             if (!response.ok) throw new Error('Algo deu errado');
             return response.json();
         })
-        .then((data) => {
-            console.log(data);
-            data = (id_search) ? data.data : data.usuario;
+        .then((response) => {
+            console.log(response);
+            let data = (id_search) ? response.data : response.usuario;
             const { nome, nota, sexo, nascimento, bio, foto } = data;
             const nascimentoFormatado = nascimento.split('-').reverse().join('/');
             const parceria = getParceria(data);
             const fotoUrl = foto ? `http://localhost:1337${foto.url}` : '../src/img/profile_placeholder.png';
-
-            console.log(`Nome: ${nome}, Nota: ${nota}, Parceria: ${parceria}, Sexo: ${sexo}, Nascimento: ${nascimentoFormatado}`);
+            const email = response.email;
 
             document.getElementById('pp').src = fotoUrl;
             document.querySelector('.nome .value').innerHTML = nome;
@@ -92,6 +109,7 @@ function getUserProfile(id = '') {
             document.querySelector('.sexo .value').innerHTML = sexo;
             document.querySelector('.nascimento .value').innerHTML = nascimentoFormatado;
             document.querySelector('.textplace').innerHTML = bio;
+            document.querySelector('.email .value').innerHTML = email;
             document.querySelector('.parceria .value').innerHTML = parceria;
             stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
         })
@@ -114,7 +132,7 @@ function getUserReviews() {
     if (id_search) {
         method.method = 'GET';
         method.headers = { 'Content-Type': 'application/json' };
-        requestUrl = `${API_URL}/usuarios/${id}?populate=*`
+        requestUrl = `${API_URL}/usuarios/${id}?populate[avaliacoes][populate][0]=avaliado_por`
     }
 
     fetch(requestUrl, method)
@@ -122,20 +140,17 @@ function getUserReviews() {
             if (!response.ok) throw new Error('Algo deu errado: ' + response.status);
             return response.json();
         }).then((data) => {
-            console.log(data);
             data = (id_search) ? data.data : data.usuario;
             const reviews = data.avaliacoes;
             if (reviews == undefined) return;
 
             const reviewsContainer = document.querySelector('aside.left .container');
-            console.log(reviews);
 
             for (let i = 0; i < reviews.length; i++) {
                 let nomeAvaliador = reviews[i].avaliado_por.nome;
                 let idAvaliador = reviews[i].avaliado_por.documentId;
                 let nota = reviews[i].nota;
                 let descricao = reviews[i].descricao;
-
 
                 //Cria um elemento HTML para cada review e adiciona no container de reviews.
                 //Coloco o ID do usuário que fez a avaliação em um span com display none, para pegar o ID do usuário que fez a avaliação
@@ -144,8 +159,8 @@ function getUserReviews() {
                 reviewElement.classList.add('avaliacao-usuario');
                 reviewElement.innerHTML = `
                         <div class="nome-nota">
-                            <a href="" class="nome">${nomeAvaliador}</a>
-                            <span style="display: none" class="documentId">${idAvaliador}</span>
+                            <a href="profile.html?id=${idAvaliador}" class="nome">${nomeAvaliador}</a>
+                            <span style="display: none" class="documentId"></span>
                             <div class="avaliacao">
                                 <div class="stars"></div>
                                 <span class="valor" style="display: none">${nota}</span>
@@ -159,17 +174,8 @@ function getUserReviews() {
                 
                 //Por ser uma função assíncrona, é necessário chamar a função de inicialização das estrelas dentro do fetch, para que
                 //atualize a cada review adicionada. Adiciona as estrelas e calcula a média das notas fora do loop.
+                calc_nota();
                 stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
-                const nomeElements = document.getElementsByClassName('nome');
-                
-                //Adiciona um evento de clique em cada nome de usuário, para redirecionar para o perfil do usuário que fez a avaliação.
-                //O Id é passado como parâmetro na URL.
-                for (let j = 0; j < nomeElements.length; j++) {
-                    nomeElements[j].addEventListener('click', (e) => {
-                        e.preventDefault();
-                        window.location.href = `profile.html?id=${document.getElementsByClassName('documentId')[0].textContent}`;
-                    });
-                }
             }
             //Calcula a média das notas e recalcula as estrelas para exibir corretamente.
             calc_nota();

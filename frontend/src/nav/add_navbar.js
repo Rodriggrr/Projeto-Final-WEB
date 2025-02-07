@@ -22,9 +22,25 @@ fetch("../src/nav/navbar.html")
     
     if(token || isTokenValid(token)) {
             login_text = document.getElementById('log-in-out');
-            console.log('token: ' + token)
-            login_text.innerText = 'Perfil';
-            login_text.href = '../profile/profile.html';
+
+            login_text.style.textDecoration = 'none';
+            login_text.style.cursor = 'default';
+            login_text.innerHTML = '';
+
+            let profile_logout = document.createElement('div');
+            profile_logout.innerHTML = `
+                <a id="profile" href="../profile/profile.html">Perfil</a>
+                <span> | </span>
+                <a id="logout">Sair</a>
+            `;
+            
+            login_text.appendChild(profile_logout);
+            document.getElementById('logout').addEventListener('click', () => {
+                sessionStorage.removeItem('jwtToken');
+                sessionStorage.removeItem('userId');
+                sessionStorage.removeItem('publicUserId');
+                window.location.href = '../../home/index.html';
+            });
         }
     })
     .catch(error => console.error('Erro ao carregar o navbar:', error));
