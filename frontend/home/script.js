@@ -22,17 +22,17 @@ fetch(requestUrl, method)
             
             const atracaoElement = document.createElement('div');
             atracaoElement.innerHTML += `
-                    <a href="../ponto_turistico/ponto_turistico.html" class="local">
+                    <div class="atracao-container">
                         <div>
                             <img src="http://localhost:1337${imgURL}" alt="${nome}">
                             <span class="documentId" style="display: none">${atracao[i].documentId}</span>
                         </div>
                         <span><b>${nome}</b></span>
-                    </a>
+                    </div>
                     `;
             document.getElementById('content').appendChild(atracaoElement);
         }
-        let nomeElements = document.getElementsByClassName('local');
+        let nomeElements = document.getElementsByClassName('atracao-container');
         for (let j = 0; j < nomeElements.length; j++) {
             nomeElements[j].addEventListener('click', (e) => {
                 e.preventDefault();
