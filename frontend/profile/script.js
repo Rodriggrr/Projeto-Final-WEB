@@ -121,7 +121,6 @@ function getUserProfile(id = '') {
             document.querySelector('.textplace').innerHTML = bio;
             document.querySelector('.email .value').innerHTML = email;
             document.querySelector('.parceria .value').innerHTML = parceria;
-            stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
         })
         .catch(error => console.log("Erro: " + error));
 }
@@ -187,15 +186,14 @@ function getUserReviews() {
 
                     //Por ser uma função assíncrona, é necessário chamar a função de inicialização das estrelas dentro do fetch, para que
                     //atualize a cada review adicionada. Adiciona as estrelas e calcula a média das notas fora do loop.
-                    calc_nota();
-                    stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
+                    
                 }
-                //Calcula a média das notas e recalcula as estrelas para exibir corretamente.
-                calc_nota();
-                stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
             } catch (error) {
                 console.log("Erro: " + error);
             }
+        }).then(() => {
+            calc_nota();
+            stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
         })
         .catch(error => console.error('Erro ao carregar as reviews:', error));
 }
