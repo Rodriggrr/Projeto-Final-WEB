@@ -106,6 +106,7 @@ aside.left .avaliacao-usuario:not(:last-child) {
 }
 
 aside.left button {
+    font-family: 'Biko Regular';
     margin-top: 5px;
     background-color: antiquewhite;
     height: 30px;
