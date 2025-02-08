@@ -106,14 +106,14 @@ function getUserProfile(id = '') {
         .then((response) => {
             console.log(response);
             let data = (id_search) ? response.data : response.usuario;
-            const { nome, nota, sexo, nascimento, bio, foto } = data;
+            const { nome, nota, sexo, nascimento, bio, foto, nome_completo } = data;
             const nascimentoFormatado = nascimento.split('-').reverse().join('/');
             const parceria = getParceria(data);
             const fotoUrl = foto ? `http://localhost:1337${foto.url}` : '../src/img/profile_placeholder.png';
             const email = response.email;
 
             document.getElementById('pp').src = fotoUrl;
-            document.querySelector('.nome .value').innerHTML = nome;
+            document.querySelector('.nome .value').innerHTML = nome_completo;
             document.getElementById('apelido').innerHTML = nome.toUpperCase();
             document.getElementById('nota').innerHTML = nota;
             document.querySelector('.sexo .value').innerHTML = sexo;

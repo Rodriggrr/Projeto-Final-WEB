@@ -70,6 +70,10 @@
       "relation": "oneToMany",
       "target": "api::avaliacao.avaliacao",
       "mappedBy": "avaliando_usuario"
+    },
+    "nome_completo": {
+      "type": "string",
+      "required": true
     }
   }
 }

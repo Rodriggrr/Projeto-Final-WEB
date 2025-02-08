@@ -487,6 +487,7 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     nascimento: Schema.Attribute.Date;
     nome: Schema.Attribute.String;
+    nome_completo: Schema.Attribute.String & Schema.Attribute.Required;
     nota: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
