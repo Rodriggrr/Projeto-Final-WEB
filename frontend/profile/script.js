@@ -66,7 +66,6 @@ function remove_name_border() {
     let content = document.querySelectorAll('aside.left .avaliacao-usuario .content');
 
     for (let i = 0; i < border.length; i++) {
-        console.log(content[i].innerText);
         if (content[i].textContent === "") border[i].style.display = 'none';
     }
 }
@@ -151,24 +150,25 @@ function getUserReviews() {
             if (!response.ok) throw new Error('Algo deu errado: ' + response.status);
             return response.json();
         }).then((data) => {
-            data = (id_search) ? data.data : data.usuario;
-            const reviews = data.avaliacoes;
-            if (reviews == undefined) return;
+            try {
+                data = (id_search) ? data.data : data.usuario;
+                const reviews = data.avaliacoes;
+                if (reviews == undefined) return;
 
-            const reviewsContainer = document.querySelector('aside.left .container');
+                const reviewsContainer = document.querySelector('aside.left .container');
 
-            for (let i = 0; i < reviews.length; i++) {
-                let nomeAvaliador = reviews[i].avaliado_por.nome;
-                let idAvaliador = reviews[i].avaliado_por.documentId;
-                let nota = reviews[i].nota;
-                let descricao = reviews[i].descricao;
+                for (let i = 0; i < reviews.length; i++) {
+                    let nomeAvaliador = reviews[i].avaliado_por.nome;
+                    let idAvaliador = reviews[i].avaliado_por.documentId;
+                    let nota = reviews[i].nota;
+                    let descricao = reviews[i].descricao;
 
-                //Cria um elemento HTML para cada review e adiciona no container de reviews.
-                //Coloco o ID do usuário que fez a avaliação em um span com display none, para pegar o ID do usuário que fez a avaliação
-                //quando clicar no nome do usuário.
-                const reviewElement = document.createElement('article');
-                reviewElement.classList.add('avaliacao-usuario');
-                reviewElement.innerHTML = `
+                    //Cria um elemento HTML para cada review e adiciona no container de reviews.
+                    //Coloco o ID do usuário que fez a avaliação em um span com display none, para pegar o ID do usuário que fez a avaliação
+                    //quando clicar no nome do usuário.
+                    const reviewElement = document.createElement('article');
+                    reviewElement.classList.add('avaliacao-usuario');
+                    reviewElement.innerHTML = `
                         <div class="nome-nota">
                             <a href="profile.html?id=${idAvaliador}" class="nome">${nomeAvaliador}</a>
                             <span style="display: none" class="documentId"></span>
@@ -180,19 +180,22 @@ function getUserReviews() {
                         <div class="border"></div>
                         <div class="content">${descricao}</div>
                     `;
-                reviewsContainer.appendChild(reviewElement);
-                remove_name_border();
+                    reviewsContainer.appendChild(reviewElement);
+                    remove_name_border();
 
 
 
-                //Por ser uma função assíncrona, é necessário chamar a função de inicialização das estrelas dentro do fetch, para que
-                //atualize a cada review adicionada. Adiciona as estrelas e calcula a média das notas fora do loop.
+                    //Por ser uma função assíncrona, é necessário chamar a função de inicialização das estrelas dentro do fetch, para que
+                    //atualize a cada review adicionada. Adiciona as estrelas e calcula a média das notas fora do loop.
+                    calc_nota();
+                    stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
+                }
+                //Calcula a média das notas e recalcula as estrelas para exibir corretamente.
                 calc_nota();
                 stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
+            } catch (error) {
+                console.log("Erro: " + error);
             }
-            //Calcula a média das notas e recalcula as estrelas para exibir corretamente.
-            calc_nota();
-            stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
         })
         .catch(error => console.error('Erro ao carregar as reviews:', error));
 }

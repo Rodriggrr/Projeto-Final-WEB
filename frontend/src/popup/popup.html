@@ -8,11 +8,14 @@
         <div id="title">Avaliando <span id="popup-person-name"></span> </div>
         <button id="popup-exit-button">X</button>
     </div>
-    <section id="write-send">
+    <div id="write-send">
         <textarea name="Escreva algo..." id="avaliar-textarea" placeholder="Escreva algo..."></textarea>
         <div>
             <label for="avaliar-number">Nota: <input id="avaliar-number" type="number" min="0" max="5" step="1" value="0"></label>
-            <button id="avaliar-button">Avaliar</button>
+            <section>
+                <button id="deletar-button"><i class="bi bi-trash"></i></button>
+                <button id="avaliar-button">Avaliar</button>
+            </section>
         </div>
-    </section>
+    </div>
 </div>
