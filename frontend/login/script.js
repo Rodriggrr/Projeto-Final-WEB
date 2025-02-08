@@ -3,7 +3,7 @@ let form = document.getElementById('form');
 let URL = 'http://localhost:1337/api';
 
 async function login(email, senha) {
-    let response = fetch(`${URL}/auth/local`, {
+    fetch(`${URL}/auth/local`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -37,9 +37,9 @@ async function login(email, senha) {
             console.log('Token:', response.jwt, 'User ID:', data.usuario.documentId);
             sessionStorage.setItem('publicUserId', data.usuario.documentId);
             console.log("publicUserId: " + sessionStorage.getItem('publicUserId'));
+            window.location.href = '../home';
         }).catch(error => console.log("Erro: " + error));
 
-        window.location.href = '../home';
     })
     .catch(error => {
         console.log(error);
