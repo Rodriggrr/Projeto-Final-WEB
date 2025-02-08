@@ -105,6 +105,23 @@ aside.left .avaliacao-usuario:not(:last-child) {
     border-bottom: 2px solid rgba(100, 100, 100, 0.5);
 }
 
+aside.left button {
+    background-color: antiquewhite;
+    height: 30px;
+    width: 60px;
+    line-height: 0px;
+    align-self: flex-end;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    border: rgba(100, 100, 100, 0.2) 2px solid;
+}
+
+aside.left button:hover {
+    background-color: rgba(100, 100, 100, 0.2);
+}
+
 
 aside span.title {
     padding: 5px;

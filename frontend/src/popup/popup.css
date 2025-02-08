@@ -1,0 +1,120 @@
+@font-face {
+    font-family: 'Biko Regular';
+    src: url('../fonts/biko/Biko_Regular.otf');
+}
+
+#popup-container {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: none;
+}
+
+.popup {
+    font-family: 'Biko Regular';
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 300px;
+    height: fit-content;
+    overflow: auto;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    overflow: hidden;
+}
+
+#write-send {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+#write-send > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 15px;
+}
+
+#write-send > div input {
+    background-color: rgba(100, 100, 100, 0.05);
+    border: 2px solid rgba(100, 100, 100, 0.2);
+    padding: 2px;
+    border-radius: 5px;
+}
+
+#popup-header {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+}
+
+#title {
+    width: 100%;
+    height: 100%;
+    line-height: 30px;
+    font-size: 20px;
+    padding: 5px;
+    top: 0;
+}
+
+#popup-exit-button {
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-left: 2px solid #ccc;   
+}
+
+#popup-exit-button:hover {
+    background-color: #ccc;
+}
+
+#avaliar-textarea {
+    width: 90%;
+    height: 100px;
+    resize: none;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#avaliar-button {
+    width: 100px;
+    align-self: flex-end;
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bffae;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#avaliar-button:hover {
+    background-color: #94c8ffe3;
+    color: black;
+}
+

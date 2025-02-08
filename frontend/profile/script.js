@@ -8,7 +8,7 @@ id_search = true;
 let nodes = document.querySelectorAll('.profile .top > div');
 console.log(`id: ${id}, publicUserId: ${sessionStorage.getItem('publicUserId')}`);
 
-if(id != null && id == sessionStorage.getItem('publicUserId')) { window.location.href = 'profile.html' }  ;
+if (id != null && id == sessionStorage.getItem('publicUserId')) { window.location.href = 'profile.html' };
 
 if (id == null) {
     id_search = false;
@@ -42,7 +42,7 @@ function calc_nota() {
     let valor_ignore = document.getElementsByClassName('ignore');
 
     let sum = parseFloat(valor_ignore[0].textContent) * -1;
-    if(isNaN(sum)) sum = 0;
+    if (isNaN(sum)) sum = 0;
 
     for (let i = 0; i < valores.length; i++) {
         let valor = parseFloat(valores[i].textContent);
@@ -60,6 +60,17 @@ function calc_nota() {
         modificar_value[i].textContent = `${media.toFixed(2)}`;
     }
 }
+
+function remove_name_border() {
+    let border = document.getElementsByClassName('border');
+    let content = document.querySelectorAll('aside.left .avaliacao-usuario .content');
+
+    for (let i = 0; i < border.length; i++) {
+        console.log(content[i].innerText);
+        if (content[i].textContent === "") border[i].style.display = 'none';
+    }
+}
+
 
 //Função para pegar o perfil do usuário de acordo com o token de autenticação. Se ID for passado, pega o perfil do usuário com o ID passado.
 function getUserProfile(id = '') {
@@ -170,8 +181,10 @@ function getUserReviews() {
                         <div class="content">${descricao}</div>
                     `;
                 reviewsContainer.appendChild(reviewElement);
+                remove_name_border();
 
-                
+
+
                 //Por ser uma função assíncrona, é necessário chamar a função de inicialização das estrelas dentro do fetch, para que
                 //atualize a cada review adicionada. Adiciona as estrelas e calcula a média das notas fora do loop.
                 calc_nota();
@@ -186,3 +199,4 @@ function getUserReviews() {
 
 getUserProfile(id);
 getUserReviews();
+avaliarButton(true, document.querySelector('aside.left button'));

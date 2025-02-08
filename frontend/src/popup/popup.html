@@ -4,5 +4,15 @@
 </head>
 
 <div class="popup">
-    
+    <div id="popup-header">
+        <div id="title">Avaliando <span id="popup-person-name"></span> </div>
+        <button id="popup-exit-button">X</button>
+    </div>
+    <section id="write-send">
+        <textarea name="Escreva algo..." id="avaliar-textarea" placeholder="Escreva algo..."></textarea>
+        <div>
+            <label for="avaliar-number">Nota: <input id="avaliar-number" type="number" min="0" max="5" step="1" value="0"></label>
+            <button id="avaliar-button">Avaliar</button>
+        </div>
+    </section>
 </div>
