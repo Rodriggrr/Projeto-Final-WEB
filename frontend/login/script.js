@@ -39,7 +39,7 @@ async function login(email, senha) {
             console.log("publicUserId: " + sessionStorage.getItem('publicUserId'));
         }).catch(error => console.log("Erro: " + error));
 
-        //window.location.href = '../home';
+        window.location.href = '../home';
     })
     .catch(error => {
         console.log(error);
