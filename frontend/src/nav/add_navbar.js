@@ -3,6 +3,7 @@ window.onload = function() {
 };
 
 function isTokenValid(token) {
+    if(!token) return false;
     let payload = token.split('.')[1];
     payload = atob(payload);
     payload = JSON.parse(payload);
@@ -26,6 +27,8 @@ fetch("../src/nav/navbar.html")
             login_text.style.textDecoration = 'none';
             login_text.style.cursor = 'default';
             login_text.innerHTML = '';
+            login_text.removeAttribute('href');
+            login_text.onclick = '';
 
             let profile_logout = document.createElement('div');
             profile_logout.innerHTML = `
@@ -39,7 +42,7 @@ fetch("../src/nav/navbar.html")
                 sessionStorage.removeItem('jwtToken');
                 sessionStorage.removeItem('userId');
                 sessionStorage.removeItem('publicUserId');
-                window.location.href = '../../home/index.html';
+                window.location.href = '../home/index.html';
             });
         }
     })

@@ -34,11 +34,12 @@ async function login(email, senha) {
         }).then(response => response.json())
           .then((data) => { 
             console.log(data);
-            sessionStorage.setItem('publicUserId', data.usuario.documentId);
             console.log('Token:', response.jwt, 'User ID:', data.usuario.documentId);
+            sessionStorage.setItem('publicUserId', data.usuario.documentId);
+            console.log("publicUserId: " + sessionStorage.getItem('publicUserId'));
         }).catch(error => console.log("Erro: " + error));
 
-        window.location.href = '../home';
+        //window.location.href = '../home';
     })
     .catch(error => {
         console.log(error);

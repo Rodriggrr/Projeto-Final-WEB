@@ -186,7 +186,3 @@ function getUserReviews() {
 
 getUserProfile(id);
 getUserReviews();
-
-document.getElementById('desconectar').addEventListener('click', () => {
-    logout();
-});
