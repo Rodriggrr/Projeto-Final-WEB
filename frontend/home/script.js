@@ -14,8 +14,6 @@ fetch(requestUrl, method)
         console.log(data);
         atracao = data.data;
         
-        
-
         for (let i = 0; i < atracao.length; i++) {
             let imgURL;
             if (atracao[i].foto === null){

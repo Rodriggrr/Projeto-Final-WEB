@@ -3,7 +3,7 @@
 
 function requerAutenticacao() {
     if(!sessionStorage.getItem('jwtToken')) {
-        window.location.href = '../404';
+        window.location.replace('../404');
     }
 }
 

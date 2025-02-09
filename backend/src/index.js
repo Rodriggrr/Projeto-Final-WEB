@@ -7,7 +7,7 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register(/*{ strapi }*/) { },
 
   /**
    * An asynchronous bootstrap function that runs before
@@ -16,5 +16,13 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/*{ strapi }*/) {},
+  bootstrap(/*{ strapi }*/) {
+    const fs = require('fs');
+
+    function logToFile(message) {
+      fs.appendFileSync('../logs.txt', `${new Date().toISOString()} - ${message}\n`);
+    }
+
+    logToFile('Strapi está iniciando...');
+  },
 };

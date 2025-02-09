@@ -1,3 +1,10 @@
+requerAutenticacao();
+
+function changeTitle(str = 'Perfil') {
+    document.title = "Quixada Tour - " + str;
+}
+
+
 //--------------CHECAR BUSCA POR ID-----------------------
 //Se for por ID, pega o ID da URL, ou seja, o id do perfil que deseja ver, então define que a pagina está em busca por ID usando a variável id_search.
 const params = new URLSearchParams(window.location.search);
@@ -112,6 +119,8 @@ function getUserProfile(id = '') {
             const fotoUrl = foto ? `http://localhost:1337${foto.url}` : '../src/img/profile_placeholder.png';
             const email = response.email;
 
+            
+
             document.getElementById('pp').src = fotoUrl;
             document.querySelector('.nome .value').innerHTML = nome_completo;
             document.getElementById('apelido').innerHTML = nome.toUpperCase();
@@ -121,6 +130,10 @@ function getUserProfile(id = '') {
             document.querySelector('.textplace').innerHTML = bio;
             document.querySelector('.email .value').innerHTML = email;
             document.querySelector('.parceria .value').innerHTML = parceria;
+
+            setTimeout(() => {
+                changeTitle(nome);
+            }, 300);
         })
         .catch(error => console.log("Erro: " + error));
 }
@@ -181,9 +194,6 @@ function getUserReviews() {
                     `;
                     reviewsContainer.appendChild(reviewElement);
                     remove_name_border();
-
-
-
                     //Por ser uma função assíncrona, é necessário chamar a função de inicialização das estrelas dentro do fetch, para que
                     //atualize a cada review adicionada. Adiciona as estrelas e calcula a média das notas fora do loop.
                     
