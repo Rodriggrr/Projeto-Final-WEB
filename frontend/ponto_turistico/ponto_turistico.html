@@ -22,30 +22,25 @@
     <main>
         <div class="content">
             <section class="local">
+                <img src="" alt="imagem_da_atracao" class="imagem" id="imagem">
                 <div class="info_local">
                     <div class="bio_local"> 
-                        <img src="" alt="" id="imagem">
                         <h1 id="nome">Pedra da Galinha Choca</h1>
                     </div>
                     <div class="detalhes" id="detalhes">
                         <p><i class="bi bi-geo-alt-fill"></i> Endereço: Rua do Sertão, 123</p>
                         <p><i class="bi bi-clock-fill"></i> Horário de Funcionamento: 08:00 - 17:00</p>
                     </div>
-                    <button type="button" class="botao_agendamentos" id="openModal">Agendamentos</button>
                 </div>
             </section>
             <section class="avaliacoes" id="avaliacoes">
-                <article id="avaliacao_usuario">
-
-                    <form id="formComentario">
-                        <button id="avaliar">Avaliar</button>
-                    </form>
-                </article>
+                <button id="avaliar">Avaliar</button>
+                <article id="avaliacao_usuario"></article>
             </section>
         </div>
     </main>
-    
-    <!-- Loading Screen -->
+
+    <script src="/frontend/src/js/review.js"></script>
     <div id="loader-container"></div>
     <script src="../src/js/loading.js"></script>
     <div id="popup-container"></div>

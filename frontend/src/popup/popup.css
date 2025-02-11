@@ -3,6 +3,16 @@
     src: url('../fonts/biko/Biko_Regular.otf');
 }
 
+.avaliar-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 #popup-container {
     position: absolute;
     z-index: 1;

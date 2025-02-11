@@ -27,10 +27,18 @@ function getDescr(id) {
             console.log('Resposta da API:', data);
 
             const atracao = data.data.descricao;
+            const endereço = data.data.endereco;
+            const horario = data.data.horario;
             console.log('Atração encontrada:', atracao);
 
+            let informacoes = document.createElement('div');
+            informacoes.innerHTML = `
+                <p><i class="bi bi-geo-alt-fill"></i> Endereço: ${endereço}</p>
+                <p><i class="bi bi-clock-fill"></i> Horário de Funcionamento: ${horario}</p>
+            `;
+
             if (atracao) {
-                detalhesElemento.innerHTML = atracao || "Descrição não disponível.";
+                detalhesElemento.innerHTML = atracao + informacoes.innerHTML|| "Descrição não disponível.";
             } else {
                 detalhesElemento.innerHTML = "Atração não encontrada.";
             }
@@ -90,7 +98,9 @@ function getAvaliacao(id){
 
             let reviews = data.data.avaliacaos;
             
+            
             for (let i=0; i < reviews.length; i++){
+                let nota = reviews[i].nota;
                 let foto = 'http://localhost:1337';
                 if (reviews[i].avaliado_por.foto) {
                     foto += reviews[i].avaliado_por.foto.url;
@@ -99,14 +109,19 @@ function getAvaliacao(id){
                 let descricao = reviews[i].descricao;
                 let reviewElement = document.createElement('div');
                 reviewElement.innerHTML = `
-                    <div class="usario">
-                        <img src="${foto} "class="avatar"></img>
-                        <h4>${nome}</h4>
-                    </div>
-                    <p>${descricao}</p>
+                <div class="usuario">
+                <img src="${foto} "class="avatar"></img>
+                <h4>${nome}:</h4>
+                <p>${descricao}</p>
+                <div class="avaliacao">
+                    <div class="stars"></div>
+                    <span class="valor" style="display: none">${nota}</span>
+                </div>
+                </div>
                     `;
                 document.getElementById('avaliacao_usuario').appendChild(reviewElement);
             }
+            stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
         })
         .catch(error => {
             console.error('Erro:', error);
@@ -127,7 +142,7 @@ function getImg(id){
         .then(data => {
             const imgElemento = document.getElementById('imagem');
 
-            console.log('Resposta da API: adasdasd', data);
+            console.log('Resposta da API:', data);
 
             const atracao = data.data;
             console.log('Imagem da atração:', atracao);
@@ -145,6 +160,7 @@ function getImg(id){
         });
 }
 
+
 //verifica se o usuário está logado, se estiver, pega o nome e a foto do usuário.
 //se não estiver, esconde o campo de avaliação.
 if(estaLogado()){
@@ -155,9 +171,12 @@ if(estaLogado()){
     avaliarButton(false, document.getElementById('avaliar'));
 }
 else {
+    getImg(id);
+    getNome(id);
+    getDescr(id);
+    getAvaliacao(id);
     document.getElementById('avaliacoes').innerHTML += '<h3>Para avaliar é necessário estar logado</h3>';
-    document.getElementById('comentario').style.display = 'none';
-    document.getElementById('comentar').style.display = 'none';
+    document.getElementById('avaliar').style.display = 'none';
 }
 
 document.getElementById('formComentario').addEventListener('submit', (e) => {

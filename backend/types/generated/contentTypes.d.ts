@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiAtracaoAtracao extends Struct.CollectionTypeSchema {
   collectionName: 'atracaos';
   info: {
+    description: '';
     displayName: 'atracao';
     pluralName: 'atracaos';
     singularName: 'atracao';
@@ -388,10 +389,12 @@ export interface ApiAtracaoAtracao extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     descricao: Schema.Attribute.Text;
+    endereco: Schema.Attribute.String;
     foto: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
+    horario: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

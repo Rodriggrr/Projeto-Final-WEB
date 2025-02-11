@@ -4,7 +4,8 @@
   "info": {
     "singularName": "atracao",
     "pluralName": "atracaos",
-    "displayName": "atracao"
+    "displayName": "atracao",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,20 +20,27 @@
       "type": "text"
     },
     "foto": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "avaliacaos": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::avaliacao.avaliacao",
       "mappedBy": "avaliando_atracao"
+    },
+    "endereco": {
+      "type": "string"
+    },
+    "horario": {
+      "type": "string"
     }
   }
 }
