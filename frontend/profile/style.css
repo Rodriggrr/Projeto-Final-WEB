@@ -305,11 +305,10 @@ aside.right .container>.textplace {
     cursor: text;
 }
 
-
-
 .profile img {
-    width: 160px;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .profile .top .separator {
