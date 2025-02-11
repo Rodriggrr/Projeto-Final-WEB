@@ -1,6 +1,7 @@
 <head>
     <link rel="stylesheet" href="../src/popup/popup.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="../src/js/review.js"></script>
 </head>
 
 <div class="popup">
@@ -11,11 +12,17 @@
     <div id="write-send">
         <textarea name="Escreva algo..." id="avaliar-textarea" placeholder="Escreva algo..."></textarea>
         <div>
-            <label for="avaliar-number">Nota: <input id="avaliar-number" type="number" min="0" max="5" step="1" value="0"></label>
+            <div class="avaliacao">
+                <div class="stars"></div>
+                <span class="valor" id="avaliar-number" style="display: none;"></span>
+            </div>
             <section>
                 <button id="deletar-button"><i class="bi bi-trash"></i></button>
                 <button id="avaliar-button">Avaliar</button>
             </section>
         </div>
     </div>
+    <script>
+        stars_hover(document.querySelector('#write-send .avaliacao'), document.getElementById('avaliar-number'));
+    </script>
 </div>

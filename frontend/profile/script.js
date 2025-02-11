@@ -133,7 +133,7 @@ function getUserProfile(id = '') {
 
             setTimeout(() => {
                 changeTitle(nome);
-            }, 300);
+            }, 500);
         })
         .catch(error => console.log("Erro: " + error));
 }

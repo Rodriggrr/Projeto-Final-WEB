@@ -23,3 +23,24 @@ function stars_init(containers, valores) {
         put_stars(containers[i], parseFloat(valores[i].textContent));
     }
 };
+
+function stars_hover(container, valueContainer) {
+    console.log('teste');
+    let stars = container.getElementsByClassName('bi');
+    console.log(stars);
+    let value = valueContainer.innerHTML;
+    for (let i = 0; i < stars.length; i++) {
+        stars[i].addEventListener('mouseover', () => {
+            value = i + 1;
+            console.log(value); 
+            put_stars(container, value);
+        });
+    }
+    container.addEventListener('mouseout', () => {
+        put_stars(container, valueContainer.innerHTML);
+    });
+    container.addEventListener('click', () => {
+        valueContainer.innerHTML = value;
+        put_stars(container, value);
+    });
+}

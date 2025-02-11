@@ -64,4 +64,4 @@ Loader.init();
 Loader.show();
 setTimeout(() => {
     Loader.hide();
-}, 250);
+}, 500);
