@@ -28,6 +28,11 @@ img {
     max-width: none;
 }
 
+
+#sexo {
+    font-family: 'Poppins Regular';
+}
+
 .stars {
     white-space: nowrap;
 }
@@ -157,6 +162,12 @@ aside.right .container>.textplace {
     justify-content: space-evenly;
 }
 
+.profile button {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30px;
+}
+
 .profile .img-fix {
     border-radius: 110px;
     width: 160px;
@@ -196,36 +207,64 @@ aside.right .container>.textplace {
     gap: 10px;
 }
 
-.profile .top > div {
+.profile .top > label, .profile .top > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    border-bottom: 2px dashed rgba(100, 100, 100, 0.2);
 }
 
 .profile .top .bi-pen {
     display: none;
 }
 
-.profile .top>div {
-    border-bottom: 2px dashed rgba(100, 100, 100, 0.2);
-}
-
-.profile .top>div:hover {
+.profile .top > label:hover {
     cursor: pointer;
+    text-decoration: none;
 }
 
-.profile .top>div.no-hover:hover {
+.profile .top > label.no-hover:hover {
     cursor: default;
 }
 
-.profile .top>div:hover i {
+.profile .top > label:hover i {
     display: inline;
 }
 
 .profile .top .description {
     color: rgba(100, 100, 100, 0.6);
+    pointer-events: none;
+    text-decoration: none;
 }
+
+.profile .top .description:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.profile .top .value, .profile > input {
+    font-family: 'Poppins Regular';
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    text-align: right;
+}
+
+.profile .top select option {
+    font-family: 'Poppins Regular';
+}
+
+.profile .top .value:hover, .profile > input:hover {
+    cursor: pointer;
+}
+
+.profile .top .value:focus, .profile > input:focus {
+    outline: none;
+    cursor: text;
+}
+
+
 
 .profile img {
     width: 300px;

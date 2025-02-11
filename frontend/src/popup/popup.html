@@ -7,17 +7,17 @@
 <div class="popup">
     <div id="popup-header">
         <div id="title">Avaliando <span id="popup-person-name"></span> </div>
-        <button id="popup-exit-button">X</button>
+        <button id="deletar-button"><i class="bi bi-trash"></i></button>
+        <button id="popup-exit-button"><i class="bi bi-x"></i></button>
     </div>
     <div id="write-send">
         <textarea name="Escreva algo..." id="avaliar-textarea" placeholder="Escreva algo..."></textarea>
         <div>
             <div class="avaliacao">
                 <div class="stars"></div>
-                <span class="valor" id="avaliar-number" style="display: none;"></span>
+                <span class="valor" id="avaliar-number" style="display: none;">1</span>
             </div>
             <section>
-                <button id="deletar-button"><i class="bi bi-trash"></i></button>
                 <button id="avaliar-button">Avaliar</button>
             </section>
         </div>

@@ -21,7 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
     display: none;
 }
@@ -37,6 +37,8 @@
     top: 0;
     width: 300px;
     height: fit-content;
+    border: 2px solid #ccc;
+    box-shadow: 0px 0px 10px black;
     overflow: auto;
     background-color: antiquewhite;
     border-radius: 10px;
@@ -44,60 +46,6 @@
     flex-direction: column; 
     align-items: center;
     overflow: hidden;
-}
-
-#write-send {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-}
-
-#write-send > div {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 15px;
-}
-
-
-.popup > div > div button {
-    width: 100px;
-    align-self: flex-end;
-    padding: 10px;
-    margin-top: 10px;
-    margin-right: 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bffae;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.popup > div > div button:hover {
-    background-color: #0056b3;
-}
-
-#deletar-button {
-    display: none;
-    background-color: #dc3545;
-    width: fit-content; 
-}
-
-#deletar-button:hover {
-    background-color: #8c1c27;
-}
-
-
-#write-send > div input {
-    background-color: rgba(100, 100, 100, 0.05);
-    border: 2px solid rgba(100, 100, 100, 0.2);
-    padding: 2px;
-    border-radius: 5px;
 }
 
 #popup-header {
@@ -112,13 +60,16 @@
 #title {
     width: 100%;
     height: 100%;
-    line-height: 30px;
+    line-height: 32px;
     font-size: 20px;
     padding: 5px;
     top: 0;
 }
 
-#popup-exit-button {
+#popup-header > button {
+    line-height: 22px;
+    text-align: center;
+    font-size: 20px;
     width: 40px;
     height: 30px;
     padding: 5px;
@@ -128,8 +79,81 @@
     border-left: 2px solid #ccc;   
 }
 
+
+#deletar-button {
+    color: red;
+    display: none;
+    width: fit-content; 
+}
+
+#deletar-button:hover {
+    color: white;
+    background-color: #8c1c27dc;
+}
+
 #popup-exit-button:hover {
     background-color: #ccc;
+}
+
+
+#write-send {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+#write-send > div {
+    width: 97%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#write-send > div > div + section {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+#write-send .avaliacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    font-size: 23px;
+    height: fit-content;
+}
+
+.popup > div > div button {
+    width: 100px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bffae;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.popup > div > div button:hover {
+    background-color: #0056b3;
+}
+
+#write-send > div input {
+    background-color: rgba(100, 100, 100, 0.05);
+    border: 2px solid rgba(100, 100, 100, 0.2);
+    padding: 2px;
+    border-radius: 5px;
 }
 
 #avaliar-textarea {

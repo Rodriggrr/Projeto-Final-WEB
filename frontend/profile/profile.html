@@ -37,7 +37,7 @@
             <div class="img-fix">
                 <img src="../src/img/logo-placeholder-image.png" alt="Foto de Perfil" id='pp' class="profile-picture">
             </div>
-            <span class="apelido" id="apelido"></span>
+            <input class="apelido" id="apelido"></input>
             <div class="avaliacao">
                 <div class="stars"></div>
                 <div>
@@ -50,28 +50,33 @@
                     <span class="description"><i class="bi bi-hand-thumbs-up"></i>Parceria <i class="bi bi-pen"></i></span>
                     <span class="value"></span>
                 </div>
-                <div class="nome">
+                <label for="nome" class="nome">
                     <span class="description"><i class="bi bi-person"></i>Nome Completo <i class="bi bi-pen"></i></span>
-                    <span class="value"></span>
-                </div>
-                <div class="nascimento">
+                    <input id="nome" class="value" size="30">
+                </label>
+                <label for="nascimento" class="nascimento">
                     <span class="description"><i class="bi bi-calendar3"></i>Nascimento <i class="bi bi-pen"></i></span>
-                    <span class="value"></span>
-                </div>
-                <div class="sexo">
+                    <input type="date" id="nascimento" class="value">
+                </label>
+                <label for="sexo" class="sexo">
                     <span class="description"><i class="bi bi-gender-ambiguous"></i>Sexo <i class="bi bi-pen"></i></span>
-                    <span class="value"></span>
-                </div>
-                <div class="email">
+                    <select id="sexo" class="value">
+                        <option value="Masculino" style="font-family:'Arial';">Masculino</option>
+                        <option value="Feminino"  style="font-family:'Arial';">Feminino</option>
+                        <option value="Outro"     style="font-family:'Arial';">Outro</option>
+                    </select>
+                </label>
+                <label for="email" class="email">
                     <span class="description"><i class="bi bi-envelope"></i>Email <i class="bi bi-pen"></i></span>
-                    <span class="value"></span>
-                </div>
+                    <input id="email" class="value" size="30">
+                </label>                              
                 <div class="senha">
-                    <span class="description"><i class="bi bi-lock"></i>Senha <i class="bi bi-pen"></i></i></span>
-                    <span class="value"> Alterar</span>
+                    <label for="senha" class="description"><i class="bi bi-lock"></i>Senha <i class="bi bi-pen"></i></label>
+                    <span id="senha" class="value"> Alterar</span>
                 </div>
             </div>
-        </section>
+                <button id="salvar" style="display: none;">Salvar</button>
+            </section>
         <aside class="right">
             <span class="title">Sobre Mim</span>
             <div class="container">

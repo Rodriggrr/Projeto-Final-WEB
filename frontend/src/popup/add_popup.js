@@ -75,7 +75,7 @@ function avaliarButton(user = true, button = '') {
     popup.whenReady().then(async () => {
         var avaliarNumber = document.getElementById('avaliar-number');
         try {
-            const response = await fetch(`${API_URL}/avaliacaos?filters[avaliado_por][documentId][$eq]=${avaliado_por}&filters[avaliando_usuario][documentId][$eq]=${avaliando_a}`, {
+            const response = await fetch(`${API_URL}/avaliacaos?filters[avaliado_por][documentId][$eq]=${avaliado_por}&filters[${user ? 'avaliando_usuario' : 'avaliando_atracao'}][documentId][$eq]=${avaliando_a}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

@@ -36,6 +36,7 @@ async function login(email, senha) {
             console.log(data);
             console.log('Token:', response.jwt, 'User ID:', data.usuario.documentId);
             sessionStorage.setItem('publicUserId', data.usuario.documentId);
+            sessionStorage.setItem('privateId', data.documentId);
             console.log("publicUserId: " + sessionStorage.getItem('publicUserId'));
             window.location.href = '../home';
         }).catch(error => console.log("Erro: " + error));

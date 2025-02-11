@@ -77,6 +77,8 @@ function remove_name_border() {
     }
 }
 
+let g_pp, g_nome, g_nota, g_sexo, g_nascimento, g_textplace, g_email, g_parceria, g_nome_completo;
+
 
 //Função para pegar o perfil do usuário de acordo com o token de autenticação. Se ID for passado, pega o perfil do usuário com o ID passado.
 function getUserProfile(id = '') {
@@ -114,22 +116,29 @@ function getUserProfile(id = '') {
             console.log(response);
             let data = (id_search) ? response.data : response.usuario;
             const { nome, nota, sexo, nascimento, bio, foto, nome_completo } = data;
-            const nascimentoFormatado = nascimento.split('-').reverse().join('/');
             const parceria = getParceria(data);
             const fotoUrl = foto ? `http://localhost:1337${foto.url}` : '../src/img/profile_placeholder.png';
             const email = response.email;
 
-            
+            g_pp = document.getElementById('pp');
+            g_nome = document.getElementById('apelido');
+            g_nome_completo = document.querySelector('.nome .value');
+            g_nota = document.getElementById('nota');
+            g_sexo = document.querySelector('.sexo .value');
+            g_nascimento = document.querySelector('.nascimento .value');
+            g_textplace = document.querySelector('.textplace');
+            g_email = document.querySelector('.email .value');
+            g_parceria = document.querySelector('.parceria .value');
 
-            document.getElementById('pp').src = fotoUrl;
-            document.querySelector('.nome .value').innerHTML = nome_completo;
-            document.getElementById('apelido').innerHTML = nome.toUpperCase();
-            document.getElementById('nota').innerHTML = nota;
-            document.querySelector('.sexo .value').innerHTML = sexo;
-            document.querySelector('.nascimento .value').innerHTML = nascimentoFormatado;
-            document.querySelector('.textplace').innerHTML = bio;
-            document.querySelector('.email .value').innerHTML = email;
-            document.querySelector('.parceria .value').innerHTML = parceria;
+            g_pp.src = fotoUrl;
+            g_nome_completo.value = nome_completo;
+            document.getElementById('apelido').value = nome.toUpperCase();
+            g_nota.innerHTML = nota;
+            g_sexo.value = sexo;
+            g_nascimento.value = nascimento;
+            g_textplace.innerHTML = bio;
+            g_email.value = email;
+            g_parceria.innerHTML = parceria;
 
             setTimeout(() => {
                 changeTitle(nome);
@@ -209,5 +218,92 @@ function getUserReviews() {
         .catch(error => console.error('Erro ao carregar as reviews:', error));
 }
 
+function datePicker() {
+    document.querySelector('label[for="nascimento"]').addEventListener('click', () => {
+        try {
+            let calendar = document.getElementById('nascimento');
+            calendar.style.userSelect = 'none';
+            calendar.showPicker();
+            console.log(calendar.value);
+        } catch (NotAllowedError) {
+            //faz nada;
+        }
+
+    });
+}
+
+function updateUser() {
+   
+    let fields = document.querySelectorAll('.profile .top .value');
+
+    fields = Array.from(fields);
+    let apelido = document.getElementById('apelido');
+    fields.push(apelido);
+    let button = document.getElementById('salvar');
+    let focus = false;
+    fields.forEach((field) => {
+        field.addEventListener('focus', () => {
+            focus = true;
+            button.style.display = 'block';
+        });
+    });
+
+    apelido.addEventListener('input', () => {
+        apelido.value = apelido.value.toUpperCase();
+    });
+
+
+    fields.forEach((field) => {
+        field.addEventListener('blur', () => {
+            setTimeout(() => {
+                if(!focus) button.style.display = 'none'
+            }, 500);
+            focus = false;
+        });
+    });
+
+    //button id is salvar
+    document.getElementById('salvar').addEventListener('click', () => {
+        let nome_completo = g_nome_completo.value;
+        let nome = g_nome.value;
+        let sexo = g_sexo.value;
+        let nascimento = g_nascimento.value;
+        let bio = g_textplace.textContent;
+        let email = g_email.value;
+        let parceria = g_parceria.textContent;
+
+        let data = {
+            nome: nome,
+            nome_completo: nome_completo,
+            sexo: sexo,
+            nascimento: nascimento,
+            bio: bio,
+        }
+
+        let requestUrl = `${API_URL}/usuarios/${sessionStorage.getItem('publicUserId')}`;
+        let method = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+            },
+            body: JSON.stringify({ data })
+        };
+
+        fetch(requestUrl, method)
+            .then((response) => {
+                if (!response.ok) throw new Error('Algo deu errado: '+ response.json());
+                return response.json();
+            })
+            .then((response) => {
+                console.log(response);
+                alert('Perfil atualizado com sucesso!');
+            })
+            .catch(error => console.log("Erro: " + error));
+    });
+}
+
+datePicker();
 getUserProfile(id);
 getUserReviews();
+updateUser() ;
