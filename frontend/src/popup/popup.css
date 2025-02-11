@@ -26,6 +26,10 @@
     display: none;
 }
 
+#popup-container i {
+    cursor: pointer;
+}
+
 .popup {
     font-family: 'Biko Regular';
     z-index: 1;

@@ -1,21 +1,22 @@
 
-
 function put_stars(container, value = 0) { 
-    value = (value < 0) ? 0 : value;
-    value = (value > 5) ? 5 : value;
-    let aux = (!isNaN(value)) ? value : 0;  
-    container.innerHTML = '';
+    value = Math.max(0, Math.min(5, value)); // Garante que o valor está entre 0 e 5
+
+    let valueContainer = container.querySelector(".valor"); // Busca o span interno
+    let valueText = valueContainer ? valueContainer.outerHTML : ""; // Salva o span
+
+    let starsHTML = ""; // Constrói as estrelas sem sobrescrever tudo
+    let aux = !isNaN(value) ? value : 0;
+
     while (value > 0) {
-        if (value < 0.8) {
-            container.innerHTML += `<i class="bi bi-star-half"></i>`;
-        } else {
-            container.innerHTML += `<i class="bi bi-star-fill"></i>`;
-        }
+        starsHTML += (value < 0.8) ? `<i class="bi bi-star-half"></i>` : `<i class="bi bi-star-fill"></i>`;
         value--;
     }
-    for (let i = 0; i < (5 - Math.ceil(aux)); i++){
-        container.innerHTML += `<i class="bi bi-star"></i>`;
+    for (let i = 0; i < (5 - Math.ceil(aux)); i++) {
+        starsHTML += `<i class="bi bi-star"></i>`;
     }
+
+    container.innerHTML = starsHTML + valueText; // Reinsere o span no final
 }
 
 function stars_init(containers, valores) {
@@ -24,23 +25,43 @@ function stars_init(containers, valores) {
     }
 };
 
-function stars_hover(container, valueContainer) {
-    console.log('teste');
-    let stars = container.getElementsByClassName('bi');
-    console.log(stars);
-    let value = valueContainer.innerHTML;
-    for (let i = 0; i < stars.length; i++) {
-        stars[i].addEventListener('mouseover', () => {
-            value = i + 1;
-            console.log(value); 
-            put_stars(container, value);
-        });
-    }
-    container.addEventListener('mouseout', () => {
-        put_stars(container, valueContainer.innerHTML);
+function stars_hover(container) {
+    let valueContainer = container.querySelector(".valor");
+    put_stars(container, valueContainer.textContent);
+    let stars = container.querySelectorAll("i");
+    let value = valueContainer.textContent;
+
+    let inContainer = false;
+    let index;
+    container.addEventListener("mouseover", (event) => {
+        let stars = container.getElementsByClassName("bi");
+        let oldIndex = [...stars].indexOf(event.target);
+        let bool = !inContainer || index != oldIndex;
+        if(bool) {
+            console.log(`${oldIndex} ${index} ${bool}`);
+            inContainer = true;
+            console.log('Mouse entrou no contêiner');
+            index = oldIndex;
+            if (index !== -1) {
+                starValue = index + 1;
+                console.log("Valor no hover:", starValue);
+                put_stars(container, starValue);
+                value = starValue;
+            }
+        }
     });
-    container.addEventListener('click', () => {
-        valueContainer.innerHTML = value;
-        put_stars(container, value);
+
+    container.addEventListener("mouseleave", () => {
+        inContainer = false;
+        console.log('Mouse saiu do contêiner');
+        put_stars(container, valueContainer.textContent);
+    });
+
+    container.addEventListener("click", () => {
+        valueContainer = container.querySelector(".valor");
+        valueContainer.textContent = value;
+        console.log("Valor final:", valueContainer.textContent);
+        put_stars(container, valueContainer.textContent); 
     });
 }
+

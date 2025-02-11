@@ -41,7 +41,7 @@ class Popup {
     }
 
     getNota() {
-        return document.getElementById("avaliar-number").value;
+        return document.getElementById("avaliar-number").textContent;
     }
 
     getComentario() {
@@ -67,65 +67,65 @@ class Popup {
 function avaliarButton(user = true, button = '') {
     let API_URL = 'http://localhost:1337/api';
     let update = false;
-
+    
     let avaliando_a = new URLSearchParams(window.location.search).get('id');
     let avaliado_por = sessionStorage.getItem('publicUserId');
     let id_avaliacao = '';
     popup = new Popup();
-    popup.whenReady().then(() => {
-
-        fetch(`${API_URL}/avaliacaos?filters[avaliado_por][documentId][$eq]=${avaliado_por}&filters[${user ? "avaliando_usuario" : "avaliando_atracao"}][documentId][$eq]=${avaliando_a}`, {
+    popup.whenReady().then(async () => {
+        var avaliarNumber = document.getElementById('avaliar-number');
+        try {
+            const response = await fetch(`${API_URL}/avaliacaos?filters[avaliado_por][documentId][$eq]=${avaliado_por}&filters[avaliando_usuario][documentId][$eq]=${avaliando_a}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
             }
-        }).then(async response => {
-            if (!response.ok) {
-                throw new Error(`Erro na requisição: ${response.status} ${response.statusText}`);
-            }
-        
-            // Verifica se a resposta tem conteúdo antes de tentar parsear JSON
-            const text = await response.text();
-            if (!text) return null;  // Retorna null se a resposta estiver vazia
-        
-            return JSON.parse(text); // Converte JSON manualmente
-        }).then(data => {
-            console.log(data);
-            if(data.data.length > 0) {
-                button.innerHTML = 'Atualizar avaliação';
-                let avaliado = data.data[0];
-                update = true;
-                id_avaliacao = avaliado.documentId;
-                document.getElementById('avaliar-number').value = avaliado.nota;
-                document.getElementById('avaliar-textarea').value = avaliado.descricao;
-                document.getElementById('avaliar-button').innerHTML = 'Atualizar';
-                let deletarButton = document.getElementById('deletar-button');
-                deletarButton.style.display = 'inline';
-                deletarButton.addEventListener('click', () => {
-                    if (!confirm('Deseja realmente deletar essa avaliação?')) return;
-                    fetch(`${API_URL}/avaliacaos/${id_avaliacao}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
-                        }
-                    }).then(response => {
-                        if (!response.ok) throw new Error('Erro ao deletar avaliação.');
-                        return response.text();
-                    }).then(text => {
-                        if (text) {
-                            const data = JSON.parse(text);
-                            console.log(data);
-                        }
-                        window.location.reload();
-                    }).catch(error => {
-                        console.error(error);
-                    });
-                });
-            }
-        });
+            });
 
+            if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.status} ${response.statusText}`);
+            }
+
+            const text = await response.text();
+            const data = text ? JSON.parse(text) : null;
+
+            if (data && data.data.length > 0) {
+            button.innerHTML = 'Atualizar avaliação';
+            let avaliado = data.data[0];
+            update = true;
+            id_avaliacao = avaliado.documentId;
+            avaliarNumber.textContent = avaliado.nota;
+            document.getElementById('avaliar-textarea').value = avaliado.descricao;
+            document.getElementById('avaliar-button').innerHTML = 'Atualizar';
+            let deletarButton = document.getElementById('deletar-button');
+            deletarButton.style.display = 'inline';
+            deletarButton.addEventListener('click', async () => {
+                if (!confirm('Deseja realmente deletar essa avaliação?')) return;
+                try {
+                const deleteResponse = await fetch(`${API_URL}/avaliacaos/${id_avaliacao}`, {
+                    method: 'DELETE',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+                    }
+                });
+
+                if (!deleteResponse.ok) throw new Error('Erro ao deletar avaliação.');
+                const deleteText = await deleteResponse.text();
+                if (deleteText) {
+                    const deleteData = JSON.parse(deleteText);
+                    console.log(deleteData);
+                }
+                window.location.reload();
+                } catch (error) {
+                console.error(error);
+                }
+            });
+            }
+        } catch (error) {
+            console.error(error);
+        }
 
         let avaliarButton = document.getElementById('avaliar-button');
         if (!id_search) button.style.display = 'none';
@@ -134,30 +134,37 @@ function avaliarButton(user = true, button = '') {
             document.getElementById('popup-container').style.display = 'flex';
         });
 
-        avaliarButton.addEventListener('click', () => {
+        avaliarButton.addEventListener('click', async () => {
             document.getElementById('popup-container').style.display = 'none';
-            fetch(`${API_URL}/avaliacaos${(update) ? `/${id_avaliacao}` : ''}`, {
+            try {
+            const avaliarResponse = await fetch(`${API_URL}/avaliacaos${(update) ? `/${id_avaliacao}` : ''}`, {
                 method: `${update ? 'PUT' : 'POST'}`,
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
                 },
                 body: JSON.stringify({
-                    data: {
-                        [user ? 'avaliando_usuario' : 'avaliando_atracao']: avaliando_a,
-                        nota: popup.getNota(),
-                        descricao: popup.getComentario(),
-                        avaliado_por: avaliado_por
-                    }
+                data: {
+                    [user ? 'avaliando_usuario' : 'avaliando_atracao']: avaliando_a,
+                    nota: popup.getNota(),
+                    descricao: popup.getComentario(),
+                    avaliado_por: avaliado_por
+                }
                 })
-            }).then(response => {
-                if (!response.ok) throw new Error('Erro ao avaliar.');
-                return response.json();
-            }).then(data => {
-                console.log(data);
-                window.location.reload();
-            })
-        });
-    });
+            });
 
+            if (!avaliarResponse.ok) throw new Error('Erro ao avaliar.');
+            const avaliarData = await avaliarResponse.json();
+            console.log(avaliarData);
+            window.location.reload();
+            } catch (error) {
+            console.error(error);
+            }
+        });
+        stars_hover(document.querySelector('#write-send .avaliacao'));
+    }).then((avaliarNumber) => {
+        
+    }).catch(error => {
+        console.error(error);
+    });
 }

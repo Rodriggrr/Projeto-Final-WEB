@@ -204,10 +204,10 @@ function getUserReviews() {
         }).then(() => {
             calc_nota();
             stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
+            avaliarButton(true, document.querySelector('aside.left button'));
         })
         .catch(error => console.error('Erro ao carregar as reviews:', error));
 }
 
 getUserProfile(id);
 getUserReviews();
-avaliarButton(true, document.querySelector('aside.left button'));
