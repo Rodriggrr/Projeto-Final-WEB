@@ -114,12 +114,45 @@ function getAvaliacao(id){
         });
 }
 
+//função para pegar a imagem do ponto turístico de acordo com o ID passado.
+function getImg(id){
+    const URL = `http://localhost:1337/api/atracaos/${id}?populate=*`;   
+    fetch(URL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const imgElemento = document.getElementById('imagem');
+
+            console.log('Resposta da API: adasdasd', data);
+
+            const atracao = data.data;
+            console.log('Imagem da atração:', atracao);
+
+            if (atracao) {
+                imgElemento.src = `http://localhost:1337${atracao.foto[0].url}` || "Imagem não disponível.";
+            } else {
+                imgElemento.src = "Imagem não disponível.";
+            }
+        
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            document.getElementById('imagem').src = "Erro ao carregar a imagem.";
+        });
+}
+
 //verifica se o usuário está logado, se estiver, pega o nome e a foto do usuário.
 //se não estiver, esconde o campo de avaliação.
 if(estaLogado()){
     getNome(id);
     getDescr(id); 
     getAvaliacao(id);
+    getImg(id);
+    avaliarButton(false, document.getElementById('avaliar'));
 }
 else {
     document.getElementById('avaliacoes').innerHTML += '<h3>Para avaliar é necessário estar logado</h3>';
@@ -131,36 +164,3 @@ document.getElementById('formComentario').addEventListener('submit', (e) => {
     e.preventDefault();
     let comentario = document.getElementById('comentario').value;
 });
-
-/*
-let formComentario = document.getElementById('formComentario');
-
-async function comment(comentario, nome, foto, token) {
-
-    let dadosAvaliacao = {
-        comentario: comentario,
-        nome: nome,
-        foto: foto
-    }
-
-    let response = fetch('http://localhost:1337/api/avaliacaos', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` 
-        },
-        body: JSON.stringify(dadosAvaliacao)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Sucesso:', data);
-        document.getElementById('comentario').value = '';
-    })
-    .catch((error) => {
-        console.error('Erro:', error);
-        alert('Ocorreu um erro ao enviar a avaliação.');
-    });
-}
-
-*/
