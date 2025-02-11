@@ -203,9 +203,8 @@ function getUserReviews() {
                     `;
                     reviewsContainer.appendChild(reviewElement);
                     remove_name_border();
-                    //Por ser uma função assíncrona, é necessário chamar a função de inicialização das estrelas dentro do fetch, para que
-                    //atualize a cada review adicionada. Adiciona as estrelas e calcula a média das notas fora do loop.
-                    
+                    calc_nota();
+            stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
                 }
             } catch (error) {
                 console.log("Erro: " + error);
@@ -233,7 +232,21 @@ function datePicker() {
 }
 
 function updateUser() {
-   
+    
+    function parseName(name) {
+        let nameParsed;
+        name.split(' ').forEach((word) => {
+            word = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            if (nameParsed) {
+                nameParsed += ' ' + word;
+            } else {
+                nameParsed = word;
+            }
+        });
+        return nameParsed;
+    }
+
+
     let fields = document.querySelectorAll('.profile .top .value');
 
     fields = Array.from(fields);
@@ -248,10 +261,39 @@ function updateUser() {
         });
     });
 
-    apelido.addEventListener('input', () => {
-        apelido.value = apelido.value.toUpperCase();
-    });
+    let foto = document.getElementById('foto');
+    let fotoModified = false;
+    let formData, arquivo;
 
+    foto.addEventListener('change', async (event) => {
+        async function compactarImagem(arquivo) {
+            const opcoes = {
+                maxSizeMB: 0.5, // Tamanho máximo do arquivo em MB
+                maxWidthOrHeight: 800, // Largura ou altura máxima
+                useWebWorker: true // Usa processamento em segundo plano
+            };
+        
+            try {
+                const imagemCompactada = await imageCompression(arquivo, opcoes);
+                console.log('imagem compactada')
+                return imagemCompactada;
+            } catch (error) {
+                console.error("Erro ao compactar a imagem:", error);
+            }
+        }
+
+        arquivo = await compactarImagem(foto.files[0]);
+        focus = true;
+        fotoModified = true;
+        button.style.display = 'block';
+        if (arquivo) {
+            let pic = document.querySelector('.profile .img-fix img')
+            pic.src = URL.createObjectURL(arquivo);
+            formData = new FormData();
+            formData.append('files', arquivo); // Adiciona o arquivo no FormData
+            console.log(formData);
+        }
+    });
 
     fields.forEach((field) => {
         field.addEventListener('blur', () => {
@@ -262,10 +304,24 @@ function updateUser() {
         });
     });
 
-    //button id is salvar
-    document.getElementById('salvar').addEventListener('click', () => {
+    document.getElementById('salvar').addEventListener('click', async () => {
+        async function picEvaluate() {
+            if (fotoModified) {
+                let response = await fetch('http://localhost:1337/api/upload', { // Substitua com seu URL do Strapi
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+                    },
+                    body: formData
+                });
+                return await response;
+            }
+        }
+
+        let pic = await picEvaluate();
+        if(pic) pic = await pic.json();
         let nome_completo = g_nome_completo.value;
-        let nome = g_nome.value;
+        let nome = parseName(g_nome.value);
         let sexo = g_sexo.value;
         let nascimento = g_nascimento.value;
         let bio = g_textplace.textContent;
@@ -278,9 +334,13 @@ function updateUser() {
             sexo: sexo,
             nascimento: nascimento,
             bio: bio,
+        };
+
+        if (pic.length > 0) {
+            data.foto = pic[0].id;
         }
 
-        let requestUrl = `${API_URL}/usuarios/${sessionStorage.getItem('publicUserId')}`;
+        let requestUrl = `${API_URL}/usuarios/${sessionStorage.getItem('publicUserId')}?populate=*`;
         let method = {
             method: 'PUT',
             headers: {
@@ -298,12 +358,35 @@ function updateUser() {
             .then((response) => {
                 console.log(response);
                 alert('Perfil atualizado com sucesso!');
+                window.location.reload();
             })
             .catch(error => console.log("Erro: " + error));
     });
 }
 
+
+
 datePicker();
 getUserProfile(id);
 getUserReviews();
-updateUser() ;
+if(!id_search) {
+    updateUser();
+} else {
+    document.querySelectorAll('.profile .top label').forEach((field) => {
+        //if its a date field
+        if (field.getAttribute('for') === 'nascimento') {
+            field.getElementsByClassName('value')[0].setAttribute('readonly', 'true');
+        } else if(field.getAttribute('for') === 'sexo') {
+            field.getElementsByClassName('value')[0].style.appearance = 'none';
+        }
+        field.classList.add('no-hover');
+        field.style.pointerEvents = 'none';
+    });
+
+    document.querySelector('.profile .img-fix').style.pointerEvents = 'none';
+
+    let apelido = document.getElementById('apelido');
+    apelido.style.pointerEvents = 'none';
+    apelido.setAttribute('readonly', 'true');
+    apelido.classList.add('no-hover');
+}

@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="../src/css/basic-page.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/browser-image-compression/1.0.17/browser-image-compression.js"></script>
+
     <title>Quixada Tour - Perfil</title>
 </head>
 
 <body>
-
     <!-- Nav -->
     <header id="navbar"></header>
 
@@ -23,6 +24,7 @@
 
     <!-- Conteúdo Principal Aqui -->
     <main>
+        
         <aside class="left">
             <div class="top">
                 <span class="title">Avaliações</span>
@@ -30,13 +32,16 @@
             </div>
                 <div class="container">
             </div>
+            </div>
             <button>Avaliar</button>
         </aside>
 
         <section class="profile">
-            <div class="img-fix">
+            <label for="foto" class="img-fix">
+                <input type="file" id="foto" accept="image/*" style="display: none;">
+                <i class="bi bi-pen"></i>
                 <img src="../src/img/logo-placeholder-image.png" alt="Foto de Perfil" id='pp' class="profile-picture">
-            </div>
+            </label>
             <input class="apelido" id="apelido"></input>
             <div class="avaliacao">
                 <div class="stars"></div>
@@ -91,6 +96,7 @@
     <script src="../src/js/loading.js"></script>
     <script src="../src/js/review.js"></script>
     <script src="script.js"></script>
+    <script src="../src/js/particles.js"></script>
 </body>
 
 </html>

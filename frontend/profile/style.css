@@ -17,9 +17,20 @@ main {
     min-width: 1100px;
     overflow-y: hidden;
     overflow-x: hidden;
+    background-color: transparent;
 }
 
-i {
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Mantém no fundo */
+    background: var(--page-bg-color); /* Ajuste conforme necessário */
+}
+
+main i {
     padding: 3px;
 }
 
@@ -33,8 +44,9 @@ img {
     font-family: 'Poppins Regular';
 }
 
-.stars {
+main .stars {
     white-space: nowrap;
+    
 }
 
 .border {
@@ -50,10 +62,10 @@ aside {
     flex-direction: column;
     font-family: 'Poppins Regular';
     width: 20%;
-    height: 60%;
-}
+    height: 60%;}
 
 aside .container {
+    box-shadow: 0px 0px 10px rgba(100, 100, 100, 0.2);
     min-width: 230px;
     width: 100%;
     height: 100%;
@@ -165,20 +177,48 @@ aside.right .container>.textplace {
 .profile button {
     position: absolute;
     bottom: 0;
+    margin-left: 45%;
     margin-bottom: 30px;
 }
 
 .profile .img-fix {
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(100, 100, 100, 0.3);
     border-radius: 110px;
     width: 160px;
     height: 160px;
+    min-width: 160px;
+    min-height: 160px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.profile .apelido {
+.profile .img-fix i {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 5px;
+    align-self: center;
+    text-align: center;
+    font-size: 100px;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(100, 100, 100, 0.1);
+}
+
+.profile .img-fix:hover i {
+    display: inline;
+}
+
+.profile .img-fix:hover {
+    cursor: pointer;
+}
+
+#apelido {
     background-clip: text;
     background-color: #1E90FF;
     text-align: center;
@@ -198,6 +238,7 @@ aside.right .container>.textplace {
 }
 
 .profile .top {
+    box-shadow: 0px 0px 10px rgba(100, 100, 100, 0.2);
     display: flex;
     flex-direction: column;
     background-color: antiquewhite;
@@ -224,7 +265,7 @@ aside.right .container>.textplace {
     text-decoration: none;
 }
 
-.profile .top > label.no-hover:hover {
+.no-hover:hover {
     cursor: default;
 }
 
@@ -267,8 +308,8 @@ aside.right .container>.textplace {
 
 
 .profile img {
-    width: 300px;
-    height: 300px;
+    width: 160px;
+    height: auto;
 }
 
 .profile .top .separator {

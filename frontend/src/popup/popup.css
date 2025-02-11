@@ -129,8 +129,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2px;
-    font-size: 23px;
+    gap: 5px;
+    font-size: 26px;
     height: fit-content;
 }
 

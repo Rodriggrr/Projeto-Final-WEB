@@ -1,7 +1,7 @@
 :root {
     --font-color: black;
     --link-color-main: black;
-    --nav-bg-color: rgb(255, 255, 255); 
+    --nav-bg-color: rgba(255, 255, 255, 0.603); 
     --nav-hover-color: rgba(255, 255, 255, 1);
     --nav-item-hover-color: rgb(220, 220, 220);
     --dropdown-menu-color:  rgb(212, 212, 212);
@@ -27,7 +27,7 @@
     width: 100%;
     background-color: var(--nav-bg-color);
     box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.363);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(2px);
     align-items: center;
     justify-content: space-between;
     gap: 40px;

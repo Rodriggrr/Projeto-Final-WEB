@@ -29,6 +29,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: 'Segoe Ui Regular';
+    background-color: var(--page-bg-color);
     color: var(--font-color);
     flex-direction: column;
 }
@@ -44,6 +45,5 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--page-bg-color);
     overflow-y: auto;
 }
