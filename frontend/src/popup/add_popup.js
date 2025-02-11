@@ -65,6 +65,7 @@ class Popup {
  * @param {HTMLElement} [button=''] - The button element that triggers the evaluation popup.
  */
 function avaliarButton(user = true, button = '') {
+    let API_URL = 'http://localhost:1337/api';
     let update = false;
 
     let avaliando_a = new URLSearchParams(window.location.search).get('id');
@@ -73,7 +74,7 @@ function avaliarButton(user = true, button = '') {
     popup = new Popup();
     popup.whenReady().then(() => {
 
-        fetch(`${API_URL}/avaliacaos?filters[avaliado_por][documentId][$eq]=${avaliado_por}&filters[avaliando_usuario][documentId][$eq]=${avaliando_a}`, {
+        fetch(`${API_URL}/avaliacaos?filters[avaliado_por][documentId][$eq]=${avaliado_por}&filters[${user ? "avaliando_usuario" : "avaliando_atracao"}][documentId][$eq]=${avaliando_a}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
