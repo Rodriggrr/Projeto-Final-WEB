@@ -109,16 +109,16 @@ function getAvaliacao(id){
                 let descricao = reviews[i].descricao;
                 let reviewElement = document.createElement('div');
                 reviewElement.innerHTML = `
-                <div class="usuario">
-                <img src="${foto} "class="avatar"></img>
-                <h4>${nome}:</h4>
-                <p>${descricao}</p>
-                <div class="avaliacao">
+                <div class="info_comentario">
+                    <img src="${foto} "class="avatar"></img>
+                    <h4>${nome}</h4>
+                    <div class="avaliacao">
                     <div class="stars"></div>
-                    <span class="valor" style="display: none">${nota}</span>
+                        <span class="valor" style="display: none">${nota}</span>
+                    </div>
                 </div>
-                </div>
-                    `;
+                <p id="descricao">${descricao}</p>
+                `;
                 document.getElementById('avaliacao_usuario').appendChild(reviewElement);
             }
             stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));

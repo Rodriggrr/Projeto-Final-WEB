@@ -30,15 +30,6 @@
 
 }
 
-.avaliacao_usuario{
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-}
-
 .avaliacoes{
     width: 730px;
     height: 150px;
@@ -51,8 +42,22 @@
     margin-top: 20px;
 }
 
+.avaliacao_usuario{
+    margin: 0px;
+}
+
+.info_comentario{
+    display: flex;
+    gap: 10px;  
+    align-items: center;
+}
+
+.descricao{
+    margin: 0px;
+    padding: 0px;
+}
+
 .usuario{
-    height: 20%;
     display: flex;
     align-items: center;
     gap: 10px;
