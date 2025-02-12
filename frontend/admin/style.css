@@ -1,0 +1,144 @@
+/* <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <nav>
+            <ul>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#users">Users</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="#attractions">Attractions</a></li>
+                <li><a href="#logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <p>Welcome to the admin dashboard.</p>
+        </section>
+        <section id="users">
+            <h2>Users</h2>
+            <p>Manage your users here.</p>
+        </section>
+        <section id="settings">
+            <h2>Settings</h2>
+            <p>Configure your settings here.</p>
+        </section>
+        <section id="attractions">
+            <h2>Attractions</h2>
+            <p>Manage your attractions here.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Admin Panel. All rights reserved.</p>
+    </footer>
+</body>
+</html> */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #FAFAFA;
+    color: #212121;
+}
+
+header {
+    background: #6200EE;
+    color: #FFFFFF;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    animation: fadeInDown 0.6s ease-in-out;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #BB86FC;
+}
+
+main {
+    padding: 20px;
+    animation: fadeInUp 0.6s ease-in-out;
+}
+
+section {
+    background: #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+section h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #6200EE;
+    padding-bottom: 5px;
+}
+
+footer {
+    background: #6200EE;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
+}
+
+footer p {
+    margin: 0;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

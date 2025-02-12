@@ -21,6 +21,7 @@
     cursor: pointer;
 }
 .nav {
+    position: relative;
     z-index: 10;
     display: flex;
     height: 64px;
@@ -106,7 +107,7 @@
 }
 
 .nav .dropdown {
-    z-index: 10;
+    z-index: 1000;
     position: absolute;
     overflow: hidden;
     height: 0px;

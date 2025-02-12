@@ -4,6 +4,7 @@ function changeTitle(str = 'Perfil') {
     document.title = "Quixada Tour - " + str;
 }
 
+if (sessionStorage.getItem('admin')) window.location.href = '../404';
 
 //--------------CHECAR BUSCA POR ID-----------------------
 //Se for por ID, pega o ID da URL, ou seja, o id do perfil que deseja ver, então define que a pagina está em busca por ID usando a variável id_search.
@@ -233,6 +234,16 @@ function datePicker() {
 
 function updateUser() {
     
+    function bringSave() {
+        let container = document.querySelector('.salvar-container');
+        container.style.transform = 'translateX(2%)';
+    }
+
+    function removeSave() {
+        let container = document.querySelector('.salvar-container');
+        container.style.transform = 'translateX(100%)';
+    }
+
     function parseName(name) {
         let nameParsed;
         name.split(' ').forEach((word) => {
@@ -257,7 +268,7 @@ function updateUser() {
     fields.forEach((field) => {
         field.addEventListener('focus', () => {
             focus = true;
-            button.style.display = 'block';
+            bringSave();
         });
     });
 
@@ -285,7 +296,7 @@ function updateUser() {
         arquivo = await compactarImagem(foto.files[0]);
         focus = true;
         fotoModified = true;
-        button.style.display = 'block';
+        bringSave();
         if (arquivo) {
             let pic = document.querySelector('.profile .img-fix img')
             pic.src = URL.createObjectURL(arquivo);
@@ -298,10 +309,14 @@ function updateUser() {
     fields.forEach((field) => {
         field.addEventListener('blur', () => {
             setTimeout(() => {
-                if(!focus) button.style.display = 'none'
+                if(!focus) removeSave();
             }, 500);
             focus = false;
         });
+    });
+
+    document.getElementById('salvar-cancelar').addEventListener('click', () => {
+        window.location.reload();
     });
 
     document.getElementById('salvar').addEventListener('click', async () => {
@@ -336,7 +351,7 @@ function updateUser() {
             bio: bio,
         };
 
-        if (pic.length > 0) {
+        if (pic && pic.length > 0) {
             data.foto = pic[0].id;
         }
 

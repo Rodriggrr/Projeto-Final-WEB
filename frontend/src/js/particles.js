@@ -15,7 +15,7 @@ function createParticlesContainer() {
     particlesDiv.style.height = "100%";
     particlesDiv.style.top = "0";
     particlesDiv.style.left = "0";
-    particlesDiv.style.zIndex = "-1";
+    particlesDiv.style.zIndex = "-100";
     particlesDiv.style.background = "#f5e1c6"; // Cor do fundo, ajuste se necessário
     document.body.prepend(particlesDiv);
 }
@@ -47,8 +47,29 @@ function initParticles() {
     });
 }
 
-// Inicializa tudo após a página carregar
+
 window.addEventListener("load", function () {
+    if (sessionStorage.getItem('particlesEnabled') === "true") {
         createParticlesContainer();
         loadParticlesJS(initParticles);
+    }
 });
+
+if(sessionStorage.getItem('particlesEnabled') === null) {
+    sessionStorage.setItem('particlesEnabled', true);
+}
+document.addEventListener("keydown", (event) => {
+    let particlesEnabled = sessionStorage.getItem('particlesEnabled') === "true";
+    if (event.shiftKey && event.key.toLowerCase() === "l") {
+        if (particlesEnabled) {
+            const container = document.getElementById("particles-js");
+            if (container) container.remove();
+            sessionStorage.setItem('particlesEnabled', false);
+        } else {
+            createParticlesContainer();
+            loadParticlesJS(initParticles);
+            sessionStorage.setItem('particlesEnabled', true);
+        }
+    }
+});
+

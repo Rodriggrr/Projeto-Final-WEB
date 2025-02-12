@@ -1,0 +1,1 @@
+if(!sessionStorage.getItem('admin')) window.location.href = '../404';

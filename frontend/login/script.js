@@ -34,11 +34,16 @@ async function login(email, senha) {
         }).then(response => response.json())
           .then((data) => { 
             console.log(data);
-            console.log('Token:', response.jwt, 'User ID:', data.usuario.documentId);
-            sessionStorage.setItem('publicUserId', data.usuario.documentId);
-            sessionStorage.setItem('privateId', data.documentId);
-            console.log("publicUserId: " + sessionStorage.getItem('publicUserId'));
-            window.location.href = '../home';
+            if(data.usuario) {
+                console.log('Token:', response.jwt, 'User ID:', data.usuario.documentId);
+                sessionStorage.setItem('publicUserId', data.usuario.documentId);
+                sessionStorage.setItem('privateId', data.documentId);
+                console.log("publicUserId: " + sessionStorage.getItem('publicUserId'));
+                window.location.href = '../home';
+            } else {
+                sessionStorage.setItem('admin', true);
+                window.location.href = '../admin';
+            }
         }).catch(error => console.log("Erro: " + error));
 
     })

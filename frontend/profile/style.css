@@ -8,16 +8,59 @@
     src: url('../src/fonts/poppins/Poppins-Light.ttf')
 }
 
-body {
-    background-color: var(--page-bg-color);
+html, body {
+    overflow: hidden;
 }
+
 
 main {
     width: 90%;
     min-width: 1100px;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    height: 100%;
+    overflow: hidden;
     background-color: transparent;
+    padding: 5px;
+}
+
+.salvar-container {
+    font-family: 'Poppins Bold';
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 1%;
+    transform: translateX(100%);
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.5s ease;
+    background-color: antiquewhite;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 2px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(100, 100, 100, 0.3);
+}
+
+.salvar-container > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.salvar-container button {
+    background-color: antiquewhite;
+    border: none;
+    min-width: 90px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    border: rgba(100, 100, 100, 0.6) 2px solid;
 }
 
 #particles-js {
@@ -34,6 +77,7 @@ main i {
     padding: 3px;
 }
 
+
 img {
     max-height: none;
     max-width: none;
@@ -46,7 +90,6 @@ img {
 
 main .stars {
     white-space: nowrap;
-    
 }
 
 .border {
@@ -58,6 +101,7 @@ main .stars {
 }
 
 aside {
+    position: relative;
     display: flex;
     flex-direction: column;
     font-family: 'Poppins Regular';
@@ -165,20 +209,14 @@ aside.right .container>.textplace {
 }
 
 .profile {
+    position: relative;
     width: 60%;
-    height: 90%;
+    min-height: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    justify-content: space-evenly;
-}
-
-.profile button {
-    position: absolute;
-    bottom: 0;
-    margin-left: 45%;
-    margin-bottom: 30px;
+    justify-content: space-between;
 }
 
 .profile .img-fix {
@@ -219,8 +257,8 @@ aside.right .container>.textplace {
 }
 
 #apelido {
+    height: 25%;
     background-clip: text;
-    background-color: #1E90FF;
     text-align: center;
     min-width: fit-content;
     white-space: nowrap;
@@ -230,6 +268,7 @@ aside.right .container>.textplace {
 }
 
 .profile .avaliacao {
+    height: 10%;
     color: #1E90FF;
     display: flex;
     flex-direction: column;
@@ -245,6 +284,7 @@ aside.right .container>.textplace {
     border-radius: 10px;
     padding: 20px;
     width: 70%;
+    height: 40%;
     gap: 10px;
 }
 

@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="../src/css/basic-page.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/browser-image-compression/1.0.17/browser-image-compression.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/browser-image-compression/1.0.17/browser-image-compression.js"></script>
 
     <title>Quixada Tour - Perfil</title>
 </head>
@@ -23,36 +24,48 @@
     <div id="popup-container"></div>
 
     <!-- Conteúdo Principal Aqui -->
+
+    <div class="salvar-container">
+        <span>Salvar alterações?</span>
+        <div>
+            <button id="salvar">Salvar</button>
+            <button id="salvar-cancelar">Cancelar</button>
+        </div>
+    </div>
+
     <main>
-        
         <aside class="left">
             <div class="top">
                 <span class="title">Avaliações</span>
                 <span id="avaliar"></span>
             </div>
-                <div class="container">
+            <div class="container">
             </div>
             </div>
             <button>Avaliar</button>
         </aside>
 
         <section class="profile">
-            <label for="foto" class="img-fix">
-                <input type="file" id="foto" accept="image/*" style="display: none;">
-                <i class="bi bi-pen"></i>
-                <img src="../src/img/logo-placeholder-image.png" alt="Foto de Perfil" id='pp' class="profile-picture">
-            </label>
+        
+                <label for="foto" class="img-fix">
+                    <input type="file" id="foto" accept="image/*" style="display: none;">
+                    <i class="bi bi-pen"></i>
+                    <img src="../src/img/logo-placeholder-image.png" alt="Foto de Perfil" id='pp'
+                        class="profile-picture">
+                </label>
+       
             <input class="apelido" id="apelido"></input>
             <div class="avaliacao">
                 <div class="stars"></div>
                 <div>
-                    <span class="media valor ignore" id="nota"></span>
+                    <span class="media valor ignore" id="nota">0</span>
                     <span>/ 5</span>
                 </div>
             </div>
             <div class="top">
                 <div class="parceria">
-                    <span class="description"><i class="bi bi-hand-thumbs-up"></i>Parceria <i class="bi bi-pen"></i></span>
+                    <span class="description"><i class="bi bi-hand-thumbs-up"></i>Parceria <i
+                            class="bi bi-pen"></i></span>
                     <span class="value"></span>
                 </div>
                 <label for="nome" class="nome">
@@ -64,24 +77,25 @@
                     <input type="date" id="nascimento" class="value">
                 </label>
                 <label for="sexo" class="sexo">
-                    <span class="description"><i class="bi bi-gender-ambiguous"></i>Sexo <i class="bi bi-pen"></i></span>
+                    <span class="description"><i class="bi bi-gender-ambiguous"></i>Sexo <i
+                            class="bi bi-pen"></i></span>
                     <select id="sexo" class="value">
                         <option value="Masculino" style="font-family:'Arial';">Masculino</option>
-                        <option value="Feminino"  style="font-family:'Arial';">Feminino</option>
-                        <option value="Outro"     style="font-family:'Arial';">Outro</option>
+                        <option value="Feminino" style="font-family:'Arial';">Feminino</option>
+                        <option value="Outro" style="font-family:'Arial';">Outro</option>
                     </select>
                 </label>
                 <label for="email" class="email">
                     <span class="description"><i class="bi bi-envelope"></i>Email <i class="bi bi-pen"></i></span>
                     <input id="email" class="value" size="30">
-                </label>                              
+                </label>
                 <div class="senha">
-                    <label for="senha" class="description"><i class="bi bi-lock"></i>Senha <i class="bi bi-pen"></i></label>
+                    <label for="senha" class="description"><i class="bi bi-lock"></i>Senha <i
+                            class="bi bi-pen"></i></label>
                     <span id="senha" class="value"> Alterar</span>
                 </div>
             </div>
-                <button id="salvar" style="display: none;">Salvar</button>
-            </section>
+        </section>
         <aside class="right">
             <span class="title">Sobre Mim</span>
             <div class="container">
