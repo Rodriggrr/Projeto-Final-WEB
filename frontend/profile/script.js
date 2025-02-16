@@ -233,7 +233,7 @@ function datePicker() {
 }
 
 function updateUser() {
-    
+
     function bringSave() {
         let container = document.querySelector('.salvar-container');
         container.style.transform = 'translateX(2%)';
@@ -316,7 +316,7 @@ function updateUser() {
     });
 
     document.getElementById('salvar-cancelar').addEventListener('click', () => {
-        window.location.reload();
+        //window.location.reload();
     });
 
     document.getElementById('salvar').addEventListener('click', async () => {

@@ -5,10 +5,27 @@
     src: local('Biko Regular'), url('../src/fonts/biko/Biko_Regular.otf') format('opentype');
 }
 
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: show;
+}
+
+.content{
+    margin-top: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: show;
+}
+
 .local {
     display: flex;
     align-items: center;
     gap: 10px;
+    overflow-y: show;
 }
 
 .imagem {

@@ -184,14 +184,14 @@ function getGuias(id){
                     foto += guias[i].foto.url;
                 }
                 let nome = guias[i].nome;
-
+                let id = guias[i].documentId;
                 let guiaElement = document.createElement('div');
                 guiaElement.className = 'guia';
                 guiaElement.innerHTML = `
                 
                 <div class="info_comentario">
                 <img src="${foto} "class="avatar"></img>
-                <a href="">${nome}</a>
+                <a href="../profile/profile.html?id=${id}">${nome}</a>
                 <!-- estrelas -->
                 <div class="avaliacao">
                     <div class="stars"></div>
