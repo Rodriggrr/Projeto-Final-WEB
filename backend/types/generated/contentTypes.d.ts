@@ -477,6 +477,7 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
       'api::avaliacao.avaliacao'
     >;
     bio: Schema.Attribute.Text;
+    contato: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

@@ -6,10 +6,6 @@
     src: local('Biko Regular'), url('../src/fonts/biko/Biko_Regular.otf') format('opentype');
 }
 
-main {
-    overflow: hidden;
-}
-
 .content {
     position: relative;
     width: fit-content;

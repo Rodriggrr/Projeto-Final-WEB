@@ -44,31 +44,6 @@ console.log(`id: ${id}. ID Search: ${id_search}`);
 const API_URL = "http://localhost:1337/api";
 
 
-//Gambiarra: Função para calcular a média das notas e exibir na tela. Era para ser feito no backend, mas não sei como faz ainda.
-function calc_nota() {
-    let valores = document.getElementsByClassName('valor');
-    let valor_ignore = document.getElementsByClassName('ignore');
-
-    let sum = parseFloat(valor_ignore[0].textContent) * -1;
-    if (isNaN(sum)) sum = 0;
-
-    for (let i = 0; i < valores.length; i++) {
-        let valor = parseFloat(valores[i].textContent);
-        if (isNaN(valor)) continue;
-
-        sum += parseFloat(valores[i].textContent);
-    }
-
-    let modificar_value = document.getElementsByClassName('media');
-    length = (valores.length - 1 == 0) ? 1 : valores.length - 1;
-
-    let media = sum / length;
-
-    for (let i = 0; i < modificar_value.length; i++) {
-        modificar_value[i].textContent = `${media.toFixed(2)}`;
-    }
-}
-
 function remove_name_border() {
     let border = document.getElementsByClassName('border');
     let content = document.querySelectorAll('aside.left .avaliacao-usuario .content');
@@ -204,14 +179,13 @@ function getUserReviews() {
                     `;
                     reviewsContainer.appendChild(reviewElement);
                     remove_name_border();
-                    calc_nota();
             stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
                 }
             } catch (error) {
                 console.log("Erro: " + error);
             }
         }).then(() => {
-            calc_nota();
+            document.getElementById('nota').textContent = getMediaNota(id);
             stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
             avaliarButton(true, document.querySelector('aside.left button'));
         })

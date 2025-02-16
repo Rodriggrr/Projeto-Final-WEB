@@ -65,3 +65,26 @@ function stars_hover(container) {
     });
 }
 
+// Função para pegar a média das avaliações de um usuário. O certo seria fazer isso no backend, mas por enquanto está aqui.
+
+async function getMediaNota(id) {
+    let response = await fetch(`http://localhost:1337/api/usuarios/${id}?populate[0]=avaliacoes`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    if(!response.ok) return false;
+
+    let soma = 0;
+
+    let data = await response.json();
+    console.log(data.data.avaliacoes);
+    let avaliacoes = data.data.avaliacoes;
+    avaliacoes.forEach(avaliacao => {
+        soma += avaliacao.nota;
+    });
+
+    return soma / avaliacoes.length;
+}

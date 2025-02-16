@@ -80,6 +80,9 @@
       "relation": "manyToMany",
       "target": "api::atracao.atracao",
       "mappedBy": "publics"
+    },
+    "contato": {
+      "type": "string"
     }
   }
 }
