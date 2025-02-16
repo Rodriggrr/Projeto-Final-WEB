@@ -20,25 +20,24 @@
     <main>
         <section class="registrar">
             <h1>Crie uma conta no <span>Quixadá Tour</span></h1>
-            <form class="container">
+            <form id="register-form">
                 <div class="e-mail">
                     <label for="e-mail">E-mail</label>
                     <input id="e-mail" type="email" placeholder="E-mail" required>
+                    <p class="error" id="email-error">Digite um e-mail válido.</p>
                 </div>
 
                 <div class="senha">
                     <label for="senha">Senha</label>
                     <input id="senha" type="password" placeholder="Senha" required>
-                    <p>A senha tem que ter no máximo 15 carecteres ou no minimo 8 caracteres
-                        <br> incluindo números e letras maiusculas.
+                    <p class="error" id="senha-error"></p>
                     </p>
                 </div>
 
                 <div class="usuario">
                     <label for="usuario">Usuario</label>
                     <input id="usuario" type="text" placeholder="Usuario" required>
-                    <p>Usuario deve conter entre 3 e 16 caracteres apenas letras, números
-                        <br> e undercores (_) são permitidos não podendo conter espaços.
+                    <p class="error" id="usuario-error">O usuário deve ter entre 3 e 16 caracteres e não pode conter espaços.</p>
                     </p>
                 </div>
 
@@ -56,6 +55,7 @@
     <!-- Loading Screen -->
     <div id="loader-container"></div>
     <script src="../src/js/loading.js"></script>
+    <script src="/frontend/registrar/script.js"></script>
     <script src="../src/js/particles.js"></script>
 </body>
 </html>

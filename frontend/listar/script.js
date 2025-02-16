@@ -15,7 +15,7 @@ async function listarUsuarios() {
     }
 }
 
-function exibirUsuarios(usuarios, container) {
+function exibirUsuarios(usuarios) {
     const container = document.querySelector(".container-usuarios");
     container.innerHTML = ""; 
 
