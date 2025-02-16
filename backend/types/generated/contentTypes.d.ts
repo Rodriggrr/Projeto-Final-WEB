@@ -402,6 +402,7 @@ export interface ApiAtracaoAtracao extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     nome: Schema.Attribute.String & Schema.Attribute.Required;
+    publics: Schema.Attribute.Relation<'manyToMany', 'api::usuario.usuario'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -470,6 +471,7 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    atracaos: Schema.Attribute.Relation<'manyToMany', 'api::atracao.atracao'>;
     avaliacoes: Schema.Attribute.Relation<
       'oneToMany',
       'api::avaliacao.avaliacao'

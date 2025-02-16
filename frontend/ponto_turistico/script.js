@@ -24,12 +24,12 @@ function getDescr(id) {
         .then(data => {
             const detalhesElemento = document.getElementById('detalhes');
 
-            console.log('Resposta da API:', data);
+            //console.log('Resposta da API:', data);
 
             const atracao = data.data.descricao;
             const endereço = data.data.endereco;
             const horario = data.data.horario;
-            console.log('Atração encontrada:', atracao);
+            //console.log('Atração encontrada:', atracao);
 
             let informacoes = document.createElement('div');
             informacoes.innerHTML = `
@@ -63,10 +63,10 @@ function getNome(id) {
         .then(data => {
             const nomeElemento = document.getElementById('nome');
 
-            console.log('Resposta da API:', data);
+            //console.log('Resposta da API:', data);
 
             const atracao = data.data.nome;
-            console.log('Nome da atração:', atracao);
+            //console.log('Nome da atração:', atracao);
 
             if (atracao) {
                 nomeElemento.innerHTML = atracao || "Nome não disponível.";
@@ -94,7 +94,7 @@ function getAvaliacao(id){
         })
         .then(data => {
             
-            console.log('Resposta reviews:', data);
+            //console.log('Resposta reviews:', data);
 
             let reviews = data.data.avaliacaos;
             
@@ -142,10 +142,10 @@ function getImg(id){
         .then(data => {
             const imgElemento = document.getElementById('imagem');
 
-            console.log('Resposta da API:', data);
+            //console.log('Resposta da API:', data);
 
             const atracao = data.data;
-            console.log('Imagem da atração:', atracao);
+            //console.log('Imagem da atração:', atracao);
 
             if (atracao) {
                 imgElemento.src = `http://localhost:1337${atracao.foto[0].url}` || "Imagem não disponível.";
@@ -160,6 +160,55 @@ function getImg(id){
         });
 }
 
+//listar guias disponiveis dentro de publics com populate
+function getGuias(id){
+    let guia = document.getElementById('guias');
+    const URL = `http://localhost:1337/api/atracaos/${id}?populate[publics][populate]=*`;
+    fetch(URL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+
+            //console.log('Resposta da API:', data);
+
+            const guias = data.data.publics;
+            console.log('Guias:', guias);
+            
+            for (let i=0; i < guias.length; i++){
+                let foto = 'http://localhost:1337';
+                if (guias[i].foto) {
+                    foto += guias[i].foto.url;
+                }
+                let nome = guias[i].nome;
+
+                let guiaElement = document.createElement('div');
+                guiaElement.className = 'guia';
+                guiaElement.innerHTML = `
+                
+                <div class="info_comentario">
+                <img src="${foto} "class="avatar"></img>
+                <a href="">${nome}</a>
+                <!-- estrelas -->
+                <div class="avaliacao">
+                    <div class="stars"></div>
+                    <span class="valor" style="display: none">${guias[i].nota}</span>
+                </div>
+                </div>
+                
+                `;
+                guia.appendChild(guiaElement);
+            }
+            stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'))
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            document.getElementById('guias').innerHTML = "Erro ao carregar os guias.";
+        });
+}
 
 //verifica se o usuário está logado, se estiver, pega o nome e a foto do usuário.
 //se não estiver, esconde o campo de avaliação.
@@ -168,6 +217,7 @@ if(estaLogado()){
     getDescr(id); 
     getAvaliacao(id);
     getImg(id);
+    getGuias(id);
     avaliarButton(false, document.getElementById('avaliar'));
 }
 else {

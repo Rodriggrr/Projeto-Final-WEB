@@ -74,6 +74,12 @@
     "nome_completo": {
       "type": "string",
       "required": true
+    },
+    "atracaos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::atracao.atracao",
+      "mappedBy": "publics"
     }
   }
 }

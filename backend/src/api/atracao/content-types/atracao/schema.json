@@ -41,6 +41,12 @@
     },
     "horario": {
       "type": "string"
+    },
+    "publics": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::usuario.usuario",
+      "inversedBy": "atracaos"
     }
   }
 }
