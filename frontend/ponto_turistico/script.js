@@ -107,11 +107,12 @@ function getAvaliacao(id){
                 }
                 let nome = reviews[i].avaliado_por.nome;
                 let descricao = reviews[i].descricao;
+                let id = reviews[i].avaliado_por.documentId;
                 let reviewElement = document.createElement('div');
                 reviewElement.innerHTML = `
                 <div class="info_comentario">
                     <img src="${foto} "class="avatar"></img>
-                    <h4>${nome}</h4>
+                    <a href="../profile/profile.html?id=${id}">${nome}</a>
                     <div class="avaliacao">
                     <div class="stars"></div>
                         <span class="valor" style="display: none">${nota}</span>
