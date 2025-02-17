@@ -21,6 +21,12 @@
         <section class="registrar">
             <h1>Crie uma conta no <span>Quixadá Tour</span></h1>
             <form id="register-form">
+                <div class="usuario">
+                    <label for="usuario">Nome</label>
+                    <input id="usuario" type="text" placeholder="Nome e sobrenome" required>
+                    <p class="error" id="usuario-error">O usuário deve ter entre 3 e 16 caracteres e não pode conter espaços.</p>
+                    </p>
+                </div>
                 <div class="e-mail">
                     <label for="e-mail">E-mail</label>
                     <input id="e-mail" type="email" placeholder="E-mail" required>
@@ -31,13 +37,6 @@
                     <label for="senha">Senha</label>
                     <input id="senha" type="password" placeholder="Senha" required>
                     <p class="error" id="senha-error"></p>
-                    </p>
-                </div>
-
-                <div class="usuario">
-                    <label for="usuario">Usuario</label>
-                    <input id="usuario" type="text" placeholder="Usuario" required>
-                    <p class="error" id="usuario-error">O usuário deve ter entre 3 e 16 caracteres e não pode conter espaços.</p>
                     </p>
                 </div>
 

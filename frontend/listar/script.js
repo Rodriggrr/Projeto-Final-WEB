@@ -19,7 +19,7 @@ function exibirUsuarios(usuarios) {
     const container = document.querySelector(".container-usuarios");
     container.innerHTML = ""; 
 
-    usuarios.forEach(usuario => {
+    usuarios.forEach(async (usuario) => {
 
         const usuarioCard = document.createElement("section");
         usuarioCard.classList.add("usuarios");
@@ -33,10 +33,10 @@ function exibirUsuarios(usuarios) {
                 <h4>${obterProfissao(usuario)}</h4>
             </div>
             <div class="avaliacoes">
-                <h4>Média de Avaliações: ${usuario.nota || "N/A"}</h4>
+                <h4>Média de Avaliações: ${await getMediaNota(usuario.documentId) || "N/A"}</h4>
             </div>
         `;
-
+        console.log(usuario.documentId)
         container.appendChild(usuarioCard);
     });
 }

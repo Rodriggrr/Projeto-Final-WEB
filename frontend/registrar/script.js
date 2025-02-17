@@ -50,10 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
             usuarioError.textContent = "O usuário não pode ficar em branco.";
             usuarioError.style.display = "block";
             isValid = false;
-        } else if (!validateUsername(usuarioInput.value)) {
-            usuarioError.textContent = "O usuário deve ter entre 3 e 16 caracteres e pode conter apenas letras, números e underscores (_).";
-            usuarioError.style.display = "block";
-            isValid = false;
         } else {
             usuarioError.style.display = "none";
         }
@@ -72,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             try {
+                // Fazendo requisição para cadastrar usuário no Strapi
                 const userResponse = await fetch("http://localhost:1337/api/auth/local/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -79,21 +76,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 const userDataResponse = await userResponse.json();
-
+                
                 if (!userResponse.ok) {
-                    throw new Error(userDataResponse.error?.message || "Erro desconhecido ao registrar usuário.");
+                    throw new Error(userDataResponse.error?.message || JSON.stringify(userDataResponse));
                 }
+
+                console.log("Usuário registrado:", userDataResponse);
 
                 const userId = userDataResponse.user.id;
 
                 const publicProfileData = {
                     data: {
-                        nome: usuarioInput.value,
-                        usuario: userId, 
+                        nome_completo: usuarioInput.value, 
+                        sexo: "Masculino",
                     },
                 };
 
-                const publicResponse = await fetch("http://localhost:1337/api/public", {
+                // Criando perfil público do usuário
+                const publicResponse = await fetch("http://localhost:1337/api/usuarios", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -103,17 +103,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 const publicDataResponse = await publicResponse.json();
+                
+                console.log("🔍 Resposta da API do Strapi:", publicDataResponse);
 
                 if (!publicResponse.ok) {
-                    throw new Error(publicDataResponse.error?.message || "Erro ao criar perfil público.");
+                    console.error("🔍 Erro detalhado da API:", JSON.stringify(publicDataResponse, null, 2));
+                    throw new Error(publicDataResponse.error?.message || JSON.stringify(publicDataResponse));
                 }
-
+                
+                sessionStorage.setItem('jwtToken', userDataResponse.jwt);
                 alert("Registro e perfil público criados com sucesso!");
-                window.location.href = "../login/login.html";
+                window.location.href = "../profile/profile.html";
 
             } catch (error) {
-                console.error("Erro:", error);
-                alert(error.message);
+                console.error("Erro ao registrar usuário:", error);
+            
+                if (error instanceof Response) { // Se for um erro de resposta HTTP
+                    error.json().then(errData => {
+                        console.error("Detalhes do erro:", errData);
+                        alert("Erro: " + JSON.stringify(errData));
+                    });
+                } else {
+                    alert(error.message);
+                }
             }
         }
     });
