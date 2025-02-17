@@ -184,8 +184,8 @@ function getUserReviews() {
             } catch (error) {
                 console.log("Erro: " + error);
             }
-        }).then(() => {
-            document.getElementById('nota').textContent = getMediaNota(id);
+        }).then(async () => {
+            document.getElementById('nota').textContent = await getMediaNota(id);
             stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
             avaliarButton(true, document.querySelector('aside.left button'));
         })

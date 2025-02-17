@@ -82,6 +82,9 @@ async function getMediaNota(id) {
     let data = await response.json();
     console.log(data.data.avaliacoes);
     let avaliacoes = data.data.avaliacoes;
+    if (!avaliacoes.length){
+        return 5;
+    }
     avaliacoes.forEach(avaliacao => {
         soma += avaliacao.nota;
     });
