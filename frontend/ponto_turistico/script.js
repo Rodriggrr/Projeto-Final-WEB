@@ -229,7 +229,6 @@ if (estaLogado()) {
 }
 //------------------------------------------------
 
-
 document.getElementById('formComentario').addEventListener('submit', (e) => {
     e.preventDefault();
     let comentario = document.getElementById('comentario').value;

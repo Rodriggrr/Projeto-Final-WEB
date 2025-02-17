@@ -1,5 +1,3 @@
-requerAutenticacao();
-
 function changeTitle(str = 'Perfil') {
     document.title = "Quixada Tour - " + str;
 }
@@ -40,6 +38,14 @@ if (id == null) {
 }
 console.log(`id: ${id}. ID Search: ${id_search}`);
 //--------------------------------------------------------
+
+if(!estaLogado()) {
+    document.getElementById('avaliar-button').style.display = 'none';
+}
+
+if(!estaLogado() && !id_search) {
+    requerAutenticacao();
+}
 
 const API_URL = "http://localhost:1337/api";
 
