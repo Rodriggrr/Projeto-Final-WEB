@@ -20,27 +20,29 @@
     <header id="navbar"></header>
         
     <main>
+        <aside class="secao_guias">
+            <article id="guias"><h4>Veja os guias disponíveis:</h4></article>
+        </aside>
         <div class="content">
             <section class="local">
                 <img src="" alt="imagem_da_atracao" class="imagem" id="imagem">
                 <div class="info_local">
                     <div class="bio_local"> 
-                        <h1 id="nome">Pedra da Galinha Choca</h1>
+                        <h1 id="nome" class="nome"></h1>
                     </div>
-                    <div class="detalhes" id="detalhes">
-                        <p><i class="bi bi-geo-alt-fill"></i> Endereço: Rua do Sertão, 123</p>
-                        <p><i class="bi bi-clock-fill"></i> Horário de Funcionamento: 08:00 - 17:00</p>
-                    </div>
+                    <div class="detalhes">
+                        <p id="descricao"></p>
+                    </div>    
                 </div>
             </section>
+            <div id="detalhes" class="infos_local">
+            </div>
             <section class="avaliacoes" id="avaliacoes">
                 <button id="avaliar">Avaliar</button>
                 <article id="avaliacao_usuario"></article>
             </section>
-            <section class="secao_guias">
-                <article id="guias"><h4>Guias:</h4></article>
-            </section>
         </div>
+    
     </main>
 
     <script src="/frontend/src/js/review.js"></script>

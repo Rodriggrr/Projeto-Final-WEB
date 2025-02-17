@@ -35,5 +35,9 @@ fetch(requestUrl, method)
                     `;
             document.getElementById('content').appendChild(atracaoElement);
         }
+        
+        document.getElementById('content').style.gridTemplateColumns = `repeat(${atracao.length > 3 ? 3 : atracao.length}, 1fr)`;
+
     })
     .catch(error => console.error('Erro ao carregar as atracoes:', error));
+

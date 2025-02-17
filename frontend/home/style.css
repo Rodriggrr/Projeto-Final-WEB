@@ -6,13 +6,17 @@
     src: local('Biko Regular'), url('../src/fonts/biko/Biko_Regular.otf') format('opentype');
 }
 
+main {
+    overflow-y: auto;
+}
+
 .content {
-    position: relative;
-    width: fit-content;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 4 colunas de tamanho igual */
+    grid-template-columns: repeat(1, 1fr); /* 4 colunas de tamanho igual */
     gap: 50px;
     max-width: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
 .content > div > .atracao-container {

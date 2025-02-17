@@ -10,40 +10,71 @@ main{
     justify-content: center;
     align-items: center;
     overflow-y: show;
+    position: relative;
+}
+
+aside{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    min-height: 70%;
+    left: 0;
 }
 
 .content{
-    margin-top: 160px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-y: show;
 }
 
-.local {
+.content .local {
     display: flex;
     align-items: center;
     gap: 10px;
     overflow-y: show;
 }
 
-.imagem {
+.nome{
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 400px;
+}
+
+.local > img  {
     min-height: 300px;
     min-width: 320px;
     border-radius: 10px;
 }
 
-.detalhes {
-    width: 400px;
-    height: 200px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #333; 
-    background-color: antiquewhite;
-    padding: 10px;
-    border-radius: 10px;
-    padding: 10px;
+.info_local {
+    .detalhes{
+        width: 400px;
+        height: 175px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #888 #333; 
+        background-color: antiquewhite;
+        padding: 10px;
+        border-radius: 10px;
+    }
+}
+
+.infos_local{
+    gap: 50px;
+    
+    a{
+        text-decoration: none;
+        color: black;
+    }
+
+    a:hover{
+        color: #333;
+        text-decoration: underline;
+    }
 }
 
 .avaliacoes{
@@ -55,35 +86,38 @@ main{
     background-color: antiquewhite;
     padding: 10px;
     border-radius: 10px;
-    margin-top: 20px;
 }
 
-.avaliacao_usuario{
-    margin: 0px;
-}
-
+/* Estilização das informações do usuário e comentário */
 .info_comentario{
     display: flex;
     gap: 10px;  
     align-items: center;
+
+    .avatar{
+        width: 30px;
+        height: 30px;
+        background-color: #333;
+        border-radius: 100%; 
+    }
+}
+
+.info_comentario a{
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+
+    &:hover{
+        text-decoration: underline;
+    }
 }
 
 .descricao{
-    margin: 0px;
-    padding: 0px;
-}
-
-.usuario{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.avatar{
-    width: 30px;
-    height: 30px;
-    background-color: #333;
-    border-radius: 100%; 
+    .usuario{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 }
 
 #avaliar{
@@ -98,6 +132,7 @@ main{
 
 .secao_guias{
     height: 150px;
+    width: 200px;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #888 #333; 
@@ -109,26 +144,4 @@ main{
 
 .info_comentario{
     margin-bottom: 10px;
-}
-
-
-@media screen and (max-width: 800px){
-    .body{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .local{
-        flex-direction: column;
-    }
-    .imagem{
-        min-width: 100%;
-    }
-    .detalhes{
-        width: 100%;
-    }
-    .avaliacoes{
-        width: 100%;
-    }
-    
 }
