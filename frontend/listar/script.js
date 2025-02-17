@@ -26,7 +26,7 @@ function exibirUsuarios(usuarios) {
 
         usuarioCard.innerHTML = `
           <div class="perfil">
-                <img src="/frontend/src/img/logo.png" alt="Usuário">
+                <img src="/frontend/src/img/user_example.png" alt="Usuário">
                 <h4>${usuario.nome}</h4>
             </div>
             <div class="categoria">
