@@ -81,7 +81,8 @@ async function getMediaNota(id) {
         let soma = 0;
 
         let data = await response.json();
-        let avaliacoes = data.data.attributes.avaliacoes || [];
+        let avaliacoes = data.data.avaliacoes || [];
+        console.log(avaliacoes)
 
         if (avaliacoes.length === 0) {
             return 5;

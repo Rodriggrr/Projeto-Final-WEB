@@ -394,3 +394,16 @@ aside.right .container>.textplace {
     margin-right: 30px;
     border-radius: 10px;
 }
+
+.textarea {
+    width: 90%;
+    height: 90%;
+    background-color: transparent;
+    border: none;
+    font-family: 'Poppins Regular';
+    font-size: 15px;
+    text-align: justify;
+    resize: none;
+    outline: none;
+    overflow-x: hidden;
+}

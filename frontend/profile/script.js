@@ -59,7 +59,7 @@ function remove_name_border() {
     }
 }
 
-let g_pp, g_nome, g_nota, g_sexo, g_nascimento, g_textplace, g_email, g_parceria, g_nome_completo;
+let g_pp, g_nome, g_nota, g_sexo, g_nascimento, g_textarea, g_email, g_parceria, g_nome_completo;
 
 
 //Função para pegar o perfil do usuário de acordo com o token de autenticação. Se ID for passado, pega o perfil do usuário com o ID passado.
@@ -108,7 +108,7 @@ function getUserProfile(id = '') {
             g_nota = document.getElementById('nota');
             g_sexo = document.querySelector('.sexo .value');
             g_nascimento = document.querySelector('.nascimento .value');
-            g_textplace = document.querySelector('.textplace');
+            g_textarea = document.querySelector('.textarea');
             g_email = document.querySelector('.email .value');
             g_parceria = document.querySelector('.parceria .value');
 
@@ -118,7 +118,7 @@ function getUserProfile(id = '') {
             g_nota.innerHTML = nota;
             g_sexo.value = sexo;
             g_nascimento.value = nascimento;
-            g_textplace.innerHTML = bio;
+            g_textarea.value = bio;
             g_email.value = email;
             g_parceria.innerHTML = parceria;
 
@@ -191,7 +191,9 @@ function getUserReviews() {
                 console.log("Erro: " + error);
             }
         }).then(async () => {
-            document.getElementById('nota').textContent = await getMediaNota(id);
+            if(!id_search) id = sessionStorage.getItem('publicUserId');
+            console.log('ID:', id);
+            document.getElementById('nota').textContent = (await getMediaNota(id)).toFixed(1);
             stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
             avaliarButton(true, document.querySelector('aside.left button'));
         })
@@ -296,7 +298,19 @@ function updateUser() {
     });
 
     document.getElementById('salvar-cancelar').addEventListener('click', () => {
-        //window.location.reload();
+        window.location.reload();
+    });
+
+    document.getElementsByClassName('textarea')[0].addEventListener('focus', () => {
+        bringSave();
+        focus = true;
+    });
+
+    document.getElementsByClassName('textarea')[0].addEventListener('blur', () => {
+        setTimeout(() => {
+            if(!focus) removeSave();
+        }, 500);
+        focus = false;
     });
 
     document.getElementById('salvar').addEventListener('click', async () => {
@@ -319,7 +333,7 @@ function updateUser() {
         let nome = parseName(g_nome.value);
         let sexo = g_sexo.value;
         let nascimento = g_nascimento.value;
-        let bio = g_textplace.textContent;
+        let bio = g_textarea.value;
         let email = g_email.value;
         let parceria = g_parceria.textContent;
 
@@ -379,6 +393,8 @@ if(!id_search) {
     });
 
     document.querySelector('.profile .img-fix').style.pointerEvents = 'none';
+
+    document.getElementsByClassName('textarea')[0].setAttribute('readonly', 'true');
 
     let apelido = document.getElementById('apelido');
     apelido.style.pointerEvents = 'none';

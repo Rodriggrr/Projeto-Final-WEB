@@ -476,7 +476,7 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::avaliacao.avaliacao'
     >;
-    bio: Schema.Attribute.Text;
+    bio: Schema.Attribute.Text & Schema.Attribute.DefaultTo<'Your bio here'>;
     contato: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -491,9 +491,13 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
       'api::usuario.usuario'
     > &
       Schema.Attribute.Private;
-    nascimento: Schema.Attribute.Date;
-    nome: Schema.Attribute.String;
-    nome_completo: Schema.Attribute.String & Schema.Attribute.Required;
+    nascimento: Schema.Attribute.Date &
+      Schema.Attribute.DefaultTo<'2025-02-10'>;
+    nome: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Nome Sobrenome'>;
+    nome_completo: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Seu Nome Completo Aqui'>;
     nota: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
@@ -502,7 +506,7 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
         },
         number
       > &
-      Schema.Attribute.DefaultTo<0>;
+      Schema.Attribute.DefaultTo<5>;
     owner: Schema.Attribute.Relation<
       'oneToOne',
       'plugin::users-permissions.user'

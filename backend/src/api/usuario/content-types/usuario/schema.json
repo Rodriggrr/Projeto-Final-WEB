@@ -13,16 +13,18 @@
   "pluginOptions": {},
   "attributes": {
     "nome": {
-      "type": "string"
+      "type": "string",
+      "default": "Nome Sobrenome"
     },
     "bio": {
-      "type": "text"
+      "type": "text",
+      "default": "Your bio here"
     },
     "nota": {
       "type": "integer",
       "max": 5,
       "min": 0,
-      "default": 0
+      "default": 5
     },
     "foto": {
       "type": "media",
@@ -57,7 +59,8 @@
       "required": true
     },
     "nascimento": {
-      "type": "date"
+      "type": "date",
+      "default": "2025-02-10"
     },
     "reviews": {
       "type": "relation",
@@ -73,7 +76,8 @@
     },
     "nome_completo": {
       "type": "string",
-      "required": true
+      "required": true,
+      "default": "Seu Nome Completo Aqui"
     },
     "atracaos": {
       "type": "relation",
