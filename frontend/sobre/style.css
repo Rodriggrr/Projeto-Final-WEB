@@ -42,7 +42,6 @@ body{
         display: block;
         padding-top: 20px;
     }
-
 }
 
 h4, a{
@@ -50,3 +49,22 @@ h4, a{
     color: aliceblue;
 }
 
+/*-----------RESPONSIVIDADE-------------*/
+
+@media (max-width: 768px){
+
+    #navbar{
+        display: none;
+    }
+
+    .container{
+        padding-top: 300px;
+        width: 90%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .rodrigo, .farinon, .caiocezar{
+        margin-top: 20px;
+    }
+}

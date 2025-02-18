@@ -23,7 +23,7 @@ function getDescr(id) {
         })
         .then(data => {
             let detalhesElemento = document.getElementById('detalhes');
-            let descricao = document.getElementById('descricao');
+            let descricao = document.getElementById('descricao_detalhes');
 
             //console.log('Resposta da API:', data);
 
@@ -43,6 +43,10 @@ function getDescr(id) {
                 descricao.innerHTML = atracao|| "Descrição não disponível.";
             } else {
                 detalhesElemento.innerHTML = "Atração não encontrada.";
+            }
+
+            if (window.innerWidth < 600){
+                detalhesElemento.innerHTML = '<a href="'+mapsUrl+'" target="_blank"><i class="bi bi-geo-alt-fill">Ver no mapa</a>';
             }
         
         })
@@ -233,3 +237,4 @@ document.getElementById('formComentario').addEventListener('submit', (e) => {
     e.preventDefault();
     let comentario = document.getElementById('comentario').value;
 });
+

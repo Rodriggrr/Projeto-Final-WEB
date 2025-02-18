@@ -63,8 +63,6 @@ aside{
         font-weight: bold;
         background-color: #333333ab;
         color: white;
-
-        
     }
 
 }
@@ -141,6 +139,7 @@ aside{
     display: flex;
     gap: 10px;  
     align-items: center;
+    margin-bottom: 10px;
 
     .avatar{
         width: 30px;
@@ -180,6 +179,65 @@ aside{
     position: absolute;
 }
 
-.info_comentario{
-    margin-bottom: 10px;
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 768px) {
+    main {
+        max-width: 90%;
+        flex-direction: column;
+        padding: 10px;
+        overflow-y: auto;
+        scrollbar-color: transparent transparent;
+    }
+
+    #navbar{
+        display: none;
+    }
+
+    aside {
+        display: none;
+    }
+
+    .content{
+        margin-top: 100px;
+    }
+
+    .local{
+        display: flex;
+        flex-direction: column;
+       
+    }
+
+    .info_local{
+        max-width: 100%;
+        margin-top: 0px;
+
+        .detalhes{
+            width: 95%;
+        }
+    }
+
+    .infos_local{
+        max-width: 90%;   
+    }
+
+    #detalhes{
+        margin: 10px;
+    }
+
+    .avaliacoes{
+        max-width: 300px;
+
+        #avaliacao_usuario > div{
+            margin-top: 10px;
+        }
+
+        #avaliar{
+            position: relative;
+            width: 100%;
+        }
+    }
+
+
+
 }
