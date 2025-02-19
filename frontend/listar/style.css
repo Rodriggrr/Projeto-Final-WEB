@@ -1,13 +1,12 @@
 main{
     display: flex;
-    align-items: baseline;
+
 }
 
 .container-usuarios{
     display: flex;
     gap: 30px;
-    padding: 20px;
-    width: 100%;
+    padding: 30px;
 }
 
 
@@ -15,22 +14,42 @@ main{
     display: flex;
     justify-content: space-between; 
     align-items: center; 
-    padding: 20px; 
-    background-color: #fff; 
-    border: 1px solid #ddd; 
-    border-radius: 8px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    width: 100%;
 }
 
-.perfil, .categoria, .avaliacoes {
-    flex: 1; 
-    text-align: center;
+.perfil{
+    background-color: rgba(248, 248, 248, 0.773);
+    width: 200px; 
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px 5px rgba(180, 180, 180, 0.2);
+    padding: 20px;
 }
+   
 
 .perfil img {
     width: 80px; 
     height: 80px;
     border-radius: 50%;
     margin-bottom: 10px; 
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h3 a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+h3 a:hover {
+    color: #757575;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .container-usuarios {
+        width: 90%;
+    }
 }

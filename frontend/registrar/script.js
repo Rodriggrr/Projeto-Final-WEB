@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("🔍 Resposta da API do Strapi:", publicDataResponse);
 
                 if (!publicResponse.ok) {
-                    console.error("🔍 Erro detalhado da API:", JSON.stringify(publicDataResponse, null, 2));
                     throw new Error(publicDataResponse.error?.message || JSON.stringify(publicDataResponse));
                 }
                 
@@ -120,7 +119,6 @@ document.addEventListener("DOMContentLoaded", function () {
             
                 if (error instanceof Response) { // Se for um erro de resposta HTTP
                     error.json().then(errData => {
-                        console.error("Detalhes do erro:", errData);
                         alert("Erro: " + JSON.stringify(errData));
                     });
                 } else {

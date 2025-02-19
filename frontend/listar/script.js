@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function listarUsuarios() {
     try {
-        const response = await fetch("http://localhost:1337/api/usuarios");
+        const response = await fetch("http://localhost:1337/api/usuarios?populate[0]=foto");
 
         if (!response.ok) throw new Error(`Erro ao buscar usuários: ${response.status}`);
 
@@ -23,22 +23,27 @@ function exibirUsuarios(usuarios) {
 
         const usuarioCard = document.createElement("section");
         usuarioCard.classList.add("usuarios");
+        console.log("teste", usuario);
+        let foto = '/frontend/src/img/user_example.png';
+        if(usuario.foto){
+            foto = "http://localhost:1337" + usuario.foto.url;
+        }
 
         usuarioCard.innerHTML = `
           <div class="perfil">
-                <img src="/frontend/src/img/user_example.png" alt="Usuário">
-                <h4>${usuario.nome}</h4>
-            </div>
-            <div class="categoria">
+                <img src="${foto}" alt="${usuario.nome}">
+                <h3><a href="/perfil/${usuario.documentId}">${usuario.nome}</a></h3>
                 <h4>${obterProfissao(usuario)}</h4>
-            </div>
-            <div class="avaliacoes">
-                <h4>Média de Avaliações: ${await getMediaNota(usuario.documentId) || "N/A"}</h4>
+                 <div class="stars"></div>
+                        <span class="valor" style="display: none">${usuario.nota}</span>
+                </div>
             </div>
         `;
         console.log(usuario.documentId)
         container.appendChild(usuarioCard);
     });
+    stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
+    
 }
 
 function obterProfissao(usuario) {
