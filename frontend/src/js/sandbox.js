@@ -9,11 +9,10 @@ async function createPublicProfile() {
         // };
 
         // Criando perfil público do usuário
-        const publicResponse = await fetch("http://localhost:1337/api/users/me?populate=*", {
+        const publicResponse = await fetch("http://localhost:1337/api/users", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzM5OTk1ODAwLCJleHAiOjE3NDI1ODc4MDB9.Dm0qaRc1KfkURfDoT5njdV8oGVPJWH008pGr4npXXi0`,
             },
             // body: JSON.stringify(publicProfileData),
         });

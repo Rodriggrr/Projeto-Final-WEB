@@ -91,44 +91,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         sexo: "Masculino",
                     },
                 };
-
-                // Criando perfil público do usuário
-                const publicResponse = await fetch("http://localhost:1337/api/usuarios", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${userDataResponse.jwt}`,
-                    },
-                    body: JSON.stringify(publicProfileData),
-                });
-
-                
-
-                const publicDataResponse = await publicResponse.json();
-                let publicId = publicDataResponse.id;
-
-                const meRelationData = {
-                    data: {
-                        usuario: publicId,
-                    },
-                };
-
-                console.log("🔍 Resposta da API do Strapi:", userDataResponse.user);
-
-                const ownerResponse = await fetch("http://localhost:1337/api/users/"+ userDataResponse.user.id, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${userDataResponse.jwt}`,
-                    },
-                    body: JSON.stringify(meRelationData),
-                });
-                
-                console.log("🔍 Resposta da API do Strapi:", publicDataResponse);
-
-                if (!publicResponse.ok) {
-                    throw new Error(publicDataResponse.error?.message || JSON.stringify(publicDataResponse));
-                }
                 
                 sessionStorage.setItem('jwtToken', userDataResponse.jwt);
                 alert("Registro e perfil público criados com sucesso!");
