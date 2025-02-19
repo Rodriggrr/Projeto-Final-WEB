@@ -193,7 +193,7 @@ function getUserReviews() {
         }).then(async () => {
             if(!id_search) id = sessionStorage.getItem('publicUserId');
             console.log('ID:', id);
-            document.getElementById('nota').textContent = (await getMediaNota(id)).toFixed(1);
+            document.getElementById('nota').textContent = (await getMediaNota(id)).toFixed(2);
             stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
             avaliarButton(true, document.querySelector('aside.left button'));
         })
