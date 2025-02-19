@@ -481,9 +481,6 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    eh_guia: Schema.Attribute.Boolean;
-    eh_motorista: Schema.Attribute.Boolean;
-    eh_turista: Schema.Attribute.Boolean;
     foto: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -511,6 +508,13 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    parceria: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 2;
+        },
+        number
+      >;
     publishedAt: Schema.Attribute.DateTime;
     reviews: Schema.Attribute.Relation<'oneToMany', 'api::avaliacao.avaliacao'>;
     sexo: Schema.Attribute.String & Schema.Attribute.Required;
@@ -975,7 +979,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -995,6 +998,14 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    parceria: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 2;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{

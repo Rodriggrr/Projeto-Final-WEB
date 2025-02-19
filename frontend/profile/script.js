@@ -66,9 +66,9 @@ let g_pp, g_nome, g_nota, g_sexo, g_nascimento, g_textarea, g_email, g_parceria,
 function getUserProfile(id = '') {
 
     function getParceria(data) {
-        if (data.eh_guia) return "Guia";
-        if (data.eh_motorista) return "Motorista";
-        return "Turista";
+        if(data.parceria == 0) return 'Turista';
+        if(data.parceria == 1) return 'Guia';
+        return 'Motorista';
     }
 
     //Requisição com populate, para pegar a relação que o usuário tem com a foto. É uma requisição com 2 níveis de populate. (essa sintaxe é muito feia)
@@ -99,7 +99,7 @@ function getUserProfile(id = '') {
             let data = (id_search) ? response.data : response.usuario;
             const { nome, nota, sexo, nascimento, bio, foto, nome_completo } = data;
             const parceria = getParceria(data);
-            const fotoUrl = foto ? `http://localhost:1337${foto.url}` : '../src/img/profile_placeholder.png';
+            const fotoUrl = foto ? `http://localhost:1337${foto.url}` : '../src/img/user_example.png';
             const email = response.email;
 
             g_pp = document.getElementById('pp');

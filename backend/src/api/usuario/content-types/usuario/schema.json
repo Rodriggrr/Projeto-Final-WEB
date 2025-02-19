@@ -37,17 +37,6 @@
         "audios"
       ]
     },
-    "eh_turista": {
-      "type": "boolean",
-      "required": false
-    },
-    "eh_motorista": {
-      "type": "boolean",
-      "required": false
-    },
-    "eh_guia": {
-      "type": "boolean"
-    },
     "owner": {
       "type": "relation",
       "relation": "oneToOne",
@@ -87,6 +76,10 @@
     },
     "contato": {
       "type": "string"
+    },
+    "parceria": {
+      "type": "integer",
+      "max": 2
     }
   }
 }

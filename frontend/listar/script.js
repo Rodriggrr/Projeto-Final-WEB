@@ -20,7 +20,7 @@ function exibirUsuarios(usuarios) {
     container.innerHTML = ""; 
 
     usuarios.forEach(async (usuario) => {
-
+        if(usuario.parceria != 1) return;
         const usuarioCard = document.createElement("section");
         usuarioCard.classList.add("usuarios");
         console.log("teste", usuario);
@@ -29,31 +29,28 @@ function exibirUsuarios(usuarios) {
             foto = "http://localhost:1337" + usuario.foto.url;
         }
 
+        let nota = await getMediaNota(usuario.documentId);
+
         usuarioCard.innerHTML = `
           <div class="perfil">
                 <img src="${foto}" alt="${usuario.nome}">
                 <h3><a href="/perfil/${usuario.documentId}">${usuario.nome}</a></h3>
                 <h4>${obterProfissao(usuario)}</h4>
                  <div class="stars"></div>
-                        <span class="valor" style="display: none">${usuario.nota}</span>
+                        <span class="valor" style="display: none">${nota}</span>
                 </div>
             </div>
         `;
         console.log(usuario.documentId)
         container.appendChild(usuarioCard);
+        stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
     });
-    stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
     
 }
 
-function obterProfissao(usuario) {
-    if (usuario.eh_motorista) {
-        return "Motorista"; 
-    } else if (usuario.eh_turista) {
-        return "Turista";
-    } else if (usuario.eh_guia) {
-        return "Guia";
-    } else {
-        return "Não definido";
-    }
+function obterProfissao(data) {
+    console.log(data)
+    if(data.parceria == 0) return 'Turista';
+    if(data.parceria == 1) return 'Guia';
+    return 'Motorista';
 }

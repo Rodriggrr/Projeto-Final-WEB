@@ -85,6 +85,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const userId = userDataResponse.user.id;
 
+
+                // Parceria: 
+                // 0 - Turista
+                // 1 - Guia
+                // 2 - Motorista
+
+                // URL parceiro: ./registrar.html?parceria=true
+                //como pegar?
+                //const params = new URLSearchParams(window.location.search);
+                //parceria = params.get('parceria');
+                //window.location.href = `./registrar.html?parceria=true`;
+
                 const publicProfileData = {
                     data: {
                         nome: usuarioInput.value, 

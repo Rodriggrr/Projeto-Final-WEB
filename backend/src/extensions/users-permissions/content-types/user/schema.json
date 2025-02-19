@@ -9,7 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -70,6 +70,11 @@
       "relation": "oneToOne",
       "target": "api::usuario.usuario",
       "mappedBy": "owner"
+    },
+    "parceria": {
+      "type": "integer",
+      "max": 2,
+      "default": 0
     }
   }
 }
