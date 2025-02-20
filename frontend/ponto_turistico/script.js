@@ -228,7 +228,6 @@ getGuias(id);
 if (estaLogado()) {
     avaliarButton(false, document.getElementById('avaliar'));
 } else {
-    let avaliarElemento = document.getElementById('avaliar').style.display = 'none';
     document.getElementById('avaliacoes').innerHTML += '<h3>Para avaliar é necessário estar logado</h3>';
 }
 //------------------------------------------------
