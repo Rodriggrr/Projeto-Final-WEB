@@ -3,11 +3,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailInput = document.getElementById("e-mail");
     const passwordInput = document.getElementById("senha");
     const usuarioInput = document.getElementById("usuario");
+    const telefoneInput = document.getElementById("telefone");
 
     const emailError = document.getElementById("email-error");
     const senhaError = document.getElementById("senha-error");
 
-    const parceriaLink = document.querySelector(".parceria a");
+    const params = new URLSearchParams(window.location.search);
+    const parceriaValue = params.get('parceria') || '0';
+    const isParceria = parceriaValue !== '0';
+
+    const parceriaLink = document.querySelector(".parceria");
 
     if(parceriaLink){
         parceriaLink.addEventListener("click", function(event){
@@ -16,11 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const isParceria = params.get('parceria') === 'true';
-
-
-    const parceriaValue = isParceria ? 1 : 0;
 
     if(isParceria){
         const telefoneDiv = document.createElement("div");
@@ -77,8 +77,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 username: usuarioInput.value,
                 email: emailInput.value,
                 password: passwordInput.value,
-                parceria: parceriaValue,
             };
+
+            console.log("Enviando dados para o Strapi:", userData);
 
             try {
                 // Fazendo requisição para cadastrar usuário no Strapi
@@ -91,7 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 const userDataResponse = await userResponse.json();
                 
                 if (!userResponse.ok) {
-                    throw new Error(userDataResponse.error?.message || JSON.stringify(userDataResponse));
+                    console.error("Erro na resposta do Strapi:", userDataResponse);
+                    alert("Erro ao registrar: " + (userDataResponse.error?.message || "Verifique os dados e tente novamente."));
                 }
 
                 console.log("Usuário registrado:", userDataResponse);
@@ -103,7 +105,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     data: {
                         nome: usuarioInput.value, 
                         sexo: "Masculino",
-                        parceria: parceriaValue,
+                        parceria: Number(parceriaValue),
+                        contato: isParceria ? telefoneInput?.value.trim() || "" : null,
                     },
                 };
                 
