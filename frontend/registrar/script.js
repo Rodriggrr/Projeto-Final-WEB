@@ -6,7 +6,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const emailError = document.getElementById("email-error");
     const senhaError = document.getElementById("senha-error");
-    const usuarioError = document.getElementById("usuario-error");
+
+    const parceriaLink = document.querySelector(".parceria a");
+
+    if(parceriaLink){
+        parceriaLink.addEventListener("click", function(event){
+            event.preventDefault();
+            window.location.href = "./registrar.html?parceria=true";
+        });
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const isParceria = params.get('parceria') === 'true';
+
+
+    const parceriaValue = isParceria ? 1 : 0;
+
+    if(isParceria){
+        const telefoneDiv = document.createElement("div");
+        telefoneDiv.classList.add("telefone");
+        parceriaLink.style.display = "none";
+
+        telefoneDiv.innerHTML = `
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" required>
+        `;
+
+        const formFields = form.querySelector(".senha"); // Inserir antes do botão
+        form.insertBefore(telefoneDiv, formFields.nextSibling);
+    }
+
 
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -16,11 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function validatePassword(password) {
         const re = /^(?=.*\d)(?=.*[A-Z]).{8,15}$/;
         return re.test(password);
-    }
-
-    function validateUsername(username) {
-        const re = /^[a-zA-Z0-9_]{3,16}$/;
-        return re.test(username);
     }
 
     function validateForm() {
@@ -34,24 +58,12 @@ document.addEventListener("DOMContentLoaded", function () {
             emailError.style.display = "none";
         }
 
-        if (passwordInput.value.trim().length === 0) {
-            senhaError.textContent = "A senha não pode ficar em branco.";
-            senhaError.style.display = "block";
-            isValid = false;
-        } else if (!validatePassword(passwordInput.value)) {
+        if (!validatePassword(passwordInput.value)) {
             senhaError.textContent = "A senha deve ter entre 8 e 15 caracteres, incluindo números e letras maiúsculas.";
             senhaError.style.display = "block";
             isValid = false;
         } else {
             senhaError.style.display = "none";
-        }
-
-        if (usuarioInput.value.trim().length === 0) {
-            usuarioError.textContent = "O usuário não pode ficar em branco.";
-            usuarioError.style.display = "block";
-            isValid = false;
-        } else {
-            usuarioError.style.display = "none";
         }
 
         return isValid;
@@ -65,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 username: usuarioInput.value,
                 email: emailInput.value,
                 password: passwordInput.value,
+                parceria: parceriaValue,
             };
 
             try {
@@ -86,21 +99,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 const userId = userDataResponse.user.id;
 
 
-                // Parceria: 
-                // 0 - Turista
-                // 1 - Guia
-                // 2 - Motorista
-
-                // URL parceiro: ./registrar.html?parceria=true
-                //como pegar?
-                //const params = new URLSearchParams(window.location.search);
-                //parceria = params.get('parceria');
-                //window.location.href = `./registrar.html?parceria=true`;
-
                 const publicProfileData = {
                     data: {
                         nome: usuarioInput.value, 
                         sexo: "Masculino",
+                        parceria: parceriaValue,
                     },
                 };
                 
