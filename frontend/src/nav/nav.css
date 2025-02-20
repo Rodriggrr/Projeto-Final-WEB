@@ -84,6 +84,9 @@
     padding-right: 14px;
 }
 
+.nav .node-icon {
+    display: none;
+}
 
 .nav a:hover, label:hover {
     text-decoration: underline;

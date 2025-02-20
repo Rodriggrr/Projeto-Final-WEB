@@ -1,3 +1,21 @@
+
+async function getPublicUserId(authToken) {
+    try {
+        let response = await fetch('http://localhost:1337/api/users/me?populate[0]=usuario', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authToken}`
+            }
+        });
+        if (!response.ok) throw new Error('Erro ao buscar usuário.');
+        let data = await response.json();
+        return data.usuario.documentId;
+    } catch (error) {
+        console.log("Erro: " + error);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("register-form");
     const emailInput = document.getElementById("e-mail");
@@ -100,6 +118,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const userId = userDataResponse.user.id;
 
+                // Parceria: 
+                // 0 - Turista
+                // 1 - Guia
+                // 2 - Motorista
+
+                // URL parceiro: ./registrar.html?parceria=true
+                //como pegar?
+                //const params = new URLSearchParams(window.location.search);
+                //parceria = params.get('parceria');
+                //window.location.href = `./registrar.html?parceria=true`;
 
                 const publicProfileData = {
                     data: {
@@ -112,6 +140,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 sessionStorage.setItem('jwtToken', userDataResponse.jwt);
                 alert("Registro e perfil público criados com sucesso!");
+                let publicUserId = await getPublicUserId(userDataResponse.jwt);
+                sessionStorage.setItem('publicUserId', publicUserId);
                 window.location.href = "../profile/profile.html";
 
             } catch (error) {

@@ -9,7 +9,7 @@ async function createPublicProfile() {
         // };
 
         // Criando perfil público do usuário
-        const publicResponse = await fetch("http://localhost:1337/api/users", {
+        const publicResponse = await fetch("http://localhost:1337/api/users?populate=role", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

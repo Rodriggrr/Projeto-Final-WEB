@@ -4,6 +4,8 @@ function changeTitle(str = 'Perfil') {
 
 if (sessionStorage.getItem('admin')) window.location.href = '../404';
 
+publicUserId = sessionStorage.getItem('publicUserId');
+
 //--------------CHECAR BUSCA POR ID-----------------------
 //Se for por ID, pega o ID da URL, ou seja, o id do perfil que deseja ver, então define que a pagina está em busca por ID usando a variável id_search.
 const params = new URLSearchParams(window.location.search);
@@ -12,9 +14,8 @@ id_search = true;
 
 
 let nodes = document.querySelectorAll('.profile .top > div');
-console.log(`id: ${id}, publicUserId: ${sessionStorage.getItem('publicUserId')}`);
 
-if (id != null && id == sessionStorage.getItem('publicUserId')) { window.location.href = 'profile.html' };
+if (id != null && id == publicUserId) { window.location.href = 'profile.html' };
 
 if (id == null) {
     id_search = false;
@@ -26,12 +27,12 @@ if (id == null) {
     document.getElementsByClassName('email')[0].style.display = 'none';
     document.getElementsByClassName('senha')[0].style.display = 'none';
     let pens = document.getElementsByClassName('bi-pen');
-
+    
     for (let i = 0; i < pens.length; i++) {
         pens[i].style.display = 'none';
     }
-
-
+    
+    
     for (let i = 0; i < nodes.length; i++) {
         nodes[i].classList.add('no-hover');
     }
@@ -47,6 +48,7 @@ if(!estaLogado() && !id_search) {
     requerAutenticacao();
 }
 
+console.log(`id: ${id}, publicUserId: ${publicUserId}`);
 const API_URL = "http://localhost:1337/api";
 
 
@@ -191,7 +193,7 @@ function getUserReviews() {
                 console.log("Erro: " + error);
             }
         }).then(async () => {
-            if(!id_search) id = sessionStorage.getItem('publicUserId');
+            if(!id_search) id = publicUserId;
             console.log('ID:', id);
             document.getElementById('nota').textContent = (await getMediaNota(id)).toFixed(2);
             stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
@@ -238,7 +240,6 @@ function updateUser() {
         });
         return nameParsed;
     }
-
 
     let fields = document.querySelectorAll('.profile .top .value');
 
@@ -349,7 +350,7 @@ function updateUser() {
             data.foto = pic[0].id;
         }
 
-        let requestUrl = `${API_URL}/usuarios/${sessionStorage.getItem('publicUserId')}?populate=*`;
+        let requestUrl = `${API_URL}/usuarios/${publicUserId}?populate=*`;
         let method = {
             method: 'PUT',
             headers: {
@@ -372,8 +373,6 @@ function updateUser() {
             .catch(error => console.log("Erro: " + error));
     });
 }
-
-
 
 datePicker();
 getUserProfile(id);
