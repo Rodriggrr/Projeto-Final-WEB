@@ -362,7 +362,10 @@ function updateUser() {
 
         fetch(requestUrl, method)
             .then((response) => {
-                if (!response.ok) throw new Error('Algo deu errado: '+ response.json());
+                if (!response.ok) {
+                    response = response.json();
+                    throw new Error('Algo deu errado: '+ response);
+                }
                 return response.json();
             })
             .then((response) => {

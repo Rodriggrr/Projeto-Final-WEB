@@ -9,6 +9,7 @@ async function getPublicUserId(authToken) {
             }
         });
         if (!response.ok) throw new Error('Erro ao buscar usuário.');
+        console.log("Usuário encontrado com sucesso.");
         let data = await response.json();
         return data.usuario.documentId;
     } catch (error) {
@@ -132,10 +133,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 if (!userResponse.ok) {
                     console.error("Erro na resposta do Strapi:", userDataResponse);
-                    alert("Erro ao registrar: " + (userDataResponse.error?.message || "Verifique os dados e tente novamente."));
                 }
 
                 console.log("Usuário registrado:", userDataResponse);
+
+                let jwt = userDataResponse.jwt;
 
                 // Parceria: 
                 // 0 - Turista
@@ -148,9 +150,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 //parceria = params.get('parceria');
                 //window.location.href = `./registrar.html?parceria=true`;
                 
-                sessionStorage.setItem('jwtToken', userDataResponse.jwt);
-                alert("Registro e perfil público criados com sucesso!");
-                let publicUserId = await getPublicUserId(userDataResponse.jwt);
+                sessionStorage.setItem('jwtToken', jwt);
+                let publicUserId = await getPublicUserId(jwt);
                 sessionStorage.setItem('publicUserId', publicUserId);
                 window.location.href = "../profile/profile.html";
 
@@ -159,10 +160,10 @@ document.addEventListener("DOMContentLoaded", function () {
             
                 if (error instanceof Response) { // Se for um erro de resposta HTTP
                     error.json().then(errData => {
-                        alert("Erro: " + JSON.stringify(errData));
+                        console.error("Erro na resposta do Strapi:", errData);
                     });
                 } else {
-                    alert(error.message);
+                    console.error("Erro desconhecido:", error);
                 }
             }
         }

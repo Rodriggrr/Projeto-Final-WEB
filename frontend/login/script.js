@@ -11,6 +11,7 @@ async function getPublicUserId(authToken) {
         });
         if (!response.ok) throw new Error('Erro ao buscar usuário.');
         let data = await response.json();
+        console.log(data);
         return data.usuario.documentId;
     } catch (error) {
         console.log("Erro: " + error);
@@ -46,7 +47,7 @@ async function login(email, senha) {
             console.log('Token:', response.jwt, 'User ID:', publicUserId);
             sessionStorage.setItem('privateId', response.user.documentId);
             console.log("publicUserId: " + sessionStorage.getItem('publicUserId'));
-            // window.location.href = '../home';
+            //window.location.href = '../home';
 
 
         })
