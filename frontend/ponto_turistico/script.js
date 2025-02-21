@@ -184,7 +184,7 @@ function getGuias(id){
             //console.log('Resposta da API:', data);
 
             const guias = data.data.publics;
-            console.log('Guias:', guias);
+            // console.log('Guias:', guias);
             
             for (let i=0; i < guias.length; i++){
                 let foto = 'http://localhost:1337';
@@ -218,9 +218,6 @@ function getGuias(id){
         });
 }
 
-
-
-
 //-------------------MAIN--------------------------
 getImg(id);
 getNome(id);
@@ -228,8 +225,30 @@ getDescr(id);
 getAvaliacao(id);
 getGuias(id);
 
-if (estaLogado()) {
+if (estaLogado(), id) {
     avaliarButton(false, document.getElementById('avaliar'));
+
+    const method = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+        }
+    };
+
+    // verificar a role do usuário logado, se é turista, guia ou motorista
+    fetch(`http://localhost:1337/api/user/me?populate[usuario][populate][0]=*`, method)
+    .then((response) => {
+        if (!response.ok) throw new Error('Algo deu errado');
+        return response.json();
+    }) 
+    .then(data => {
+        console.log('data: ', data);
+    })
+    .catch(error => {
+        console.error('Erro na requisição:', error);
+    });
+
 } else {
     document.getElementById('avaliacoes').innerHTML += '<h3>Para avaliar é necessário estar logado</h3>';
 }
