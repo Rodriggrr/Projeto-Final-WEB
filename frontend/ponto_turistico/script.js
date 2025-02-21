@@ -218,6 +218,9 @@ function getGuias(id){
         });
 }
 
+
+
+
 //-------------------MAIN--------------------------
 getImg(id);
 getNome(id);
