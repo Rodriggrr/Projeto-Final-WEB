@@ -18,7 +18,18 @@ fetch(requestUrl, method)
     }).then((data) => {
         console.log(data);
         atracao = data.data;
-        
+        if(atracao.length == 0){
+            document.querySelector('.not-found').style.display = 'block';
+            document.getElementById('search').classList.add('big-search');
+            document.querySelectorAll('.search-span').forEach(element => {
+                console.log(element);
+                element.style.display = 'inline';
+            });
+        } else {
+            document.querySelector('.not-found').style.display = 'none';
+            document.getElementById('search').classList.remove('big-search');
+        }
+
         for (let i = 0; i < atracao.length; i++) {
             let imgURL;
             if (!atracao[i].foto){

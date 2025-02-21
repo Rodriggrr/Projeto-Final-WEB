@@ -107,11 +107,15 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", async function (event) {
         event.preventDefault();
 
+        const parceriaRadio = document.querySelector('input[name="parceria"]:checked');
+        const parceria = parceriaRadio ? (parceriaRadio.value === 'guia' ? 1 : 2) : 0;
+
         if (validateForm()) {
             const userData = {
                 username: usuarioInput.value,
                 email: emailInput.value,
                 password: passwordInput.value,
+                parceria: parceria,
             };
 
             console.log("Enviando dados para o Strapi:", userData);
@@ -133,8 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 console.log("Usuário registrado:", userDataResponse);
 
-                const userId = userDataResponse.user.id;
-
                 // Parceria: 
                 // 0 - Turista
                 // 1 - Guia
@@ -145,14 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 //const params = new URLSearchParams(window.location.search);
                 //parceria = params.get('parceria');
                 //window.location.href = `./registrar.html?parceria=true`;
-
-                const publicProfileData = {
-                    data: {
-                        nome: usuarioInput.value, 
-                        parceria: "guia",
-                        contato: isParceria ? telefoneInput?.value.trim() || "" : null,
-                    },
-                };
                 
                 sessionStorage.setItem('jwtToken', userDataResponse.jwt);
                 alert("Registro e perfil público criados com sucesso!");

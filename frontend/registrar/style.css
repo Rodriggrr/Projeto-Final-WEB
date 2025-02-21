@@ -1,3 +1,22 @@
+main > section > .img-container {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+
+
+    > img {
+        height: 100%;
+        width: 100%;
+        max-height: none;
+        max-width: none;
+        margin: 0 auto;
+        display: block;
+        object-fit: contain
+    }
+}
+
 #register-form {
     gap: 20px;
     height: 100%;
@@ -56,12 +75,16 @@
     padding: 30px;
     display: flex;
     flex-direction: column;
-    background-color: #f9f9f9;
+    background-color: #f9f9f963;
+    backdrop-filter: blur(2px);
     border-radius: 50px;
     height: fit-content;
     min-height: 400px;
+    min-width: 300px;
     justify-content: center;
     align-items: center;
+    box-shadow: 0px 5px 10px 5px rgba(180, 180, 180, 0.2);
+
 }
 
 .error {

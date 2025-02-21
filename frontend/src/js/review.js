@@ -58,6 +58,7 @@ function stars_hover(container) {
     });
 
     container.addEventListener("click", () => {
+        valueContainer.style.color = "blue";
         valueContainer = container.querySelector(".valor");
         valueContainer.textContent = value;
         console.log("Valor final:", valueContainer.textContent);
