@@ -1,4 +1,5 @@
 // src/extensions/users-permissions/content-types/user/index.js
+// @ts-ignore
 const schema = require('./schema.json');
 const lifecycles = require('./lifecycles.js');
 

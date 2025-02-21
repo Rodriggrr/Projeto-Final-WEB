@@ -16,13 +16,5 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/*{ strapi }*/) {
-    const fs = require('fs');
-
-    function logToFile(message) {
-      fs.appendFileSync('../logs.txt', `${new Date().toISOString()} - ${message}\n`);
-    }
-
-    logToFile('Strapi está iniciando...');
-  },
+  bootstrap(/*{ strapi }*/) { },
 };

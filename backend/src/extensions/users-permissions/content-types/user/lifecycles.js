@@ -40,7 +40,8 @@ module.exports = {
             const logFilePath = path.join(__dirname, '../../../../../../logs.txt');
 
             // Escrevendo no arquivo de logs
-            fs.appendFileSync(logFilePath, `Perfil público criado para usuário ${result.username}.\n`);
+            const currentTime = new Date().toISOString();
+            fs.appendFileSync(logFilePath, `${currentTime} - POST: ${result.username} (${userId}) registrado através da Query API\n`);
         } catch (error) {
             console.error('Erro ao criar perfil público ou escrever no log:', error);
         }
