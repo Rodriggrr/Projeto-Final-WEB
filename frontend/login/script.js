@@ -41,13 +41,12 @@ async function login(email, senha) {
             sessionStorage.setItem('jwtToken', response.jwt);
             sessionStorage.setItem('userId', response.user.id);
             console.log(JSON.stringify(response));
-            console.log(data);
             let publicUserId = await getPublicUserId(response.jwt);
             sessionStorage.setItem('publicUserId', publicUserId);
             console.log('Token:', response.jwt, 'User ID:', publicUserId);
             sessionStorage.setItem('privateId', response.user.documentId);
             console.log("publicUserId: " + sessionStorage.getItem('publicUserId'));
-            window.location.href = '../home';
+            // window.location.href = '../home';
 
 
         })

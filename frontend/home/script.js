@@ -1,10 +1,15 @@
-requestUrl = 'http://localhost:1337/api/atracaos?populate=*';
+let filters = new URLSearchParams(window.location.search);
+let search = filters.get('search');
+
+requestUrl = `http://localhost:1337/api/atracaos?${search ? `filters[nome][$containsi]=${search}&populate=*` : 'populate=*'}`;
 method = {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json'
     }
 };
+
+console.log(requestUrl);
 
 fetch(requestUrl, method)
     .then((response) => {
@@ -16,7 +21,7 @@ fetch(requestUrl, method)
         
         for (let i = 0; i < atracao.length; i++) {
             let imgURL;
-            if (atracao[i].foto === null){
+            if (!atracao[i].foto){
                 imgURL = "../src/img/logo-placeholder-image.png";
             }
             else{
@@ -40,4 +45,23 @@ fetch(requestUrl, method)
 
     })
     .catch(error => console.error('Erro ao carregar as atracoes:', error));
+
+function searchAtracao() {
+    let searchBar = document.getElementById('search-bar');
+    if(search) searchBar.value = search;
+    let searchButton = document.getElementById('search-button');
+    searchButton.addEventListener('click', () => {
+        let searchValue = searchBar.value;
+        window.location.href = `./index.html?search=${searchValue}`;
+    });
+
+    let form = document.getElementById('search');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let searchValue = searchBar.value;
+        window.location.href = `./index.html?search=${searchValue}`;
+    });
+}
+
+searchAtracao();
 

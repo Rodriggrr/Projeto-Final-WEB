@@ -18,12 +18,12 @@ module.exports = {
         const { result, params } = event; // 'result' contém o usuário criado, 'params' contém os dados da requisição
         console.log(params)
         try {
-            //   // A partir do 'result' (usuário criado), podemos agora criar o perfil público.
+            // A partir do 'result' (usuário criado), podemos agora criar o perfil público.
             const userId = result.id;
             const parceria = result.parceria;
 
 
-            //   // Dados para o perfil público
+            // Dados para o perfil público
             const publicProfileData = {
                 data: {
                     nome: result.username,  // Utilizando o username como nome

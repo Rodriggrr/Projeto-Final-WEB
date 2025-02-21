@@ -34,7 +34,7 @@ function exibirUsuarios(usuarios) {
         usuarioCard.innerHTML = `
           <div class="perfil">
                 <img src="${foto}" alt="${usuario.nome}">
-                <h3><a href="/perfil/${usuario.documentId}">${usuario.nome}</a></h3>
+                <h3><a href="../profile/profile.html?id=${usuario.documentId}">${usuario.nome}</a></h3>
                 <h4>${obterProfissao(usuario)}</h4>
                  <div class="stars"></div>
                         <span class="valor" style="display: none">${nota}</span>

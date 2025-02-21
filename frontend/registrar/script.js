@@ -42,16 +42,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if(isParceria){
         const telefoneDiv = document.createElement("div");
+        const radioGuia = document.createElement("div");
+        radioGuia.classList.add("radio");
         telefoneDiv.classList.add("telefone");
-        parceriaLink.style.display = "none";
 
+        parceriaLink.style.display = "none";
         telefoneDiv.innerHTML = `
             <label for="telefone">Telefone:</label>
             <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" required>
         `;
 
+        radioGuia.innerHTML = `
+            <label for="parceria">Quero ser um...</label>
+            <div id="parceria-radio">
+                <div>
+                    <input type="radio" id="guia" name="parceria" value="guia" required>
+                    <label for="guia">Guia</label>
+                </div>
+                <div>
+                    <input type="radio" id="motorista" name="parceria" value="motorista" required>
+                    <label for="motorista">Motorista</label>
+                </div>
+            </div>
+        `
+
         const formFields = form.querySelector(".senha"); // Inserir antes do botão
         form.insertBefore(telefoneDiv, formFields.nextSibling);
+        form.insertBefore(radioGuia, telefoneDiv.nextSibling);
     }
 
 
@@ -132,8 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const publicProfileData = {
                     data: {
                         nome: usuarioInput.value, 
-                        sexo: "Masculino",
-                        parceria: Number(parceriaValue),
+                        parceria: "guia",
                         contato: isParceria ? telefoneInput?.value.trim() || "" : null,
                     },
                 };

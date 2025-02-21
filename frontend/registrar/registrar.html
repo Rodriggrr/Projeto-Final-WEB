@@ -20,24 +20,24 @@
     <!-- Conteúdo Principal Aqui -->
     <main>
         <section class="registrar">
-            <h1>Crie uma conta no <span>Quixadá Tour</span></h1>
+            <h1>Crie uma conta no Quixadá Tour</h1>
             <form id="register-form">
                 <div class="usuario">
                     <label for="usuario">Nome</label>
                     <input id="usuario" type="text" placeholder="Nome e sobrenome" required>
-                    </p>
+                    </span>
                 </div>
                 <div class="e-mail">
                     <label for="e-mail">E-mail</label>
                     <input id="e-mail" type="email" placeholder="E-mail" required>
-                    <p class="error" id="email-error">Digite um e-mail válido.</p>
+                    <span class="error" id="email-error">Digite um e-mail válido.</span>
                 </div>
 
                 <div class="senha">
                     <label for="senha">Senha</label>
                     <input id="senha" type="password" placeholder="Senha" required>
-                    <p class="error" id="senha-error"></p>
-                    </p>
+                    <span class="error" id="senha-error"></span>
+                    </span>
                 </div>
 
                 <div class="criarConta">
@@ -45,21 +45,23 @@
                 </div>
             </form>
 
-            <p class="contaExistente">
+            <span class="contaExistente">
                 Já tem uma conta? 
                 <a href="../login/login.html">Entre →</a>
-            </p>
+            </span>
 
-            <p class="parceria">
+            <span class="parceria">
                 <a href="../registrar/./registrar.html?parceria=true"> 
                     Quero ser um parceiro(a)</a>
-            </p>
+            </span>
         </section>
     </main>
     <!-- Loading Screen -->
     <div id="loader-container"></div>
     <script src="../src/js/loading.js"></script>
     <script src="/frontend/registrar/script.js"></script>
+    <script src="../src/js/spanarticles.js"></script>
     <script src="../src/js/particles.js"></script>
+
 </body>
 </html>
