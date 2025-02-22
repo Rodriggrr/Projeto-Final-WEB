@@ -19,6 +19,19 @@
     
     <!-- Conteúdo Principal Aqui -->
     <main>
+        <div class="not-found">
+            <div>
+                <span class="ops">Ops!</span>
+                <span>Parece que sua pesquisa não retornou resultados. Que tal tentar de novo com novos termos?</span>
+            </div>
+        </div>
+        <form id="search">
+            <input type="text" id="search-bar" placeholder="Pesquisar">
+            <div>
+                <button id="search-button"><i class="bi bi-search"></i><span class="search-span"style>Pesquisar</span></button>
+                <button id="reset" onclick="location.href='./index.html'" type="button"><i class="bi bi-trash"></i><span class="search-span">Restaurar</span></button>
+            </div>
+        </form>
         <div class="container-usuarios"></div>
 
 

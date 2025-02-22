@@ -1,10 +1,28 @@
+let filters = new URLSearchParams(window.location.search);
+let search = filters.get('search');
+let type = filters.get('type');
+requestUrl = `http://localhost:1337/api/usuarios?${search ? `filters[nome][$containsi]=${search}&populate=*` : 'populate=*'}`;
 document.addEventListener("DOMContentLoaded", () => {
     listarUsuarios();
+    searchAtracao();
 });
+
+
+function updateURLParams(params) {
+    const url = new URL('/frontend/listar/listar.html', window.location.origin);
+
+    // Percorre os parâmetros recebidos e atualiza na URL
+    for (const [key, value] of Object.entries(params)) {
+        url.searchParams.set(key, value);
+    }
+
+    return url.toString();
+}
+
 
 async function listarUsuarios() {
     try {
-        const response = await fetch("http://localhost:1337/api/usuarios?populate[0]=foto");
+        const response = await fetch(requestUrl);
 
         if (!response.ok) throw new Error(`Erro ao buscar usuários: ${response.status}`);
 
@@ -17,40 +35,87 @@ async function listarUsuarios() {
 
 function exibirUsuarios(usuarios) {
     const container = document.querySelector(".container-usuarios");
-    container.innerHTML = ""; 
+    container.innerHTML = "";
+    let soma = 0;
 
     usuarios.forEach(async (usuario) => {
-        if(usuario.parceria != 1) return;
+        // Filtra usuários pelo tipo
+        if (usuario.parceria != type) return;
+
+        soma++;
         const usuarioCard = document.createElement("section");
         usuarioCard.classList.add("usuarios");
-        console.log("teste", usuario);
+
         let foto = '/frontend/src/img/user_example.png';
-        if(usuario.foto){
+        if (usuario.foto) {
             foto = "http://localhost:1337" + usuario.foto.url;
         }
 
         let nota = await getMediaNota(usuario.documentId);
 
-        usuarioCard.innerHTML = `
-          <div class="perfil">
-                <img src="${foto}" alt="${usuario.nome}">
-                <h3><a href="../profile/profile.html?id=${usuario.documentId}">${usuario.nome}</a></h3>
-                <h4>${obterProfissao(usuario)}</h4>
-                 <div class="stars"></div>
-                        <span class="valor" style="display: none">${nota}</span>
+        // Verifica o tipo e gera o HTML apropriado
+        if (type == 1) { // Guias
+            usuarioCard.innerHTML = `
+                <div class="perfilGuia">
+                    <img src="${foto}" alt="${usuario.nome}">
+                    <h3><a href="../profile/profile.html?id=${usuario.documentId}">${usuario.nome}</a></h3>
+                    <h4>${obterProfissao(usuario)}</h4>
+                    <div class="stars"></div>
+                    <span class="valor" style="display: none">${nota}</span>
                 </div>
-            </div>
+            `;
+        } else if (type == 2) { 
+            usuarioCard.innerHTML = `
+                 <div class="perfilMotorista">
+                    <img src="${foto}" alt="${usuario.nome}">
+                    <h3><a href="../profile/profile.html?id=${usuario.documentId}">${usuario.nome}</a></h3>
+                    <h4>${obterProfissao(usuario)}</h4>
+                    <p><i class="bi bi-car-front-fill"></i> Veículo: Corolla</p>
+                    <p><i class="bi bi-signpost"></i> Distância até você: 10km</p>
+                    <div class="stars"></div>
+                    <span class="valor" style="display: none">${nota}</span>
+        </div>
         `;
-        console.log(usuario.documentId)
+        }
+
         container.appendChild(usuarioCard);
         stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
     });
-    
+
+    if (soma == 0) {
+        document.querySelector('.not-found').style.display = 'block';
+        document.getElementById('search').classList.add('big-search');
+        document.querySelectorAll('.search-span').forEach(element => {
+            element.style.display = 'inline';
+        });
+    } else {
+        document.querySelector('.not-found').style.display = 'none';
+        document.getElementById('search').classList.remove('big-search');
+    }
+
+    document.querySelector('.container-usuarios').style.gridTemplateColumns = `repeat(${soma > 4 ? 4 : soma}, 1fr)`;
 }
 
 function obterProfissao(data) {
     console.log(data)
-    if(data.parceria == 0) return 'Turista';
-    if(data.parceria == 1) return 'Guia';
+    if (data.parceria == 0) return 'Turista';
+    if (data.parceria == 1) return 'Guia';
     return 'Motorista';
+}
+
+function searchAtracao() {
+    let searchBar = document.getElementById('search-bar');
+    if (search) searchBar.value = search;
+    let searchButton = document.getElementById('search-button');
+    searchButton.addEventListener('click', () => {
+        let searchValue = searchBar.value;
+        window.location.href = updateURLParams({ search: searchValue, type: type });
+    });
+
+    let form = document.getElementById('search');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let searchValue = searchBar.value;
+        window.location.href = updateURLParams({ search: searchValue, type: type });
+    });
 }
