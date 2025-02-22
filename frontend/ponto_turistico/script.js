@@ -171,7 +171,7 @@ function getImg(id){
 //listar guias disponiveis dentro de publics com populate
 function getGuias(id){
     let guia = document.getElementById('guias');
-    const URL = `http://localhost:1337/api/atracaos/${id}?populate[publics][populate]=*`;
+    const URL = `http://localhost:1337/api/atracaos/${id}?populate[publics][populate][0]=foto`;
     fetch(URL)
         .then(response => {
             if (!response.ok) {
@@ -184,7 +184,7 @@ function getGuias(id){
             //console.log('Resposta da API:', data);
 
             const guias = data.data.publics;
-            // console.log('Guias:', guias);
+            console.log('Guias:', guias);
             
             for (let i=0; i < guias.length; i++){
                 let foto = 'http://localhost:1337';
@@ -218,9 +218,61 @@ function getGuias(id){
         });
 }
 
-// function doAgendamento(parceria){
+async function doAgendamento(parceria, guia, id){
 
-// }
+    //put para agendar, pegando o id do guia e o id do ponto turistico e adicionando relacao entre eles
+
+    let agendar = document.getElementById('inserir-agendamento');
+    
+    //quando clicar no botão de agendar, ele vai fazer um put na api para adicionar a relação entre o guia e o ponto turistico, vai dar um put em .atracao com o nome da atração e o id do guia
+
+    agendar.addEventListener('click', async (e) => {
+    
+        let URL = `http://localhost:1337/api/atracaos/${id}`;
+
+        //pega os guias existentes
+        let guias_existentes = [];
+        let response = await fetch(URL + '?populate=publics')
+        let data = await response.json();
+        let guias = data.data.publics;
+        for (let i=0; i < guias.length; i++){
+            console.log(guias[i]);
+            guias_existentes.push(guias[i].id);
+        }
+
+        guias_existentes.push(guia);
+        console.log(guias_existentes);
+
+        let method = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+            },
+            body: JSON.stringify({
+                data: {
+                    publics: guias_existentes
+                }
+            })
+        };
+    
+        fetch(URL, method)
+        .then(response => {
+            if (!response.ok) throw new Error('Algo deu errado: ' + response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            // alert('Agendado com sucesso');
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            // alert('Erro ao agendar');
+        });
+    
+    });
+
+}
 
 //-------------------MAIN--------------------------
 getImg(id);
@@ -242,22 +294,17 @@ if (estaLogado(), id) {
     };
 
     // verificar a role do usuário logado, se é turista, guia ou motorista
-    fetch('http://localhost:1337/api/users/me?populate=usuario', method)
+    fetch('http://localhost:1337/api/users/me?populate=role&populate=usuario', method)
     .then(response => {
         if (!response.ok) throw new Error('Algo deu errado: ' + response.status);
         return response.json();
     })
     .then(data => {
-        let parceria = data.usuario.parceria
+        let parceria = data.parceria;
+        let guia = data.usuario.id;
 
-        if (parceria.parceria == null){
-            parceria = 0;
-        }
-
-        console.log(parceria);
-
-        console.log(data.usuario);
-        // data.parceria == 0 ? agendar.style.display = 'none' : doAgendamento(data.parceria);
+        console.log(guia);
+        data.parceria == 0 ? agendar.style.display = 'none' : doAgendamento(parceria, guia, id);
     })
 
 } else {
