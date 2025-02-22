@@ -218,6 +218,10 @@ function getGuias(id){
         });
 }
 
+// function doAgendamento(parceria){
+
+// }
+
 //-------------------MAIN--------------------------
 getImg(id);
 getNome(id);
@@ -227,6 +231,7 @@ getGuias(id);
 
 if (estaLogado(), id) {
     avaliarButton(false, document.getElementById('avaliar'));
+    let agendar = document.getElementById('agendar-guias');
 
     const method = {
         method: 'GET',
@@ -237,25 +242,30 @@ if (estaLogado(), id) {
     };
 
     // verificar a role do usuário logado, se é turista, guia ou motorista
-    fetch(`http://localhost:1337/api/user/me?populate[usuario][populate][0]=*`, method)
-    .then((response) => {
-        if (!response.ok) throw new Error('Algo deu errado');
+    fetch('http://localhost:1337/api/users/me?populate=usuario', method)
+    .then(response => {
+        if (!response.ok) throw new Error('Algo deu errado: ' + response.status);
         return response.json();
-    }) 
-    .then(data => {
-        console.log('data: ', data);
     })
-    .catch(error => {
-        console.error('Erro na requisição:', error);
-    });
+    .then(data => {
+        let parceria = data.usuario.parceria
+
+        if (parceria.parceria == null){
+            parceria = 0;
+        }
+
+        console.log(parceria);
+
+        console.log(data.usuario);
+        // data.parceria == 0 ? agendar.style.display = 'none' : doAgendamento(data.parceria);
+    })
 
 } else {
     document.getElementById('avaliacoes').innerHTML += '<h3>Para avaliar é necessário estar logado</h3>';
 }
 //------------------------------------------------
 
-document.getElementById('formComentario').addEventListener('submit', (e) => {
-    e.preventDefault();
-    let comentario = document.getElementById('comentario').value;
-});
-
+// document.getElementById('formComentario').addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     let comentario = document.getElementById('comentario').value;
+// });
