@@ -1,8 +1,8 @@
 //--------------CHECAR BUSCA POR ID-----------------------
 //Se for por ID, pega o ID da URL, ou seja, o id do perfil que deseja ver, então define que a pagina está em busca por ID usando a variável id_search.
 const params = new URLSearchParams(window.location.search);
-id = params.get('id');
-id_search = true;
+let id = params.get('id');
+let id_search = true;
 
 if (id == null) {
     id_search = false;
@@ -218,62 +218,6 @@ function getGuias(id){
         });
 }
 
-async function doAgendamento(parceria, guia, id){
-
-    //put para agendar, pegando o id do guia e o id do ponto turistico e adicionando relacao entre eles
-
-    let agendar = document.getElementById('inserir-agendamento');
-    
-    //quando clicar no botão de agendar, ele vai fazer um put na api para adicionar a relação entre o guia e o ponto turistico, vai dar um put em .atracao com o nome da atração e o id do guia
-
-    agendar.addEventListener('click', async (e) => {
-    
-        let URL = `http://localhost:1337/api/atracaos/${id}`;
-
-        //pega os guias existentes
-        let guias_existentes = [];
-        let response = await fetch(URL + '?populate=publics')
-        let data = await response.json();
-        let guias = data.data.publics;
-        for (let i=0; i < guias.length; i++){
-            console.log(guias[i]);
-            guias_existentes.push(guias[i].id);
-        }
-
-        guias_existentes.push(guia);
-        console.log(guias_existentes);
-
-        let method = {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
-            },
-            body: JSON.stringify({
-                data: {
-                    publics: guias_existentes
-                }
-            })
-        };
-    
-        fetch(URL, method)
-        .then(response => {
-            if (!response.ok) throw new Error('Algo deu errado: ' + response.status);
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            // alert('Agendado com sucesso');
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            // alert('Erro ao agendar');
-        });
-    
-    });
-
-}
-
 //-------------------MAIN--------------------------
 getImg(id);
 getNome(id);
@@ -301,10 +245,13 @@ if (estaLogado(), id) {
     })
     .then(data => {
         let parceria = data.parceria;
-        let guia = data.usuario.id;
+        let guia = data.usuario.documentId;
 
         console.log(guia);
-        data.parceria == 0 ? agendar.style.display = 'none' : doAgendamento(parceria, guia, id);
+        data.parceria == 0 ? agendar.style.display = 'none' : 
+        document.getElementById('inserir-agendamento').addEventListener('click', () => {
+            doAgendamento(id, guia);    
+        });
     })
 
 } else {
