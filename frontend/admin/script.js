@@ -1,10 +1,9 @@
 
-// Aguarda o carregamento do DOM
 document.addEventListener("DOMContentLoaded", function () {
-    // Adiciona um evento de clique ao link de "Users"
+
     document.querySelector('a[href="#users"]').addEventListener('click', function (e) {
-        e.preventDefault(); // Impede o comportamento padrão do link
-        carregarUsuarios(); // Carrega e exibe os usuários
+        e.preventDefault(); 
+        carregarUsuarios(); 
     });
 });
 
@@ -38,7 +37,7 @@ function exibirUsuarios(usuarios) {
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Type</th>
-                    <th>Status</th>
+                    <th>Gender</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -51,14 +50,15 @@ function exibirUsuarios(usuarios) {
     const usersTable = document.getElementById("users-table").getElementsByTagName('tbody')[0];
 
     for (const usuario of usuarios) {
+        console.log("Usuário retornado pela API:", usuario);
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td>${usuario.documentId}</td>
             <td>${usuario.nome}</td>
             <td>${usuario.email}</td>
-            <td>${usuario.telefone}</td>
-            <td>${usuario.tipo}</td>
-            <td>${usuario.status}</td>
+            <td>${usuario.contato}</td>
+            <td>${usuario.parceria}</td>
+            <td>${usuario.sexo}</td>
             <td>
                 <a href="editar-usuario.html?documentId=${usuario.documentId}">Editar</a>
             </td>
