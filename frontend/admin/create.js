@@ -11,6 +11,7 @@ let nome = params.get('nome');
 
 if(id) {
     document.querySelector('h4').innerText = `Editar ${nome}`;
+    document.getElementById('submit').innerText = 'Editar';
 }
 
 let arquivo;
