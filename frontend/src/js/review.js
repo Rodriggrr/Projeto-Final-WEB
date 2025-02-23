@@ -68,9 +68,9 @@ function stars_hover(container) {
 
 // Função para pegar a média das avaliações de um usuário. O certo seria fazer isso no backend, mas por enquanto está aqui.
 
-async function getMediaNota(id) {
+async function getMediaNota(id, type='usuarios') {
     try {
-        let response = await fetch(`http://localhost:1337/api/usuarios/${id}?populate[0]=avaliacoes`, {
+        let response = await fetch(`http://localhost:1337/api/${type}/${id}?populate[0]=${type=='atracaos' ? 'avaliacaos' : 'avaliacoes'}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

@@ -13,7 +13,12 @@ setTimeout(() => {
 URL = `http://localhost:1337/api/${type}`;
 
 async function getItems(type) {
-    const res = await fetch(`${URL}`);
+    const res = await fetch(`${URL}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+        }
+    });
     return await res.json();
 }
 
@@ -53,7 +58,7 @@ async function createItem(type, data) {
 function populateMain(main) {
     getItems(type)
         .then(async (data) => {
-            const items = data.data;
+            const items = type == 'users' ? data : data.data;
             console.log('Items:', items);
 
             let table = document.querySelector('table');
@@ -61,11 +66,13 @@ function populateMain(main) {
             for (let i = 0; i < items.length; i++) {
                 let item = items[i];
                 let row = document.createElement('tr');
+
+                let nome = item.nome ? item.nome : item.username;
                 row.innerHTML = `
                 <td class=id>${item.id}</td>
-                <td>${item.documentId}</td>
-                <td>${item.nome}</td>
-                <td class=nota>${await getMediaNota(item.documentId)}</td>
+                <td class=docId>${item.documentId}</td>
+                <td>${nome}</td>
+                <td class=nota>${await getMediaNota(item.documentId, type)}</td>
                 <td class="actions">
                     <button class="edit">Editar</button>
                     <button class="delete">Excluir</button>
@@ -76,7 +83,7 @@ function populateMain(main) {
         }).then(() => {
             let rows = document.querySelectorAll('tbody tr');
             rows.forEach(row => {
-                let id = row.querySelector('.id').textContent;
+                let id = type=='users' ? row.querySelector('.id').innerText : row.querySelector('.docId').innerText;
                 let editButton = row.querySelector('.edit');
                 let deleteButton = row.querySelector('.delete');
                 editButton.addEventListener('click', () => {
