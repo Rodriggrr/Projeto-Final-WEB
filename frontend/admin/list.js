@@ -2,6 +2,14 @@ let params = new URLSearchParams(window.location.search);
 let type = params.get('type');
 if(!type) { type = 'dashboard'; window.location.href = `./index.html`; }
 
+if(!estaLogado()) window.location.href = './login.html';
+checkAdminRole();
+setTimeout(() => {
+    document.body.style.display = 'block';
+}, 500);
+
+
+
 URL = `http://localhost:1337/api/${type}`;
 
 async function getItems(type) {
@@ -16,7 +24,6 @@ async function deleteItem(type, id) {
             'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
         }
     });
-    return await res.json();
 }
 
 async function updateItem(type, id, data) {

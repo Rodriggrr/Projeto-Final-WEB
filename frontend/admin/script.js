@@ -1,4 +1,9 @@
+if(!estaLogado()) window.location.href = './login.html';
 checkAdminRole();
+setTimeout(() => {
+    document.body.style.display = 'block';
+}, 500);
+
 
 function logout() {
     sessionStorage.removeItem('jwtToken');
@@ -10,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let users = document.getElementById('users');
     users.addEventListener('click', () => {
         console.log('users');
-        window.location.href = './list.html?type=usuarios';
+        window.location.href = './list.html?type=users';
     });
 
     let atracaos = document.getElementById('atracaos');
@@ -22,30 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let avaliacoes = document.getElementById('avaliacoes');
     avaliacoes.addEventListener('click', () => {
         console.log('avaliacoes');
-        window.location.href = './list.html?type=avaliacoes';
+        window.location.href = './list.html?type=avaliacaos';
     });
 });
 
-
-function checkAdminRole() {
-    fetch('http://localhost:1337/api/users/me?populate=role', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
-        }
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Algo deu errado: ' + response.status);
-        return response.json();
-    })
-    .then(data => {
-        let role = data.role.nome;
-        if (role !== 'admin') {
-            window.location.href = '../404';
-        }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-    });
-}
