@@ -7,6 +7,7 @@ main{
 form{
     justify-content: center;
     text-align: center;
+    align-items: center;
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -17,5 +18,13 @@ form{
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
+    }
+
+    button{
+        width: 100%;
+
+        &:hover{
+            background-color: #19005f;
+        }
     }
 }
