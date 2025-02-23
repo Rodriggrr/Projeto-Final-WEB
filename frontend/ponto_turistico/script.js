@@ -269,8 +269,3 @@ else {
     document.getElementById('avaliacoes').innerHTML += '<h3>Para avaliar é necessário estar logado</h3>';
 }
 //------------------------------------------------
-
-// document.getElementById('formComentario').addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     let comentario = document.getElementById('comentario').value;
-// });
