@@ -175,13 +175,13 @@ main{
     gap: 50px;
     
     a{
-        text-decoration: none;
+        text-decoration: underline;
         color: black;
     }
 
     a:hover{
         color: #333;
-        text-decoration: underline;
+        text-decoration: none;
     }
 }
 

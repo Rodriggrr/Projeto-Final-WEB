@@ -225,7 +225,7 @@ getDescr(id);
 getAvaliacao(id);
 getGuias(id);
 
-if (estaLogado(), id) {
+if (estaLogado()) {
     avaliarButton(false, document.getElementById('avaliar'));
     let agendar = document.getElementById('agendar-guias');
 
@@ -243,7 +243,6 @@ if (estaLogado(), id) {
         return response.json();
     })
     .then(data => {
-        let parceria = data.parceria;
         let guia = data.usuario.documentId;
 
         console.log(data);
@@ -263,8 +262,10 @@ if (estaLogado(), id) {
             });
         });
     })
-
-} else {
+} 
+else {
+    document.getElementById('agendar-guias').style.display = 'none';
+    document.getElementById('avaliar').style.display = 'none';
     document.getElementById('avaliacoes').innerHTML += '<h3>Para avaliar é necessário estar logado</h3>';
 }
 //------------------------------------------------
