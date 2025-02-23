@@ -237,17 +237,16 @@ if (estaLogado(), id) {
         }
     };
 
-    // verificar a role do usuário logado, se é turista, guia ou motorista
-    fetch('http://localhost:1337/api/users/me?populate=role', method)
+    fetch('http://localhost:1337/api/users/me?populate=role&populate=usuario', method)
     .then(response => {
         if (!response.ok) throw new Error('Algo deu errado: ' + response.status);
         return response.json();
     })
     .then(data => {
         let parceria = data.parceria;
-        //let guia = data.usuario.documentId;
+        let guia = data.usuario.documentId;
 
-        console.log('data: ', data.role.name);
+        console.log(data);
         data.role.name == "Turista" ? agendar.style.display = 'none' : 
         document.getElementById('inserir-agendamento').addEventListener('click', () => {
             doAgendamento(id, guia).then(() => {
