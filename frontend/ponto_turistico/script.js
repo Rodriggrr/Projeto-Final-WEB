@@ -250,7 +250,18 @@ if (estaLogado(), id) {
         console.log(guia);
         data.parceria == 0 ? agendar.style.display = 'none' : 
         document.getElementById('inserir-agendamento').addEventListener('click', () => {
-            doAgendamento(id, guia);    
+            doAgendamento(id, guia).then(() => {
+                location.reload();
+            }).catch(error => {
+                console.error('Erro ao agendar:', error);
+            });
+        });
+        document.getElementById('remover-agendamento').addEventListener('click', () => {
+            doDesagendamento(id, guia).then(() => {
+                location.reload();
+            }).catch(error => {
+                console.error('Erro ao desagendar:', error);
+            });
         });
     })
 

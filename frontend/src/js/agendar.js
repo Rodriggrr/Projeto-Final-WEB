@@ -12,6 +12,10 @@ async function doAgendamento(atracao, guia, desagendar = false) {
             console.log(guias[i]);
             guias_existentes.push(guias[i].documentId);
         }
+        
+        if (guias_existentes.includes(guia)) {
+            desagendar = true;
+        }
 
         if (desagendar) {
             guias_existentes = guias_existentes.filter(item => item !== guia);
@@ -47,5 +51,5 @@ async function doAgendamento(atracao, guia, desagendar = false) {
 }
 
 async function doDesagendamento(atracao, guia) {
-   return await agendar(atracao, guia, true);
+    return await doAgendamento(atracao, guia, true);
 }

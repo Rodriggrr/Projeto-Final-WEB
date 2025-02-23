@@ -66,7 +66,7 @@ main{
     }
 }
 
-#agendar-guias{
+.secao_guias{
     position: fixed;
     display: flex;
     flex-direction: row;
@@ -107,6 +107,26 @@ main{
         font-weight: bold;
         background-color: #333333ab;
         color: white;
+    }
+
+    .botoes{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+
+        button{
+            width: 100%;
+            height: 30px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover{
+            background-color: #555;
+        }
     }
 }
 
