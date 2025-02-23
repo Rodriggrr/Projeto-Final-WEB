@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="create.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/browser-image-compression/1.0.17/browser-image-compression.js"></script>
     <script src="../src/js/authorized.js"></script>
     <script src="../src/js/review.js"></script>
     <title>Admin</title>
@@ -23,19 +25,15 @@
     </header>
 
     <main> 
-        <a href="./create.html"><button class="actions" id="create">CRIAR ATRAÇÃO</button></a>
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>documentId</th>
-                    <th>Nome</th>
-                    <th>Nota</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <form id="form">
+            <h4>Criar Atração</h4>
+            <input type="text" name="name" id="name" placeholder="Nome">
+            <input type="text" name="description" id="description" placeholder="Descrição">
+            <input type="text" name="address" id="address" placeholder="Endereço">
+            <input type="text" name="horario" id="horario" placeholder="Horário">
+            <input type="file" id="foto" accept="image/*">
+            <button id="submit">Criar</button>
+        </form>
     </main>
 
     <footer>
@@ -43,7 +41,7 @@
     </footer>
     <div id="loader-container"></div>
     <script src="../src/js/loading.js"></script> 
-    <script src="list.js"></script>
+    <script src="create.js"></script>
 </body>
 </html>
 

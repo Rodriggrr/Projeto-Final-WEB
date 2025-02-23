@@ -85,18 +85,18 @@ main table {
 
     .actions {
         text-align: center;
-
-        button {
-            background: #6200EE;
-            color: #FFFFFF;
-            border: none;
-            border-radius: 4px;
-            padding: 5px 10px;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
     }
+}
+
+button {
+    background: #6200EE;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
 section {

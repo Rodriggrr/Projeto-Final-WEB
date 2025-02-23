@@ -1,0 +1,21 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 5px;
+
+    input{
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+}

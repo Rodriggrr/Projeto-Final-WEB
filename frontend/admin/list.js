@@ -75,20 +75,22 @@ function populateMain(main) {
                 <td class=nota>${await getMediaNota(item.documentId, type)}</td>
                 <td class="actions">
                     <button class="edit">Editar</button>
+                    <span style="display: none">${item.documentId}</span>
                     <button class="delete">Excluir</button>
                 </td>
                 `;
                 tbody.appendChild(row);
+                let editButton = row.querySelector('.edit');
+                editButton.addEventListener('click', () => {
+                    window.location.href = `./create.html?id=${item.documentId}&nome=${nome}`;
+                });
             }
         }).then(() => {
             let rows = document.querySelectorAll('tbody tr');
             rows.forEach(row => {
                 let id = type=='users' ? row.querySelector('.id').innerText : row.querySelector('.docId').innerText;
-                let editButton = row.querySelector('.edit');
+
                 let deleteButton = row.querySelector('.delete');
-                editButton.addEventListener('click', () => {
-                    window.location.href = `./edit.html?type=${type}&id=${id}`;
-                });
                 deleteButton.addEventListener('click', () => {
                     deleteItem(type, id).then(data => {
                         console.log('Item deletado:', data);
@@ -100,10 +102,13 @@ function populateMain(main) {
             console.error('Erro:', error);
             main.innerHTML = "Erro ao carregar os itens.";
         });
+}
 
-    }
-
-
+// Array.from(document.getElementsByClassName('edit')).forEach(button => {
+//     button.addEventListener('click', (e) => {
+//         window.location.href = `./create.html?id=${e.target.nextSibling.innerText}`;
+//     });
+// });
 
 let main = document.getElementsByTagName('main')[0];
 populateMain(main);
