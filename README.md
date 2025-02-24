@@ -49,34 +49,75 @@ A plataforma trará:
 
 ## Entidades ou tabelas do sistema
 
-Liste as principais entidades do sistema.
+1. Usuario
+   
+   Atributos:
 
-----
+      - ID (chave primária)
+      - Nome completo
+      - Email
+      - Senha
+      - Data de nascimento
+      - Sexo
+      - Tipo de usuário(turista, guia, motorista, admin)
+      - Sobre mim (descrição)
+      - Contato (para guias e motoristas)
+        
+   2. Atração
+      
+   Atributos:
+      - ID(Chave primária)
+      - Nome
+      - Descrição
+      - Endereço
+      - Avaliação média (calculada)
 
-:warning::warning::warning: As informações a seguir devem ser enviadas juntamente com a versão final do projeto. :warning::warning::warning:
+   3. Avaliação
+      
+      Atributos:
+      
+         - ID (chave primária)
+         - ID do avaliador (chave estrangeira - relacionada ao usuário)
+         - ID do avaliado (chave estrangeira - relacionada ao usuário ou atração)
+         - Tipo de avaliação (usuário ou ponto turístico)
+         - Nota
+         - Comentário
 
+   4. Admin
+         
+      Atributos:
+      
+         - ID (chave primária) 
+         - Email
+         - Senha
+        
+      Relacionamentos entre entidades
+   
+         - Usuário pode avaliar uma Atração ou outro Usuário (guia/motorista).
+         - Usuário (turista) pode agendar serviços com Usuário (guia/motorista) para uma Atração.
+         - Admin gerencia Atrações, Usuários e Avaliações.
+         - Atração pode receber múltiplas Avaliações de Usuários
 
-----
 
 ## Tecnologias e frameworks utilizados
 
 **Frontend:**
 
-Lista as tecnologias, frameworks e bibliotecas utilizados.
-
+  - BootStrap
+  - Particles
+  - Browser-image-compression
+  - Fetch
 **Backend:**
-
-Lista as tecnologias, frameworks e bibliotecas utilizados.
-
+  - Strapi
 
 ## Operações implementadas para cada entidade da aplicação
 
 
 | Entidade| Criação | Leitura | Atualização | Remoção |
 | --- | --- | --- | --- | --- |
-| Entidade 1 | X |  X  |  | X |
-| Entidade 2 | X |    |  X | X |
-| Entidade 3 | X |    |  |  |
+| Usuário | X |  X  | X |  |
+| Ponto Turistico |  |   X |   |  |
+| Avaliação | X |  X  | X | X |
 
 > Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
 
@@ -84,8 +125,30 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 | Método HTTP | URL |
 | --- | --- |
-| GET | api/entidade1/|
-| POST | api/entidade2 |
+| GET | api/usuarios/|
+| GET | api/usuarios/:id |
+| GET | api/usuarios/me|
+| GET | api/usuarios/:id|
+| POST | api/usuarios/ |
+| PUT | /api/usuarios/:id |
+| DELETE | /api/usuarios/:id |
+
+
+| GET | api/avaliacoes/|
+| GET | api/avaliacoes/:id|
+| POST | api/avaliacoes/ |
+| PUT | /api/avaliacoes/:id |
+| DELETE | /api/avaliacoes/:id |
+
+| GET | api/atracoes/|
+| GET | api/atracoes/:id|
+| POST | api/atracoes/ |
+| PUT | /api/atracoes/:id |
+| DELETE | /api/atracoes/:id |
+
+| POST | api/upload/ |
+
+
 
 ## Funcionalidades do Sistema
 1. Login
@@ -94,7 +157,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    O usuário insere email e senha para acessar o sistema.
    Após o login: O usuário é redirecionado para a página inicial (home), onde pode avaliar outros usuários ou pontos turísticos.
 
-3. Home
+2. Home
    Usuário não logado:
    
       - Pode visualizar pontos turísticos.
@@ -105,7 +168,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
       - Pode avaliar pontos turísticos e outros usuários.
 
-4. Registrar
+3. Registrar
    
    - Turista: Na primeira tela, o usuário pode se registrar como turista.
    
@@ -113,13 +176,13 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
    - Após o registro: O usuário é redirecionado para o perfil, onde pode visualizar e editar suas informações.
 
-5. Listar
+4. Listar
    
    - Guias: Ao clicar em "Guias > Listar", todos os guias cadastrados serão exibidos.
    
    - Turistas: Ao clicar em "Turistas > Localizar", todos os turistas cadastrados serão listados.
 
-6. Perfil
+5. Perfil
     
    Informações disponíveis: O usuário pode visualizar e editar suas informações, como:
    
@@ -131,7 +194,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
       Senha (editável)
       Avaliações: O usuário pode ver as avaliações que recebeu.
 
-7. Usuários não logados
+6. Usuários não logados
     
    O que podem fazer:
    
@@ -140,12 +203,12 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
          - Não podem avaliar usuários ou pontos turísticos.
          - Não podem ser avaliados.
 
-8. Pontos Turísticos
+7. Pontos Turísticos
 
    - Avaliar: Somente usuários logados podem avaliar pontos turísticos.   
    - Agendar: Usuários logados podem agendar serviços com guias disponíveis.
 
-9. Admin
+8. Admin
     
    Acesso restrito: Somente administradores podem logar como admin.
    
@@ -157,11 +220,11 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 **Fluxo de Uso**
 
-      Registro:
+   Registro:
       
-         Escolha entre se registrar como turista ou parceiro (guia/motorista).
-         
-         Preencha os dados necessários e conclua o registro.
+      Escolha entre se registrar como turista ou parceiro (guia/motorista).
+            
+      Preencha os dados necessários e conclua o registro.
       
       Login:
       
