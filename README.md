@@ -62,36 +62,28 @@ A plataforma trará:
       - Tipo de usuário(turista, guia, motorista, admin)
       - Sobre mim (descrição)
       - Contato (para guias e motoristas)
-        
-   2. Atração
-      
+     
+2. Atração
+   
+Atributos:
+   - ID(Chave primária)
+   - Nome
+   - Descrição
+   - Endereço
+   - Avaliação média (calculada)
+
+3. Avaliação
+   
    Atributos:
-      - ID(Chave primária)
-      - Nome
-      - Descrição
-      - Endereço
-      - Avaliação média (calculada)
-
-   3. Avaliação
-      
-      Atributos:
-      
-         - ID (chave primária)
-         - ID do avaliador (chave estrangeira - relacionada ao usuário)
-         - ID do avaliado (chave estrangeira - relacionada ao usuário ou atração)
-         - Tipo de avaliação (usuário ou ponto turístico)
-         - Nota
-         - Comentário
-
-   4. Admin
-         
-      Atributos:
-      
-         - ID (chave primária) 
-         - Email
-         - Senha
+   
+      - ID (chave primária)
+      - ID do avaliador (chave estrangeira - relacionada ao usuário)
+      - ID do avaliado (chave estrangeira - relacionada ao usuário ou atração)
+      - Tipo de avaliação (usuário ou ponto turístico)
+      - Nota
+      - Comentário
         
-      Relacionamentos entre entidades
+      **Relacionamentos entre entidades**
    
          - Usuário pode avaliar uma Atração ou outro Usuário (guia/motorista).
          - Usuário (turista) pode agendar serviços com Usuário (guia/motorista) para uma Atração.
