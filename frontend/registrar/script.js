@@ -77,11 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
             <label for="veiculo">Veículo</label>
             <div class="parceria-radio">
                 <div>
-                    <input type="radio" id="moto" name="veiculo" value="moto" required>
+                    <input type="radio" id="moto" name="veiculo" value="moto">
                     <label for="moto">Moto</label>
                 </div>
                 <div>
-                    <input type="radio" id="carro" name="veiculo" value="carro" required>
+                    <input type="radio" id="carro" name="veiculo" value="carro">
                     <label for="carro">Carro</label>
                 </div>
             </div>
