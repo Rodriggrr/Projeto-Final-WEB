@@ -74,7 +74,7 @@ function populateMain(main) {
                 <td>${nome}</td>
                 <td class=nota>${await getMediaNota(item.documentId, type)}</td>
                 <td class="actions">
-                    <button class="edit">Editar</button>
+                    <button class="edit"${type == 'users' ? "style=display: 'none'" : ''}>Editar</button>
                     <span style="display: none">${item.documentId}</span>
                     <button class="delete">Excluir</button>
                 </td>
