@@ -52,7 +52,6 @@ A plataforma trará:
 1. Usuario
    
    Atributos:
-
       - ID (chave primária)
       - Nome completo
       - Email
@@ -65,17 +64,16 @@ A plataforma trará:
      
 2. Atração
    
-Atributos:
-   - ID(Chave primária)
-   - Nome
-   - Descrição
-   - Endereço
-   - Avaliação média (calculada)
+   Atributos:
+      - ID(Chave primária)
+      - Nome
+      - Descrição
+      - Endereço
+      - Avaliação média (calculada)
 
 3. Avaliação
    
    Atributos:
-   
       - ID (chave primária)
       - ID do avaliador (chave estrangeira - relacionada ao usuário)
       - ID do avaliado (chave estrangeira - relacionada ao usuário ou atração)
@@ -83,12 +81,12 @@ Atributos:
       - Nota
       - Comentário
         
-      **Relacionamentos entre entidades**
+   **Relacionamentos entre entidades**
    
-         - Usuário pode avaliar uma Atração ou outro Usuário (guia/motorista).
-         - Usuário (turista) pode agendar serviços com Usuário (guia/motorista) para uma Atração.
-         - Admin gerencia Atrações, Usuários e Avaliações.
-         - Atração pode receber múltiplas Avaliações de Usuários
+      - Usuário pode avaliar uma Atração ou outro Usuário (guia/motorista).
+      - Usuário (turista) pode agendar serviços com Usuário (guia/motorista) para uma Atração.
+      - Usuário (Admin) gerencia Atrações, Usuários e Avaliações.
+      - Atração pode receber múltiplas Avaliações de Usuários.
 
 
 ## Tecnologias e frameworks utilizados
@@ -118,27 +116,27 @@ Atributos:
 | Método HTTP | URL |
 | --- | --- |
 | GET | api/usuarios/|
-| GET | api/usuarios/:id |
+| GET | api/usuarios/:id|
 | GET | api/usuarios/me|
 | GET | api/usuarios/:id|
-| POST | api/usuarios/ |
-| PUT | /api/usuarios/:id |
-| DELETE | /api/usuarios/:id |
+| POST | api/usuarios/|
+| PUT | /api/usuarios/:id|
+| DELETE | /api/usuarios/:id|
 
 
 | GET | api/avaliacoes/|
 | GET | api/avaliacoes/:id|
-| POST | api/avaliacoes/ |
-| PUT | /api/avaliacoes/:id |
-| DELETE | /api/avaliacoes/:id |
+| POST | api/avaliacoes/|
+| PUT | /api/avaliacoes/:id|
+| DELETE | /api/avaliacoes/:id|
 
 | GET | api/atracoes/|
 | GET | api/atracoes/:id|
-| POST | api/atracoes/ |
-| PUT | /api/atracoes/:id |
-| DELETE | /api/atracoes/:id |
+| POST | api/atracoes/|
+| PUT | /api/atracoes/:id|
+| DELETE | /api/atracoes/:id|
 
-| POST | api/upload/ |
+| POST | api/upload/|
 
 
 
