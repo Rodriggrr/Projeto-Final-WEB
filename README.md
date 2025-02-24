@@ -173,37 +173,37 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 **Fluxo de Uso**
 
-   Registro:
-   
-      Escolha entre se registrar como turista ou parceiro (guia/motorista).
+      Registro:
       
-      Preencha os dados necessários e conclua o registro.
-   
-   Login:
-   
-      Insira email e senha para acessar o sistema.
-      
-      Navegação:
-   
-      Turistas: Podem avaliar pontos turísticos, agendar guias e visualizar perfis.
-      
-      Guias/Motoristas: Podem gerenciar seu perfil e serem avaliados por turistas.
-      
-      Admin: Gerenciar o sistema (atrações, usuários e avaliações).
-   
-   Avaliações:
-   
-      Somente usuários logados podem avaliar pontos turísticos e outros usuários.
-   
-   Perfil:
-   
-      Edite suas informações pessoais e visualize suas avaliações.
-   
-   Restrições
-   
-         Usuários não logados: Apenas visualizam informações, sem permissão para avaliar ou ser avaliados.
+         Escolha entre se registrar como turista ou parceiro (guia/motorista).
          
-         Admin: Acesso exclusivo para gerenciamento do sistema.
+         Preencha os dados necessários e conclua o registro.
+      
+      Login:
+      
+         Insira email e senha para acessar o sistema.
+         
+         Navegação:
+      
+         Turistas: Podem avaliar pontos turísticos, agendar guias e visualizar perfis.
+         
+         Guias/Motoristas: Podem gerenciar seu perfil e serem avaliados por turistas.
+         
+         Admin: Gerenciar o sistema (atrações, usuários e avaliações).
+      
+      Avaliações:
+      
+         Somente usuários logados podem avaliar pontos turísticos e outros usuários.
+      
+      Perfil:
+      
+         Edite suas informações pessoais e visualize suas avaliações.
+      
+      Restrições
+      
+            Usuários não logados: Apenas visualizam informações, sem permissão para avaliar ou ser avaliados.
+            
+            Admin: Acesso exclusivo para gerenciamento do sistema.
 
 
 
