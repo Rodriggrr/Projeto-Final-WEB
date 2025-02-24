@@ -122,22 +122,17 @@ A plataforma trará:
 | POST | api/usuarios/|
 | PUT | /api/usuarios/:id|
 | DELETE | /api/usuarios/:id|
-
-
 | GET | api/avaliacoes/|
 | GET | api/avaliacoes/:id|
 | POST | api/avaliacoes/|
 | PUT | /api/avaliacoes/:id|
 | DELETE | /api/avaliacoes/:id|
-
 | GET | api/atracoes/|
 | GET | api/atracoes/:id|
 | POST | api/atracoes/|
 | PUT | /api/atracoes/:id|
 | DELETE | /api/atracoes/:id|
-
 | POST | api/upload/|
-
 
 
 ## Funcionalidades do Sistema
