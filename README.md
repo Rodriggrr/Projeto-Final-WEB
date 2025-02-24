@@ -119,20 +119,21 @@ A plataforma trará:
 | GET | api/usuarios/:id|
 | GET | api/usuarios/me|
 | GET | api/usuarios/:id|
-| POST | api/usuarios/|
-| PUT | /api/usuarios/:id|
-| DELETE | /api/usuarios/:id|
 | GET | api/avaliacoes/|
 | GET | api/avaliacoes/:id|
-| POST | api/avaliacoes/|
-| PUT | /api/avaliacoes/:id|
-| DELETE | /api/avaliacoes/:id|
 | GET | api/atracoes/|
 | GET | api/atracoes/:id|
+| POST | api/usuarios/|
+| POST | api/avaliacoes/|
 | POST | api/atracoes/|
-| PUT | /api/atracoes/:id|
-| DELETE | /api/atracoes/:id|
 | POST | api/upload/|
+| PUT | /api/usuarios/:id|
+| PUT | /api/avaliacoes/:id|
+| PUT | /api/atracoes/:id|
+| DELETE | /api/usuarios/:id|
+| DELETE | /api/avaliacoes/:id|
+| DELETE | /api/atracoes/:id|
+
 
 
 ## Funcionalidades do Sistema
