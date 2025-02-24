@@ -95,7 +95,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
    Após o login: O usuário é redirecionado para a página inicial (home), onde pode avaliar outros usuários ou pontos turísticos.
 
-3. Home
+2. Home
    
    Usuário não logado:
    
@@ -109,7 +109,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
       Pode avaliar pontos turísticos e outros usuários.
 
-5. Registrar
+3. Registrar
    
    Turista: Na primeira tela, o usuário pode se registrar como turista.
    
@@ -117,13 +117,13 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
    Após o registro: O usuário é redirecionado para o perfil, onde pode visualizar e editar suas informações.
 
-7. Listar
+4. Listar
    
    Guias: Ao clicar em "Guias > Listar", todos os guias cadastrados serão exibidos.
    
    Turistas: Ao clicar em "Turistas > Localizar", todos os turistas cadastrados serão listados.
 
-9. Perfil
+5. Perfil
     
    Informações disponíveis: O usuário pode visualizar e editar suas informações, como:
    
@@ -141,7 +141,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
    Avaliações: O usuário pode ver as avaliações que recebeu.
 
-10. Usuários não logados
+6. Usuários não logados
     
    O que podem fazer:
    
@@ -153,13 +153,13 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
    Não podem ser avaliados.
 
-11. Pontos Turísticos
+7. Pontos Turísticos
     
    Avaliar: Somente usuários logados podem avaliar pontos turísticos.
    
    Agendar: Usuários logados podem agendar serviços com guias disponíveis.
 
-12. Admin
+8. Admin
     
    Acesso restrito: Somente administradores podem logar como admin.
    
