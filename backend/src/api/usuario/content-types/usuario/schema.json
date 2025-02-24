@@ -80,6 +80,9 @@
     "parceria": {
       "type": "integer",
       "max": 2
+    },
+    "veiculo": {
+      "type": "boolean"
     }
   }
 }

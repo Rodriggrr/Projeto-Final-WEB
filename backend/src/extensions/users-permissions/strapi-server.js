@@ -7,8 +7,12 @@ module.exports = (plugin) => {
         register: async (ctx) => {
             let email = ctx.request.body.email.toLowerCase();
             let parceria = ctx.request.body.parceria;
+            let telefone = ctx.request.body.telefone;
+            let veiculo = ctx.request.body.veiculo ? true : false;
             if(!parceria) parceria = 0;
             delete ctx.request.body.parceria;
+            delete ctx.request.body.telefone;
+            delete ctx.request.body.veiculo;
 
             // Não retorna nada, então, nessa tela, não tenho acesso ao usuario criado.
             // Tenho acesso no afterCreate, mas não consigo acessar o parâmetro ctx para pegar a parceria.
@@ -48,7 +52,9 @@ module.exports = (plugin) => {
                         nome: result.username,
                         sexo: "Outro",          
                         owner: userId,
-                        parceria: parceria
+                        parceria: parceria,
+                        contato: telefone,
+                        veiculo: veiculo
                     }
                 };
 

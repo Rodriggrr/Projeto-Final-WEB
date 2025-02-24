@@ -17,12 +17,16 @@ async function getPublicUserId(authToken) {
     }
 }
 
+function limparFormatoTelefone(telefoneFormatado) {
+    return telefoneFormatado.replace(/\D/g, ""); // Remove tudo que não for número
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("register-form");
     const emailInput = document.getElementById("e-mail");
     const passwordInput = document.getElementById("senha");
     const usuarioInput = document.getElementById("usuario");
-    const telefoneInput = document.getElementById("telefone");
+    let telefoneInput;
 
     const emailError = document.getElementById("email-error");
     const senhaError = document.getElementById("senha-error");
@@ -33,17 +37,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const parceriaLink = document.querySelector(".parceria");
 
-    if(parceriaLink){
-        parceriaLink.addEventListener("click", function(event){
+    if (parceriaLink) {
+        parceriaLink.addEventListener("click", function (event) {
             event.preventDefault();
             window.location.href = "./registrar.html?parceria=true";
         });
     }
 
 
-    if(isParceria){
+    if (isParceria) {
         const telefoneDiv = document.createElement("div");
         const radioGuia = document.createElement("div");
+        const radioMotorista = document.createElement("div");
+        radioMotorista.classList.add("radio");
         radioGuia.classList.add("radio");
         telefoneDiv.classList.add("telefone");
 
@@ -55,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         radioGuia.innerHTML = `
             <label for="parceria">Quero ser um...</label>
-            <div id="parceria-radio">
+            <div class="parceria-radio">
                 <div>
                     <input type="radio" id="guia" name="parceria" value="guia" required>
                     <label for="guia">Guia</label>
@@ -67,9 +73,45 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `
 
+        radioMotorista.innerHTML = `
+            <label for="veiculo">Veículo</label>
+            <div class="parceria-radio">
+                <div>
+                    <input type="radio" id="moto" name="veiculo" value="moto" required>
+                    <label for="moto">Moto</label>
+                </div>
+                <div>
+                    <input type="radio" id="carro" name="veiculo" value="carro" required>
+                    <label for="carro">Carro</label>
+                </div>
+            </div>
+        `
+        telefoneInput = document.getElementById("telefone");
         const formFields = form.querySelector(".senha"); // Inserir antes do botão
         form.insertBefore(telefoneDiv, formFields.nextSibling);
         form.insertBefore(radioGuia, telefoneDiv.nextSibling);
+        form.insertBefore(radioMotorista, radioGuia.nextSibling);
+
+        radioGuia.addEventListener("change", function (event) {
+            if (event.target.value === "motorista") {
+            radioMotorista.style.display = "block";
+            } else {
+            radioMotorista.style.display = "none";
+            }
+        });
+
+        radioMotorista.style.display = "none";
+
+        document.getElementById("telefone").addEventListener("input", function (e) {
+            let v = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+
+            if (v.length > 2) v = `(${v.slice(0, 2)}) ${v.slice(2)}`;
+            if (v.length > 8) v = `${v.slice(0, 10)}-${v.slice(10, 14)}`;
+
+            e.target.value = v;
+        });
+
+
     }
 
 
@@ -109,7 +151,12 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
 
         const parceriaRadio = document.querySelector('input[name="parceria"]:checked');
+        const veiculoRadio = document.querySelector('input[name="veiculo"]:checked');
         const parceria = parceriaRadio ? (parceriaRadio.value === 'guia' ? 1 : 2) : 0;
+        const veiculo = veiculoRadio ? (veiculoRadio.value === 'moto' ? 0 : 1) : 0;
+        console.log(parceria, veiculo);
+
+        let telefone = document.getElementById("telefone");
 
         if (validateForm()) {
             const userData = {
@@ -117,6 +164,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 email: emailInput.value,
                 password: passwordInput.value,
                 parceria: parceria,
+                telefone: (telefone) ? limparFormatoTelefone(telefone.value) : '',
+                veiculo: veiculo
             };
 
             console.log("Enviando dados para o Strapi:", userData);
@@ -130,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 const userDataResponse = await userResponse.json();
-                
+
                 if (!userResponse.ok) {
                     console.error("Erro na resposta do Strapi:", userDataResponse);
                 }
@@ -149,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 //const params = new URLSearchParams(window.location.search);
                 //parceria = params.get('parceria');
                 //window.location.href = `./registrar.html?parceria=true`;
-                
+
                 sessionStorage.setItem('jwtToken', jwt);
                 let publicUserId = await getPublicUserId(jwt);
                 sessionStorage.setItem('publicUserId', publicUserId);
@@ -157,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             } catch (error) {
                 console.error("Erro ao registrar usuário:", error);
-            
+
                 if (error instanceof Response) { // Se for um erro de resposta HTTP
                     error.json().then(errData => {
                         console.error("Erro na resposta do Strapi:", errData);

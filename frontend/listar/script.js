@@ -1,3 +1,5 @@
+
+
 let filters = new URLSearchParams(window.location.search);
 let search = filters.get('search');
 let type = filters.get('type');
@@ -56,7 +58,7 @@ function exibirUsuarios(usuarios) {
         // Verifica o tipo e gera o HTML apropriado
         if (type == 1) { // Guias
             usuarioCard.innerHTML = `
-                <div class="perfilGuia">
+                <div class="perfilGuia perfil">
                     <img src="${foto}" alt="${usuario.nome}">
                     <h3><a href="../profile/profile.html?id=${usuario.documentId}">${usuario.nome}</a></h3>
                     <h4>${obterProfissao(usuario)}</h4>
@@ -66,16 +68,18 @@ function exibirUsuarios(usuarios) {
             `;
         } else if (type == 2) { 
             usuarioCard.innerHTML = `
-                 <div class="perfilMotorista">
+                 <div class="perfilMotorista perfil">
+                    <div class="img">
                     <img src="${foto}" alt="${usuario.nome}">
+                    </div>
                     <h3><a href="../profile/profile.html?id=${usuario.documentId}">${usuario.nome}</a></h3>
                     <h4>${obterProfissao(usuario)}</h4>
-                    <p><i class="bi bi-car-front-fill"></i> Veículo: Corolla</p>
-                    <p><i class="bi bi-signpost"></i> Distância até você: 10km</p>
+                    <p><i class="bi bi-car-front-fill"></i> Veículo: ${usuario.veiculo ? 'Moto' : 'Carro'}</p>
+                    <p><i class="bi bi-signpost"></i> Distância até você: <br>${Math.floor(Math.random() * 10) + 1} km</p>
                     <div class="stars"></div>
                     <span class="valor" style="display: none">${nota}</span>
-        </div>
-        `;
+                </div>
+            `;
         }
 
         container.appendChild(usuarioCard);

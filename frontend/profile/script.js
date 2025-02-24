@@ -1,3 +1,4 @@
+
 function changeTitle(str = 'Perfil') {
     document.title = "Quixada Tour - " + str;
 }
@@ -27,12 +28,12 @@ if (id == null) {
     document.getElementsByClassName('email')[0].style.display = 'none';
     document.getElementsByClassName('senha')[0].style.display = 'none';
     let pens = document.getElementsByClassName('bi-pen');
-    
+
     for (let i = 0; i < pens.length; i++) {
         pens[i].style.display = 'none';
     }
-    
-    
+
+
     for (let i = 0; i < nodes.length; i++) {
         nodes[i].classList.add('no-hover');
     }
@@ -40,11 +41,11 @@ if (id == null) {
 console.log(`id: ${id}. ID Search: ${id_search}`);
 //--------------------------------------------------------
 
-if(!estaLogado()) {
+if (!estaLogado()) {
     document.getElementById('avaliar-button').style.display = 'none';
 }
 
-if(!estaLogado() && !id_search) {
+if (!estaLogado() && !id_search) {
     requerAutenticacao();
 }
 
@@ -63,13 +64,26 @@ function remove_name_border() {
 
 let g_pp, g_nome, g_nota, g_sexo, g_nascimento, g_textarea, g_email, g_parceria, g_nome_completo;
 
+function formatTelefone(telefone) {
+    telefone = telefone.replace(/\D/g, ''); // Remove all non-digit characters
+    if (telefone.length === 11) {
+        return telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    } else if (telefone.length === 10) {
+        return telefone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+    }
+    return telefone;
+}
+
+function desformatTelefone(telefone) {
+    return telefone.replace(/\D/g, '');
+}
 
 //Função para pegar o perfil do usuário de acordo com o token de autenticação. Se ID for passado, pega o perfil do usuário com o ID passado.
 function getUserProfile(id = '') {
 
     function getParceria(data) {
-        if(data.parceria == 0) return 'Turista';
-        if(data.parceria == 1) return 'Guia';
+        if (data.parceria == 0) return 'Turista';
+        if (data.parceria == 1) return 'Guia';
         return 'Motorista';
     }
 
@@ -85,6 +99,22 @@ function getUserProfile(id = '') {
 
     //Se for passado um ID, muda a URL da requisição para pegar o perfil do usuário com o ID passado.
     if (id_search) {
+        fetch('http://localhost:1337/api/users/me', method)
+        .then((response) => response.json())
+        .then((response) => {
+            fetch('http://localhost:1337/api/usuarios/' + id)
+            .then((innerResponse) => innerResponse.json())
+            .then((data) => {
+                console.log('Dados:')
+                console.log(response, data);
+                if(response.parceria == '0') document.querySelector('.telefone').style.display = 'none';
+                if (response.parceria == data.data.parceria) {
+                    document.getElementById('avaliar-button').style.display = 'none';
+                }
+            });
+        });
+
+
         method.method = 'GET';
         method.headers = { 'Content-Type': 'application/json' };
         requestUrl = `${API_URL}/usuarios/${id}?populate[0]=foto`
@@ -99,7 +129,7 @@ function getUserProfile(id = '') {
         .then((response) => {
             console.log(response);
             let data = (id_search) ? response.data : response.usuario;
-            const { nome, nota, sexo, nascimento, bio, foto, nome_completo } = data;
+            const { nome, nota, sexo, nascimento, bio, foto, nome_completo, contato } = data;
             const parceria = getParceria(data);
             const fotoUrl = foto ? `http://localhost:1337${foto.url}` : '../src/img/user_example.png';
             const email = response.email;
@@ -113,6 +143,7 @@ function getUserProfile(id = '') {
             g_textarea = document.querySelector('.textarea');
             g_email = document.querySelector('.email .value');
             g_parceria = document.querySelector('.parceria .value');
+            g_contato = document.querySelector('.telefone .value');
 
             g_pp.src = fotoUrl;
             g_nome_completo.value = nome_completo;
@@ -123,6 +154,7 @@ function getUserProfile(id = '') {
             g_textarea.value = bio;
             g_email.value = email;
             g_parceria.innerHTML = parceria;
+            g_contato.value = formatTelefone(contato);
 
             setTimeout(() => {
                 changeTitle(nome);
@@ -187,13 +219,13 @@ function getUserReviews() {
                     `;
                     reviewsContainer.appendChild(reviewElement);
                     remove_name_border();
-            stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
+                    stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
                 }
             } catch (error) {
                 console.log("Erro: " + error);
             }
         }).then(async () => {
-            if(!id_search) id = publicUserId;
+            if (!id_search) id = publicUserId;
             console.log('ID:', id);
             document.getElementById('nota').textContent = (await getMediaNota(id)).toFixed(2);
             stars_init(document.getElementsByClassName('stars'), document.getElementsByClassName('valor'));
@@ -266,7 +298,7 @@ function updateUser() {
                 maxWidthOrHeight: 800, // Largura ou altura máxima
                 useWebWorker: true // Usa processamento em segundo plano
             };
-        
+
             try {
                 const imagemCompactada = await imageCompression(arquivo, opcoes);
                 console.log('imagem compactada')
@@ -292,7 +324,7 @@ function updateUser() {
     fields.forEach((field) => {
         field.addEventListener('blur', () => {
             setTimeout(() => {
-                if(!focus) removeSave();
+                if (!focus) removeSave();
             }, 500);
             focus = false;
         });
@@ -309,7 +341,7 @@ function updateUser() {
 
     document.getElementsByClassName('textarea')[0].addEventListener('blur', () => {
         setTimeout(() => {
-            if(!focus) removeSave();
+            if (!focus) removeSave();
         }, 500);
         focus = false;
     });
@@ -329,7 +361,7 @@ function updateUser() {
         }
 
         let pic = await picEvaluate();
-        if(pic) pic = await pic.json();
+        if (pic) pic = await pic.json();
         let nome_completo = g_nome_completo.value;
         let nome = parseName(g_nome.value);
         let sexo = g_sexo.value;
@@ -337,6 +369,7 @@ function updateUser() {
         let bio = g_textarea.value;
         let email = g_email.value;
         let parceria = g_parceria.textContent;
+        let contato = desformatTelefone(g_contato.value);
 
         let data = {
             nome: nome,
@@ -344,6 +377,7 @@ function updateUser() {
             sexo: sexo,
             nascimento: nascimento,
             bio: bio,
+            contato: contato,
         };
 
         if (pic && pic.length > 0) {
@@ -364,7 +398,7 @@ function updateUser() {
             .then((response) => {
                 if (!response.ok) {
                     response = response.json();
-                    throw new Error('Algo deu errado: '+ response);
+                    throw new Error('Algo deu errado: ' + response);
                 }
                 return response.json();
             })
@@ -380,14 +414,14 @@ function updateUser() {
 datePicker();
 getUserProfile(id);
 getUserReviews();
-if(!id_search) {
+if (!id_search) {
     updateUser();
 } else {
     document.querySelectorAll('.profile .top label').forEach((field) => {
         //if its a date field
         if (field.getAttribute('for') === 'nascimento') {
             field.getElementsByClassName('value')[0].setAttribute('readonly', 'true');
-        } else if(field.getAttribute('for') === 'sexo') {
+        } else if (field.getAttribute('for') === 'sexo') {
             field.getElementsByClassName('value')[0].style.appearance = 'none';
         }
         field.classList.add('no-hover');

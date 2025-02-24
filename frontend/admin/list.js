@@ -8,6 +8,7 @@ setTimeout(() => {
     document.body.style.display = 'block';
 }, 500);
 
+document.getElementById('create').style.display = type == 'atracaos' ? 'block' : 'none';
 
 
 URL = `http://localhost:1337/api/${type}`;
@@ -74,7 +75,7 @@ function populateMain(main) {
                 <td>${nome}</td>
                 <td class=nota>${await getMediaNota(item.documentId, type)}</td>
                 <td class="actions">
-                    <button class="edit"${type == 'users' ? "style=display: 'none'" : ''}>Editar</button>
+                    <button class="edit"${type == 'users' ? 'style="display: none"' : ''}>Editar</button>
                     <span style="display: none">${item.documentId}</span>
                     <button class="delete">Excluir</button>
                 </td>
@@ -92,6 +93,8 @@ function populateMain(main) {
 
                 let deleteButton = row.querySelector('.delete');
                 deleteButton.addEventListener('click', () => {
+                    if(!confirm('Tem certeza que deseja excluir este item?')) return;
+
                     deleteItem(type, id).then(data => {
                         console.log('Item deletado:', data);
                         window.location.reload();
