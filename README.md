@@ -96,6 +96,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    Após o login: O usuário é redirecionado para a página inicial (home), onde pode avaliar outros usuários ou pontos turísticos.
 
 3. Home
+   
    Usuário não logado:
    
       Pode visualizar pontos turísticos.
@@ -108,19 +109,22 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
       Pode avaliar pontos turísticos e outros usuários.
 
-4. Registrar
+5. Registrar
+   
    Turista: Na primeira tela, o usuário pode se registrar como turista.
    
    Parceiro (Guia ou Motorista): Ao clicar em "Quero ser um parceiro", o usuário pode se registrar como guia ou motorista, fornecendo informações de contato.
    
    Após o registro: O usuário é redirecionado para o perfil, onde pode visualizar e editar suas informações.
 
-5. Listar
+7. Listar
+   
    Guias: Ao clicar em "Guias > Listar", todos os guias cadastrados serão exibidos.
    
    Turistas: Ao clicar em "Turistas > Localizar", todos os turistas cadastrados serão listados.
 
-6. Perfil
+9. Perfil
+    
    Informações disponíveis: O usuário pode visualizar e editar suas informações, como:
    
    Sobre mim
@@ -137,7 +141,8 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
    Avaliações: O usuário pode ver as avaliações que recebeu.
 
-7. Usuários não logados
+10. Usuários não logados
+    
    O que podem fazer:
    
    Listar guias, motoristas e pontos turísticos.
@@ -148,12 +153,14 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
    Não podem ser avaliados.
 
-8. Pontos Turísticos
+11. Pontos Turísticos
+    
    Avaliar: Somente usuários logados podem avaliar pontos turísticos.
    
    Agendar: Usuários logados podem agendar serviços com guias disponíveis.
 
-9. Admin
+12. Admin
+    
    Acesso restrito: Somente administradores podem logar como admin.
    
    Funcionalidades:
@@ -164,7 +171,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
    Gerenciar avaliações.
 
-## Fluxo de Uso
+**Fluxo de Uso**
 
 Registro:
 
@@ -193,6 +200,7 @@ Perfil:
    Edite suas informações pessoais e visualize suas avaliações.
 
 Restrições
+
    Usuários não logados: Apenas visualizam informações, sem permissão para avaliar ou ser avaliados.
    
    Admin: Acesso exclusivo para gerenciamento do sistema.
