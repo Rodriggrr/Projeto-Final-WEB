@@ -39,7 +39,7 @@ A plataforma trará:
 2. **Funcionalidades para Profissionais**:  
    - Adicionar novos pontos turísticos.  
    - Apresentar agendas de tours.  
-   - Cadastrar-se como motorista ou guia.  
+   - Cadastrar-se como motorista ou guia.
 
 3. **Funcionalidades para Turistas**:  
    - Agendar passeios com guias.  
@@ -87,3 +87,59 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 | --- | --- |
 | GET | api/entidade1/|
 | POST | api/entidade2 |
+
+# Como utilizar o Sistema?
+**Login**
+Email e senha, ao logar você será redirecionado para a home, onde poderá avaliar outros usuarios ou pontos turisticos.
+**Home**
+Ao abrir a home o usuário(não-logado) poderá ver os pontos turisticos, as avaliações dele, poderá listar guias e localizar motoristas.
+O usuário poderá fazer o login ou se registrar.
+**Registrar**
+Na primeira tela você irá se registrar como turista.
+Ao clicar em Quero ser um parceiro, você irá se registrar como guia ou como motorista além de colocar o contato.
+Ao concluir o registro o usuario irá ser redirecionado para o perfil onde tem suas informações.
+**Listar**
+Ao clicar em guias > listar todos os guias cadastrados irão ser listados.
+Ao clicar em turistas > localizar todos os turistas irão ser listados.
+**Perfil**
+Ao clicar em perfil o usuário poderá ver suas informações como sobre mim, nome completo, data de nascimento(pode ser alterado), sexo, email e senha(pode ser alterado), além de ver suas avaliações.
+**Usuarios não-logados**
+Usuários não-logados podem listar guias ou motoristas e pontos turisticos.
+NÃO PODEM avaliar usuários e pontos turisticos.
+NãO PODEM ser avaliados.
+**Pontos turisticos**
+Para avaliar é necessário estar logado.
+Ao logar o usuario poderá avaliar um ponto turistico, agendar com um guia disponivel.
+**ADMIN**
+APENAS ADMINS PODEM LOGAR.
+Ao logar como admin o usuario poderá gerenciar atrações, usuarios e avaliações.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
