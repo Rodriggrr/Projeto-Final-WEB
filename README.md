@@ -90,110 +90,111 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 ## Funcionalidades do Sistema
 1. Login
-Como funciona: O usuário insere email e senha para acessar o sistema.
-
-Após o login: O usuário é redirecionado para a página inicial (home), onde pode avaliar outros usuários ou pontos turísticos.
+   Como funciona: O usuário insere email e senha para acessar o sistema.
+   
+   Após o login: O usuário é redirecionado para a página inicial (home), onde pode avaliar outros usuários ou pontos turísticos.
 
 2. Home
-Usuário não logado:
-
-Pode visualizar pontos turísticos.
-
-Pode listar guias e localizar motoristas.
-
-Pode fazer login ou se registrar.
-
-Usuário logado:
-
-Pode avaliar pontos turísticos e outros usuários.
+   Usuário não logado:
+   
+      Pode visualizar pontos turísticos.
+      
+      Pode listar guias e localizar motoristas.
+      
+      Pode fazer login ou se registrar.
+   
+   Usuário logado:
+   
+      Pode avaliar pontos turísticos e outros usuários.
 
 3. Registrar
-Turista: Na primeira tela, o usuário pode se registrar como turista.
-
-Parceiro (Guia ou Motorista): Ao clicar em "Quero ser um parceiro", o usuário pode se registrar como guia ou motorista, fornecendo informações de contato.
-
-Após o registro: O usuário é redirecionado para o perfil, onde pode visualizar e editar suas informações.
+   Turista: Na primeira tela, o usuário pode se registrar como turista.
+   
+   Parceiro (Guia ou Motorista): Ao clicar em "Quero ser um parceiro", o usuário pode se registrar como guia ou motorista, fornecendo informações de contato.
+   
+   Após o registro: O usuário é redirecionado para o perfil, onde pode visualizar e editar suas informações.
 
 4. Listar
-Guias: Ao clicar em "Guias > Listar", todos os guias cadastrados serão exibidos.
-
-Turistas: Ao clicar em "Turistas > Localizar", todos os turistas cadastrados serão listados.
+   Guias: Ao clicar em "Guias > Listar", todos os guias cadastrados serão exibidos.
+   
+   Turistas: Ao clicar em "Turistas > Localizar", todos os turistas cadastrados serão listados.
 
 5. Perfil
-Informações disponíveis: O usuário pode visualizar e editar suas informações, como:
-
-Sobre mim
-
-Nome completo
-
-Data de nascimento (editável)
-
-Sexo
-
-Email
-
-Senha (editável)
-
-Avaliações: O usuário pode ver as avaliações que recebeu.
+   Informações disponíveis: O usuário pode visualizar e editar suas informações, como:
+   
+   Sobre mim
+   
+   Nome completo
+   
+   Data de nascimento (editável)
+   
+   Sexo
+   
+   Email
+   
+   Senha (editável)
+   
+   Avaliações: O usuário pode ver as avaliações que recebeu.
 
 6. Usuários não logados
-O que podem fazer:
-
-Listar guias, motoristas e pontos turísticos.
-
-Restrições:
-
-Não podem avaliar usuários ou pontos turísticos.
-
-Não podem ser avaliados.
+   O que podem fazer:
+   
+   Listar guias, motoristas e pontos turísticos.
+   
+   Restrições:
+   
+   Não podem avaliar usuários ou pontos turísticos.
+   
+   Não podem ser avaliados.
 
 7. Pontos Turísticos
-Avaliar: Somente usuários logados podem avaliar pontos turísticos.
-
-Agendar: Usuários logados podem agendar serviços com guias disponíveis.
+   Avaliar: Somente usuários logados podem avaliar pontos turísticos.
+   
+   Agendar: Usuários logados podem agendar serviços com guias disponíveis.
 
 8. Admin
-Acesso restrito: Somente administradores podem logar como admin.
+   Acesso restrito: Somente administradores podem logar como admin.
+   
+   Funcionalidades:
+   
+   Gerenciar atrações (pontos turísticos).
+   
+   Gerenciar usuários (turistas, guias, motoristas).
+   
+   Gerenciar avaliações.
 
-Funcionalidades:
+## Fluxo de Uso
 
-Gerenciar atrações (pontos turísticos).
-
-Gerenciar usuários (turistas, guias, motoristas).
-
-Gerenciar avaliações.
-
-Fluxo de Uso
 Registro:
 
-Escolha entre se registrar como turista ou parceiro (guia/motorista).
-
-Preencha os dados necessários e conclua o registro.
+   Escolha entre se registrar como turista ou parceiro (guia/motorista).
+   
+   Preencha os dados necessários e conclua o registro.
 
 Login:
 
-Insira email e senha para acessar o sistema.
+   Insira email e senha para acessar o sistema.
+   
+   Navegação:
 
-Navegação:
-
-Turistas: Podem avaliar pontos turísticos, agendar guias e visualizar perfis.
-
-Guias/Motoristas: Podem gerenciar seu perfil e serem avaliados por turistas.
-
-Admin: Gerenciar o sistema (atrações, usuários e avaliações).
+   Turistas: Podem avaliar pontos turísticos, agendar guias e visualizar perfis.
+   
+   Guias/Motoristas: Podem gerenciar seu perfil e serem avaliados por turistas.
+   
+   Admin: Gerenciar o sistema (atrações, usuários e avaliações).
 
 Avaliações:
 
-Somente usuários logados podem avaliar pontos turísticos e outros usuários.
+   Somente usuários logados podem avaliar pontos turísticos e outros usuários.
 
 Perfil:
 
-Edite suas informações pessoais e visualize suas avaliações.
+   Edite suas informações pessoais e visualize suas avaliações.
 
 Restrições
-Usuários não logados: Apenas visualizam informações, sem permissão para avaliar ou ser avaliados.
-
-Admin: Acesso exclusivo para gerenciamento do sistema.
+   Usuários não logados: Apenas visualizam informações, sem permissão para avaliar ou ser avaliados.
+   
+   Admin: Acesso exclusivo para gerenciamento do sistema.
 
 
 
