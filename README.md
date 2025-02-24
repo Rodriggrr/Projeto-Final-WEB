@@ -201,9 +201,9 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
    
    Restrições
    
-      Usuários não logados: Apenas visualizam informações, sem permissão para avaliar ou ser avaliados.
-      
-      Admin: Acesso exclusivo para gerenciamento do sistema.
+         Usuários não logados: Apenas visualizam informações, sem permissão para avaliar ou ser avaliados.
+         
+         Admin: Acesso exclusivo para gerenciamento do sistema.
 
 
 
