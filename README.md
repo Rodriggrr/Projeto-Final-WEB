@@ -97,6 +97,7 @@ A plataforma trará:
   - Particles
   - Browser-image-compression
   - Fetch
+    
 **Backend:**
   - Strapi
 
